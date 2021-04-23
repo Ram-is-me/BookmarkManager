@@ -1,6 +1,20 @@
 # BookmarkManager
 SPE Final Project for Bookmark Manager
 
+# Production Docker Container Creation and setup
+Just run the following commands:
+```shell
+docker-compose -f docker-compose.prod.yml up -d --build
+```
+Then, run the command below to view the logs and check status of the containers
+```shell
+docker-compose -f docker-compose.prod.yml logs -f
+```
+After all the containers are up and running, you can visit http://localhost:1337/admin/ and login to the admin interface. To bring down the container run
+```shell
+docker-compose -f docker-compose.prod.yml down -v
+```
+
 # Docker Dev Environment Setup Instructions
 ```shell
 docker-compose up -d --build
