@@ -39,10 +39,10 @@ sudo apt install python3-pip python3-dev libpq-dev postgresql postgresql-contrib
 sudo -u postgres psql
 postgres=# CREATE DATABASE bookmark_manager;
 postgres=# CREATE USER djangouser WITH PASSWORD 'password';
-postgres=# ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
-postgres=# ALTER ROLE myprojectuser SET default_transaction_isolation TO 'read committed';
-postgres=# ALTER ROLE myprojectuser SET timezone TO 'UTC';
-postgres=# GRANT ALL PRIVILEGES ON DATABASE myproject TO myprojectuser;
+postgres=# ALTER ROLE djangouser SET client_encoding TO 'utf8';
+postgres=# ALTER ROLE djangouser SET default_transaction_isolation TO 'read committed';
+postgres=# ALTER ROLE djangouser SET timezone TO 'UTC';
+postgres=# GRANT ALL PRIVILEGES ON DATABASE bookmark_manager TO djangouser;
 postgres=# \q
 ```
 ### Virual ENV setup
