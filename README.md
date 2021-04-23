@@ -1,6 +1,18 @@
 # BookmarkManager
 SPE Final Project for Bookmark Manager
 
+# Docker Dev Environment Setup Instructions
+```shell
+docker-compose up -d --build
+```
+This should build the images and start running the containers. 
+To check if the server went up, run
+```shell
+docker-compose logs -f
+```
+This should show any errors that might have occured while building.
+If everything worked properly, you can visit http://localhost:8000/ and see if you get the Django Startup page.
+
 # Dev Setup Instructions
 ## DB and Django Setup Commands
 ### Required installs and updates
