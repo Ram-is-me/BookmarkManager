@@ -8,7 +8,7 @@
         source: pull
     - name: Pull bookmark manager web image
       docker_image:
-        name: ramisme/bookmarkmanager:app
+        name: ramisme/bookmarkmanager:web
         source: pull
     - name: Pull bookmark manager nginx image
       docker_image:
