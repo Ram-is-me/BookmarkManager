@@ -1,0 +1,16 @@
+---
+- name: Pull docker images of bookmark manager
+  hosts: all
+  tasks:
+    - name: Pull bookmark manager db image
+      docker_image:
+        name: ramisme/bookmarkmanager:db
+        source: pull
+    - name: Pull bookmark manager web image
+      docker_image:
+        name: ramisme/bookmarkmanager:web
+        source: pull
+    - name: Pull bookmark manager nginx image
+      docker_image:
+        name: ramisme/bookmarkmanager:nginx
+        source: pull
