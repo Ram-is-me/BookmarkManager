@@ -27,8 +27,8 @@ SECRET_KEY = 'django-insecure-(y5050)m*q@q&8ggsw2p=h#pj*&+li@btdk#dp=!z*v6^&&+98
 # SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = int(os.environ.get("DEBUG", default=0))
+DEBUG = True
+#DEBUG = int(os.environ.get("DEBUG", default=0))
 
 ALLOWED_HOSTS = ['localhost','0.0.0.0', '127.0.0.1']
 # The simplest case: just add the domain name(s) and IP addresses of your Django server
@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bookmark_manager_app',
-    'bootstrap4'
+    'bootstrap4',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

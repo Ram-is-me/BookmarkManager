@@ -4,10 +4,11 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.views import generic
 from django.urls import reverse_lazy, reverse
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 import datetime
 from django.utils import timezone
 from . import models
+from django import forms
 
 class SignUpView(generic.CreateView):
     form_class = UserCreationForm
@@ -44,6 +45,43 @@ def bookmarks_tag(request, name, tag):
             bookmark_list.append(bookmark)
     context = {'bookmark_list' : bookmark_list}
     return render(request, 'bookmarks_tag.html', context)
+
+class BookmarkForm(forms.Form):
+    url = forms.CharField(max_length=500, required=True)
+    custom_name = forms.CharField(max_length=200, required=True)
+    # list_of_tags_to_add = forms.MultipleChoiceField(
+    #     choices=[(r.name,r.name) for r in models.Tag.objects.all()], 
+    #     help_text="Control+Click on tags to select multiple. Selected Tags will be added to Associated Tags",
+    #     required=False
+    #     )
+    custom_note = forms.CharField(widget=forms.Textarea, required=False)
+
+    def save(self, group_id, list_of_tag_ids):
+        if(models.Bookmark.objects.filter(url=self.url)):
+            current_bookmark = models.Bookmark.objects.filter(url=self.url)
+            current_bookmark.update(custom_name=self.custom_name)
+            current_bookmark.update(custom_note=self.custom_note)
+        else:
+            new_bookmark = models.Bookmark(url=self.url, custom_name=self.custom_name, custom_note=self.custom_note, group=group_id)
+            
+
+def view_bookmark(request, name, id):
+    form = BookmarkForm()
+    # form.list_of_tags_to_remove.choices
+    # list_of_tags_to_remove.choices = [(r.name,r.name) for r in models.Tag.objects.filter(bookmark__id=id).all()]
+    if(request.method==POST):
+
+
+    context = {
+        'form': form,
+        'bookmark_obj': models.Bookmark.objects.get(id=id),
+        'all_tags' : models.Tag.objects.all(),
+    }
+    return render(request, 'view_bookmark.html', context)
+
+def remove_tag_from_bookmark(request, name, id, tagid):
+    return HttpResponse("Remove Tag Function")
+
 
 def dummydata(request):
     user1 = models.User(name="user1")
