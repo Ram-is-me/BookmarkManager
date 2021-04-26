@@ -96,7 +96,7 @@
             Add Bookmark
           </button> -->
           <form
-            action="{% url 'add_group' user.username %}"
+            action="{% url 'create_group' user.username %}"
             class="form-inline"
             method="post"
           >
@@ -108,30 +108,10 @@
               type="text"
             />
             <button class="btn btn-primary my-2 my-sm-0" type="submit">
-              Add Group
+              Create Group
             </button>
           </form>
           <h3>Groups</h3>
-          <!-- <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Group</th>
-                <th scope="col">Date Of Creation</th>
-              </tr>
-            </thead>
-            {% if group_list %}
-            <tbody>
-              {% for group in group_list %}
-              <tr>
-                <th scope="row">{{ forloop.counter }}</th>
-                <td><a href="{% url 'bookmarks' user.username group.name %}">{{ group.name }}</a></td>
-                <td>{{ group.date_of_creation }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-            {% endif %}
-          </table> -->
           <div id="card-451647">
             {% if group_list %} {% for group in group_list %}
             <div class="card">
@@ -158,6 +138,17 @@
                     </button>
                     {% endbuttons %}
                   </form>
+                  <form
+                    action="{% url 'add_bookmark' user.username group.id %}"
+                    method="post"
+                    class="post-form"
+                  >
+                    {% csrf_token %} {% buttons %}
+                    <button type="submit" class="btn btn-success">
+                      Add Bookmark
+                    </button>
+                    {% endbuttons %}
+                  </form>
                   <table class="table">
                     <thead>
                       <tr>
@@ -172,7 +163,7 @@
                         <th scope="row">{{ forloop.counter }}</th>
                         <td>
                           <a
-                            href="{% url 'bookmarks' user.username group.name %}"
+                            href="{% url 'view_bookmark' user.username bookmark.id %}"
                             >{{ bookmark.custom_name }}</a
                           >
                         </td>
@@ -190,7 +181,7 @@
         <div class="col-md-2">
           <h3>Tags</h3>
           <form
-            action="{% url 'add_tag' user.username %}"
+            action="{% url 'create_tag' user.username %}"
             class="form-inline"
             method="post"
           >
@@ -202,7 +193,7 @@
               type="text"
             />
             <button class="btn btn-primary my-2 my-sm-0" type="submit">
-              Add Tag
+              Create Tag
             </button>
           </form>
           {% if tag_list %}
