@@ -1,4 +1,5 @@
 from django import template
+from .. import models
 
 register = template.Library()
 
@@ -21,4 +22,15 @@ def custom_role_filter(all_objs, used_roles):
     for r in all_objs:
         if r not in used_roles:
             l.append(r)
+    return l
+
+@register.filter
+def custom_group_filter(all_objs, group):
+    l=[]
+    print(group)
+    for r in all_objs:
+        print(r)    
+        if r.id != group.id:
+            l.append(r)
+    print(l)
     return l
