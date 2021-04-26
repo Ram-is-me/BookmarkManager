@@ -9,7 +9,6 @@ class Tag(models.Model):
         unique_together = (('name', 'creator'), )
 
     name = models.CharField(max_length=50)
-    description = models.CharField(max_length=200)
     creator = models.ForeignKey(User, on_delete=CASCADE)
     date_of_creation = models.DateField(max_length=50)
 
@@ -25,7 +24,6 @@ class Bookmark(models.Model):
     creator = models.ForeignKey(User, on_delete=CASCADE)
     date_of_creation = models.DateField(max_length=50)
     group = models.ForeignKey(Group, on_delete=CASCADE)
-    page_name = models.CharField(max_length=50)
     url = models.URLField(max_length=500)
     custom_name = models.CharField(max_length=50)
     custom_note = models.CharField(max_length=200)

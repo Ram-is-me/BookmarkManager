@@ -1,6 +1,5 @@
-{% load static %}
-{% load bootstrap4 %}
-{% include 'base.html' %}
+{% load static %} {% load bootstrap4 %} {% include 'base.html' %}
+{% load group_filter %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,9 +33,9 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Home</a>
+        <a class="navbar-brand" href="{% url 'home' %}">Home</a>
         <form class="form-inline">
-          <input class="form-control mr-sm-2" type="text" /> 
+          <input class="form-control mr-sm-2" type="text" />
           <button class="btn btn-primary my-2 my-sm-0" type="submit">
             Search
           </button>
@@ -69,7 +68,9 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#">Profile</a></li>
                 <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                </li>
               </ul>
             </li>
           </ul>
@@ -78,8 +79,40 @@
     </nav>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-12">
-          <table class="table">
+        <div class="col-md-2">
+          <h3>Reminders</h3>
+          {% if reminder_list %} {% for reminder in reminder_list %}
+          <div class="card">
+            <h5 class="card-header">{{ reminder.name }}</h5>
+            <div class="card-body">
+              <p class="card-text">{{ reminder.bookmark.custom_name }}</p>
+            </div>
+            <div class="card-footer">{{ reminder.reminder_time }}</div>
+          </div>
+          {% endfor %} {% endif %}
+        </div>
+        <div class="col-md-8">
+          <!-- <button type="button" class="btn btn-success btn-lg btn-block">
+            Add Bookmark
+          </button> -->
+          <form
+            action="{% url 'add_group' user.username %}"
+            class="form-inline"
+            method="post"
+          >
+            {% csrf_token %}
+            <input
+              id="csrf_token"
+              name="groupname"
+              class="form-control mr-sm-2"
+              type="text"
+            />
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">
+              Add Group
+            </button>
+          </form>
+          <h3>Groups</h3>
+          <!-- <table class="table">
             <thead>
               <tr>
                 <th scope="col">ID</th>
@@ -98,7 +131,91 @@
               {% endfor %}
             </tbody>
             {% endif %}
-          </table>
+          </table> -->
+          <div id="card-451647">
+            {% if group_list %} {% for group in group_list %}
+            <div class="card">
+              <div class="card-header">
+                <a
+                  class="card-link"
+                  data-toggle="collapse"
+                  data-parent="#card-451647"
+                  href="#{{ group.id }}"
+                  >{{ group.name }}</a
+                >
+              </div>
+              <div id="{{ group.id }}" class="collapse">
+                <div class="card-body">
+                  <p>Created On: {{ group.date_of_creation }}</p>
+                  <form
+                    action="{% url 'delete_group' user.username group.name %}"
+                    method="post"
+                    class="post-form"
+                  >
+                    {% csrf_token %} {% buttons %}
+                    <button type="submit" class="btn btn-danger">
+                      Delete Group
+                    </button>
+                    {% endbuttons %}
+                  </form>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Bookmark</th>
+                        <th scope="col">Date Of Creation</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for bookmark in all_bookmarks|iterate:group.id %}
+                      <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>
+                          <a
+                            href="{% url 'bookmarks' user.username group.name %}"
+                            >{{ bookmark.custom_name }}</a
+                          >
+                        </td>
+                        <td>{{ bookmark.date_of_creation }}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            {% endfor %} {% endif %}
+          </div>
+        </div>
+        <div class="col-md-2">
+          <h3>Tags</h3>
+          <form
+            action="{% url 'add_tag' user.username %}"
+            class="form-inline"
+            method="post"
+          >
+            {% csrf_token %}
+            <input
+              id="csrf_token"
+              name="tagname"
+              class="form-control mr-sm-2"
+              type="text"
+            />
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">
+              Add Tag
+            </button>
+          </form>
+          {% if tag_list %}
+          <ul>
+            {% for tag in tag_list %}
+            <li class="list-item">
+              <a href="{% url 'bookmarks_tag' user.username tag.name %}"
+                >{{ tag.name }}</a
+              >
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
         </div>
       </div>
     </div>
