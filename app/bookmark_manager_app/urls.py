@@ -6,7 +6,7 @@ urlpatterns = [
     path('', views.index.home, name='home'),
     # path('dummydata', views.dummydata, name='dummydata'),
     path('<str:name>/', views.display.groups, name='groups'),
-    path('<str:name>/tags/<str:tag>', views.display.bookmarks_tag, name='bookmarks_tag'),
+    path('<str:name>/tagfilter', views.display.bookmarks_tag, name='bookmarks_tag'),
     path('<str:name>/<int:group_id>/bookmark/new/', views.bookmark.add_bookmark, name='add_bookmark'),
     path('<str:name>/bookmark/<int:bookmark_id>/delete', views.bookmark.delete_bookmark, name='delete_bookmark'),
     path('<str:name>/bookmark/<int:id>', views.bookmark.view_bookmark, name='view_bookmark'),
@@ -16,6 +16,6 @@ urlpatterns = [
     path('<str:name>/creategroup', views.display.create_group, name='create_group'),
     path('<str:name>/createtag', views.display.create_tag, name='create_tag'),
     path('<str:name>/deletegroup/<str:group>', views.display.delete_group, name='delete_group'),
-    path('<str:name>/deletetag/<str:tag>', views.display.delete_tag, name='delete_tag'),
+    path('<str:name>/deletetag', views.display.delete_tag, name='delete_tag'),
     path('accounts/signup', views.index.SignUpView.as_view(), name='signup'),
 ]

@@ -1,4 +1,5 @@
 {% load static %} {% load bootstrap4 %} {% include 'base.html' %}
+{% load widget_tweaks %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -91,15 +92,6 @@
           {% endfor %} {% endif %}
         </div>
         <div class="col-md-8">
-          <form
-            action="{% url 'delete_tag' user.username tag %}"
-            method="post"
-            class="post-form"
-          >
-            {% csrf_token %} {% buttons %}
-            <button type="submit" class="btn btn-danger">Delete Tag</button>
-            {% endbuttons %}
-          </form>
           <table class="table">
             <thead>
               <tr>
@@ -123,8 +115,7 @@
                       {% for tag in bookmark.list_of_tags.all %}
                       <tr>
                         <td>
-                          <a
-                            href="{% url 'bookmarks_tag' user.username tag.name %}"
+                          <a href="{% url 'bookmarks_tag' user.username %}"
                             >{{ tag.name }}</a
                           >
                         </td>
@@ -152,7 +143,7 @@
               Create Tag
             </button>
           </form>
-          {% if tag_list %}
+          <!-- {% if tag_list %}
           <ul>
             {% for tag in tag_list %}
             <li class="list-item">
@@ -162,7 +153,42 @@
             </li>
             {% endfor %}
           </ul>
-          {% endif %}
+          {% endif %} -->
+          <form action="{% url 'bookmarks_tag' user.username %}" method="post" novalidate>
+            {% csrf_token %}
+            
+            {% for hidden_field in form.hidden_fields %}
+              {{ hidden_field }}
+            {% endfor %}
+            
+            {% for field in form.visible_fields %}
+            <div class="form-group">
+              {{ field.label_tag }}
+              {% render_field field %}
+              {% if field.help_text %}
+              <small class="form-text text-muted">{{ field.help_text }}</small>
+              {% endif %}
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary">Filter</button>
+          </form>
+          <form
+            action="{% url 'delete_tag' user.username %}"
+            class="form-inline"
+            method="post"
+          >
+            {% csrf_token %}
+            <input
+              id="csrf_token"
+              name="deletetagname"
+              class="form-control mr-sm-2"
+              type="text"
+            />
+            <button class="btn btn-danger my-2 my-sm-0" type="submit">
+              Delete Tag
+            </button>
+          </form>
         </div>
       </div>
     </div>
