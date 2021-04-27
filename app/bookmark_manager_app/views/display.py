@@ -17,7 +17,10 @@ def helper(arr, name):
     if "t" in arr:
         output.append(models.Tag.objects.filter(creator=curr_user))
     if "r" in arr:
-        output.append(models.Reminder.objects.filter(creator=curr_user))
+        lst = models.Reminder.objects.filter(creator=curr_user).order_by('-reminder_time')
+        for r in lst:
+            r.compute_status()
+        output.append(lst)
     return output
     
 @login_required

@@ -82,7 +82,13 @@
         <div class="col-md-2">
           <h3>Reminders</h3>
           {% if reminder_list %} {% for reminder in reminder_list %}
-          <div class="card">
+          {% if reminder.status == "red" %}
+          <div class="card bg-danger">
+          {% elif reminder.status == "yellow" %}
+          <div class="card bg-warning">
+          {% else %}
+          <div class="card bg-success">
+          {% endif %}
             <h5 class="card-header">{{ reminder.name }}</h5>
             <div class="card-body">
               <p class="card-text">{{ reminder.bookmark.custom_name }}</p>
@@ -92,6 +98,7 @@
           {% endfor %} {% endif %}
         </div>
         <div class="col-md-8">
+          <h3>Bookmarks</h3>
           <table class="table">
             <thead>
               <tr>
