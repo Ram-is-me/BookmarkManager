@@ -36,7 +36,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Home</a>
+        <a class="navbar-brand" href="{% url 'home' %}">Home</a>
         <form class="form-inline" >
           <div class="input-group">
             <input class="form-control mr-sm-2 " type="text" placeholder="Search Bookmarks"/> 
@@ -254,7 +254,7 @@
                       <tbody>
                         {% for tag in bookmark.list_of_tags.all %}
                         <tr class="text-center">
-                          <td><a href="{% url 'bookmarks_tag' user.username tag.name%}">{{tag.name}}</a></td>
+                          <td><a href="#">{{ tag.name }}</a></td>
                         </tr>
                         {% endfor %}
                       </tbody>
