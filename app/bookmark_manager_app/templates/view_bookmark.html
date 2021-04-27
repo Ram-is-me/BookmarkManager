@@ -80,7 +80,17 @@
         </div>
       </div>
     </nav>
+
+    <div class="page-header text-center">
+      <h3>Bookmark Details: </h3>
+    </div>
     
+    {% if new_bm_message %}
+    <div class="alert alert-success" role="alert">
+      {{ new_bm_message }}
+    </div>
+    {% endif %}
+
     {% if message %}
     <div class="alert alert-danger" role="alert">
       {{ message }}
@@ -139,6 +149,22 @@
                   {% if field.help_text %}
                     <small class="form-text text-muted">{{ field.help_text }}</small>
                   {% endif %}
+                  {% if field.name == 'url' %}
+                  <div class="alert alert-primary">
+                    Saved URL Data: {{ bookmark_obj.url }}
+                  </div>
+                {% endif%}
+                {% if field.name == 'custom_name' %}
+                  <div class="alert alert-primary">
+                    Saved Name Data: {{ bookmark_obj.custom_name }}
+                  </div>
+                {% endif%}
+                {% if field.name == 'custom_note' %}
+                  <div class="alert alert-primary">
+                    Saved Note Data: <br>
+                    {{ bookmark_obj.custom_note }}
+                  </div>
+                {% endif%}
               </div>
             {% endfor %}
             <button type="submit" class="btn btn-block btn-lg btn-success " style="margin-top: 10px;">Update Bookmark Details</button>
