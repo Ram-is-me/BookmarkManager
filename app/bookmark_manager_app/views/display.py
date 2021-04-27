@@ -3,15 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
-from django import forms
 from .. import models
-
-class TagForm(forms.Form):
-    def __init__(self, *args, **kwargs):
-        tags = kwargs.pop('tags')
-        super(TagForm, self).__init__(*args, **kwargs)
-        for tag in tags:
-            self.fields[tag.name] = forms.BooleanField(label=tag.name)
+from .forms import TagForm
     
 @login_required
 def groups(request, name):
