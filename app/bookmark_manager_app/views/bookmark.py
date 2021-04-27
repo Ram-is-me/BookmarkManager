@@ -7,8 +7,8 @@ from datetime import date
 from .. import models
 
 class BookmarkForm(forms.Form):
-    url = forms.CharField(max_length=500, required=True, help_text="change url")
-    custom_name = forms.CharField(max_length=50, required=True, help_text="change name")
+    url = forms.CharField(max_length=500, required=True)
+    custom_name = forms.CharField(max_length=50, required=True)
     # list_of_tags_to_add = forms.MultipleChoiceField(
     #     choices=[(r.name,r.name) for r in models.Tag.objects.all()], 
     #     help_text="Control+Click on tags to select multiple. Selected Tags will be added to Associated Tags",
@@ -21,36 +21,66 @@ class BookmarkForm(forms.Form):
             current_bookmark = models.Bookmark.objects.filter(url=request.POST['url'])
             current_bookmark.update(custom_name=request.POST['custom_name'])
             current_bookmark.update(custom_note=request.POST['custom_note'])
+            return True
+        elif (models.Bookmark.objects.filter(name=request.POST['custom_name'])):
+            current_bookmark = models.Bookmark.objects.filter(url=request.POST['url'])
+            current_bookmark.update(custom_name=request.POST['custom_name'])
+            current_bookmark.update(custom_note=request.POST['custom_note'])
+            return True
         else:
-            print(request.POST['custom_name'])
-            new_bookmark = models.Bookmark(
-                url=request.POST['url'], 
-                custom_name=request.POST['custom_name'], 
-                custom_note=request.POST['custom_note'], 
-                group=models.Group.objects.get(id=group_id), 
-                date_of_creation=date.today(), 
-                creator=models.User.objects.get(name=username))
-            new_bookmark.save()
+            return False
+
+
+    def new_save(self, request, username, group_id):
+        print(request.POST['custom_name'])
+        new_bookmark = models.Bookmark(
+            url=request.POST['url'], 
+            custom_name=request.POST['custom_name'], 
+            custom_note=request.POST['custom_note'], 
+            group=models.Group.objects.get(id=group_id), 
+            date_of_creation=date.today(), 
+            creator=models.User.objects.get(name=username))
+        new_bookmark.save()
 
 def add_bookmark(request, name, group_id):
-    return HttpResponse("Adding new bookmark")
+    # return HttpResponse("Adding new bookmark")
     form = BookmarkForm()
     message = ""
+    id = -1
+    new_bm_message = "Create New Bookmark"
 
-    # if(request.method=="POST"):
-    #     if (request.POST['url']==''):
-    #         print("Empty URL not allowed")
+    if(request.method=="POST"):
+        if (request.POST['url']==''):
+            message = "Empty URL not allowed"
+            # return HttpResponseRedirect(reverse('view_bookmark'),request, context)
+        elif (request.POST['custom_name']==''):
+            message = "Empty Name not allowed"
+        else:
+            form.new_save(request, name, group_id)
+            id = models.Bookmark.objects.filter(custom_name= request.POST['custom_name']).get().id
+            context = {
+                'form': form,
+                'message': message,
+                'bookmark_obj': models.Bookmark.objects.get(id=id),
+                'all_tags' : models.Tag.objects.filter(creator= models.User.objects.filter(name=name).get()),
+                'all_groups' : models.Group.objects.filter(creator= models.User.objects.filter(name=name).get()),
+                'related_bm' : models.Bookmark.objects.filter(group__id=models.Bookmark.objects.get(id=id).group.id)
+            }
+            return HttpResponseRedirect(reverse('view_bookmark', args=(name,id, )))
 
+        if(id == -1):
+            message = "Insertion Failed"
+    
     context = {
         'form': form,
+        'new_bm_message': new_bm_message,
         'message': message,
-        'bookmark_obj': models.Bookmark.objects.get(id=id),
-        'all_tags' : models.Tag.objects.all(creator= models.User.objects.filter(name=name).get()),
-        'all_groups' : models.Group.objects.filter(creator= models.User.objects.filter(name=name).get() ),
-        'related_bm' : models.Bookmark.objects.filter(group__id=models.Bookmark.objects.get(id=id).group.id)
+        # 'bookmark_obj': models.Bookmark.objects.get(id=new_bookmark_id),
+        # 'all_tags' : models.Tag.objects.filter(creator= models.User.objects.filter(name=name).get()),
+        # 'all_groups' : models.Group.objects.filter(creator= models.User.objects.filter(name=name).get()),
+        # 'related_bm' : models.Bookmark.objects.filter(group__id=models.Bookmark.objects.get(id=id).group.id)
     }
-    return render(request, 'view_bookmark.html', context)
-
+    return render(request, 'view_new_bookmark.html', context)
 
 def delete_bookmark(request, name, bookmark_id):
     models.Bookmark.objects.filter(id=bookmark_id).delete()
@@ -72,11 +102,14 @@ def view_bookmark(request, name, id):
         elif (request.POST['custom_name']==''):
             message = "Empty Name not allowed"
         else:
-            form.save(request, name, id)
-            form = BookmarkForm()
-            form.fields['url'].initial = models.Bookmark.objects.get(id=id).url
-            form.fields['custom_name'].initial = models.Bookmark.objects.get(id=id).custom_name
-            form.fields['custom_note'].initial = models.Bookmark.objects.get(id=id).custom_note
+            result = form.save(request, name, id)
+            if(result == False):
+                message = "Can't change both name and URL at the same time."
+            else:
+                form = BookmarkForm()
+                form.fields['url'].initial = models.Bookmark.objects.get(id=id).url
+                form.fields['custom_name'].initial = models.Bookmark.objects.get(id=id).custom_name
+                form.fields['custom_note'].initial = models.Bookmark.objects.get(id=id).custom_note
 
     context = {
         'form': form,
