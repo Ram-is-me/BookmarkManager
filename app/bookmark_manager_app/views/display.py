@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from django.db.utils import IntegrityError
 from .. import models
 from .forms import TagForm, SearchForm
 
@@ -50,29 +51,32 @@ def bookmarks_tag(request, name):
                 break
         if present:
             bookmark_list.append(bookmark)
-<<<<<<< HEAD
-    reminder_list = models.Reminder.objects.filter(creator=curr_user)
     context = {'bookmark_list' : bookmark_list, 'reminder_list' : reminder_list, 'form' : form, 'search_form': search_form}
-=======
-    context = {'bookmark_list' : bookmark_list, 'reminder_list' : reminder_list, 'form' : form}
->>>>>>> f49e6baf2eb3412165a3dd4433e540bf7499d864
     return render(request, 'bookmarks_tag.html', context)
 
 @login_required
 def create_group(request, name):
     groupname = request.POST.get('groupname')
     curr_user = models.User.objects.get(name=name)
-    new_group = models.Group(name=groupname, creator=curr_user, date_of_creation=timezone.now())
-    new_group.save()
-    return HttpResponseRedirect(reverse('groups', args=(name,)))
+    try:
+        new_group = models.Group(name=groupname, creator=curr_user, date_of_creation=timezone.now())
+        new_group.save()
+    except IntegrityError:
+        return HttpResponseForbidden("<h1> Duplicate group name. Please enter a unique name. </h1>")
+    else:
+        return HttpResponseRedirect(reverse('groups', args=(name,)))
 
 @login_required
 def create_tag(request, name):
     tagname = request.POST.get('tagname')
     curr_user = models.User.objects.get(name=name)
-    new_tag = models.Tag(name=tagname, creator=curr_user, date_of_creation=timezone.now())
-    new_tag.save()
-    return HttpResponseRedirect(reverse('groups', args=(name,)))
+    try:
+        new_tag = models.Tag(name=tagname, creator=curr_user, date_of_creation=timezone.now())
+        new_tag.save()
+    except IntegrityError:
+        return HttpResponseForbidden("<h1> Duplicate tag name. Please enter a unique name. </h1>")
+    else:
+        return HttpResponseRedirect(reverse('groups', args=(name,)))
 
 @login_required
 def delete_group(request, name, group):
@@ -83,6 +87,10 @@ def delete_group(request, name, group):
 @login_required
 def delete_tag(request, name):
     deletetagname = request.POST.get('deletetagname')
-    curr_tag = models.Tag.objects.get(name=deletetagname)
-    curr_tag.delete()
-    return HttpResponseRedirect(reverse('groups', args=(name,)))
+    try:
+        curr_tag = models.Tag.objects.get(name=deletetagname)
+        curr_tag.delete()
+    except models.Tag.DoesNotExist:
+        return HttpResponseForbidden("<h1> Tag does not exist. Please enter a valid name. </h1>")
+    else:
+        return HttpResponseRedirect(reverse('groups', args=(name,)))
