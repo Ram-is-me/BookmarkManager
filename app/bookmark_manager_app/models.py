@@ -1,5 +1,7 @@
 from django.db import models
 from django.db.models.deletion import CASCADE, PROTECT
+from django.utils import timezone
+import datetime
 
 class User(models.Model):
     name = models.CharField(max_length=50)
@@ -36,4 +38,13 @@ class Reminder(models.Model):
     creator = models.ForeignKey(User, on_delete=CASCADE)
     time_of_creation = models.DateTimeField(max_length=100)
     reminder_time = models.DateTimeField(max_length=100)
+    status = models.CharField(max_length=10, default="green")
+
+    def compute_status(self):
+        if timezone.now() > self.reminder_time:
+            self.status = "red"
+        elif self.reminder_time - timezone.now() < datetime.timedelta(days=1):
+            self.status = "yellow"
+        else:
+            self.status = "green"
 
