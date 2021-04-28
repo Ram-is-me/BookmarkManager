@@ -17,5 +17,6 @@ urlpatterns = [
     path('<str:name>/createtag', views.display.create_tag, name='create_tag'),
     path('<str:name>/deletegroup/<str:group>', views.display.delete_group, name='delete_group'),
     path('<str:name>/deletetag', views.display.delete_tag, name='delete_tag'),
+    path('<str:name>/search', views.search.search_bookmarks, name='search'),
     path('accounts/signup', views.index.SignUpView.as_view(), name='signup'),
 ]

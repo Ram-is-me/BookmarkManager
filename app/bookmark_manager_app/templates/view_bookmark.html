@@ -254,7 +254,7 @@
                       <tbody>
                         {% for tag in bookmark.list_of_tags.all %}
                         <tr class="text-center">
-                          <td><a href="{% url 'bookmarks_tag' user.username tag.name%}">{{tag.name}}</a></td>
+                          <td><a href="{% url 'bookmarks_tag' user.username %}">{{tag.name}}</a></td>
                         </tr>
                         {% endfor %}
                       </tbody>

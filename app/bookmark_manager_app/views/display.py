@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .. import models
-from .forms import TagForm
+from .forms import TagForm, SearchForm
     
 @login_required
 def groups(request, name):
@@ -36,6 +36,8 @@ def bookmarks_tag(request, name):
     curr_user = models.User.objects.get(name=name)
     tag_list = models.Tag.objects.filter(creator=curr_user)
     form = TagForm(tags=tag_list)
+    search_form = SearchForm()
+    search_form.fields['search_val'].initial = ""
     all_tag_names = [tag.name for tag in tag_list]
     input_tags = []
     for key in request.POST:
@@ -54,7 +56,7 @@ def bookmarks_tag(request, name):
         if present:
             bookmark_list.append(bookmark)
     reminder_list = models.Reminder.objects.filter(creator=curr_user)
-    context = {'bookmark_list' : bookmark_list, 'reminder_list' : reminder_list, 'form' : form}
+    context = {'bookmark_list' : bookmark_list, 'reminder_list' : reminder_list, 'form' : form, 'search_form': search_form}
     return render(request, 'bookmarks_tag.html', context)
 
 @login_required

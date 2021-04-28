@@ -1,0 +1,207 @@
+{% load static %}
+{% load bootstrap4 %}
+{% load widget_tweaks %}
+{% load filter_tags%}
+{% include 'base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Bootstrap 4, from LayoutIt!</title>
+
+    <meta
+      name="description"
+      content="Source code generated using layoutit.com"
+    />
+    <meta name="author" content="LayoutIt!" />
+
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+        <!-- <form class="form-inline" action="{% url 'search' request.user.username %}" method="POST">
+          <div class="input-group">
+            {% csrf_token %}
+            <input class="form-control mr-sm-2 " type="text" name="search_val" />
+            {% buttons %}
+            <button class="btn btn-primary my-2 my-sm-0 mx-2" type="submit">
+              Search
+            </button>
+            {% endbuttons %}
+          </div>
+        </form> -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+          <ul class="nav-item ml-md-auto" style="list-style-type: none">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {{ user.username }}
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row justify-content-center text-center">
+        <div class="col-md-8">
+          <h3>Search Results</h3>
+          <form class="form-inline" action="{% url 'search' request.user.username %}" method="POST">
+            <div class="input-group text-center">
+              {% csrf_token %}
+              {% for hidden_field in search_form.hidden_fields %}
+                {{ hidden_field }}
+              {% endfor %}
+              {% for field in search_form.visible_fields %}
+                <!-- <div  class="btn btn-warning btn-sm">{{ field.label_tag }}</div> -->
+                {% render_field field class="form-control" %}
+                {% if field.help_text %}
+                  <small class="form-text text-muted">{{ field.help_text }}</small>
+                {% endif %}
+                {% endfor %}
+              {% buttons %}
+              <!-- <button class="btn btn-primary my-2 my-sm-0 mx-2" type="submit">
+                Search
+              </button> -->
+              {% endbuttons %}
+            </div>
+          </form>
+          <form class="form-inline" action="{% url 'search' user.username  %}" method="post" novalidate>
+            <div class="form-group" >
+              {% csrf_token %}
+
+              {% for hidden_field in filter_form.hidden_fields %}
+                {{ hidden_field }}
+              {% endfor %}
+              {% for field in filter_form.visible_fields %}
+                {% if field.label_tag|starts_with_t %}
+                  <div  class="btn btn-warning btn-sm">{{ field.label_tag }}</div>
+                {% elif field.label_tag|starts_with_g == 1 %}
+                  <div  class="btn btn-primary btn-sm">{{ field.label_tag }}</div>
+                {% elif field.label_tag|starts_with_g == 2 %}
+                  <!-- Empty Button Just for Space -->
+                  <div class="btn btn-block"></div>
+                  <div  class="btn btn-primary btn-sm">{{ field.label_tag }}</div>                
+                {% endif %}
+                {% render_field field %}
+                {% if field.help_text %}
+                  <small class="form-text text-muted">{{ field.help_text }}</small>
+                {% endif %}
+                {% endfor %}
+              {% buttons %}
+              <button type="submit" class="btn btn-success mt-3">Filter</button>
+              {% endbuttons %}      
+            </div>
+          </form>
+          <br>
+          <p>If no group,tag is selected, all groups are enables by default</p>
+          <!-- <form class="form-inline" action="{% url 'search' user.username %}" method="post" novalidate>
+            <div class="form-group" >
+              {% csrf_token %}
+
+              {% for hidden_field in group_form.hidden_fields %}
+                {{ hidden_field }}
+              {% endfor %}
+              {% for field in group_form.visible_fields %}
+                <div  class="btn btn-primary btn-sm">{{ field.label_tag }}</div>
+                {% render_field field %}
+                {% if field.help_text %}
+                  <small class="form-text text-muted">{{ field.help_text }}</small>
+                {% endif %}
+                {% endfor %}
+              {% buttons %}
+              <button type="submit" class="btn btn-success mt-3">Filter by Group</button>
+              {% endbuttons %}      
+            </div>
+          </form> -->
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-md-10 ">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Bookmark</th>
+                <th scope="col">Date Of Creation</th>
+                <th scope="col">Tags</th>
+              </tr>
+            </thead>
+            {% if bookmark_list %}
+            <tbody>
+              {% for bookmark in bookmark_list %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td><a href="#">{{ bookmark.custom_name }}</a></td>
+                <td>{{ bookmark.date_of_creation }}</td>
+                <td>
+                  <table class="table">
+                    {% if bookmark.list_of_tags %}
+                    <tbody>
+                      {% for tag in bookmark.list_of_tags.all %}
+                      <tr>
+                        <td>
+                          <a href="{% url 'bookmarks_tag' user.username %}"
+                            >{{ tag.name }}</a
+                          >
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                    {% endif %}
+                  </table>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+            {% endif %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
