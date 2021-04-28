@@ -34,3 +34,22 @@ def custom_group_filter(all_objs, group):
             l.append(r)
     print(l)
     return l
+
+@register.filter
+def starts_with_t(s):
+    # print(s.find("tag"))
+    # print(s)
+    if(s.find("tag")>0):
+        return True
+    else:
+        return False
+
+first = False
+
+@register.filter
+def starts_with_g(s):
+    # print(s)
+    if(s.find("group")):
+        return True
+    else:
+        return False

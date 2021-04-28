@@ -37,9 +37,32 @@ class BookmarkForm(forms.Form):
             creator=models.User.objects.get(name=username))
         new_bookmark.save()
 
+class FilterForm(forms.Form):
+    search_val = forms.CharField(max_length=50, required=True, widget=forms.HiddenInput())
+    def __init__(self, *args, **kwargs):
+        tags = kwargs.pop('tags')
+        groups = kwargs.pop('groups')
+        super(FilterForm, self).__init__(*args, **kwargs)
+        for tag in tags:
+            self.fields[tag.name] = forms.BooleanField(label=tag.name)
+        for group in groups:
+            self.fields[group.name] = forms.BooleanField(label=group.name)
+
 class TagForm(forms.Form):
+    search_val = forms.CharField(max_length=50, required=True, widget=forms.HiddenInput())
     def __init__(self, *args, **kwargs):
         tags = kwargs.pop('tags')
         super(TagForm, self).__init__(*args, **kwargs)
         for tag in tags:
             self.fields[tag.name] = forms.BooleanField(label=tag.name)
+
+class GroupForm(forms.Form):
+    search_val = forms.CharField(max_length=50, required=True,widget=forms.HiddenInput())
+    def __init__(self, *args, **kwargs):
+        groups = kwargs.pop('groups')
+        super(GroupForm, self).__init__(*args, **kwargs)
+        for group in groups:
+            self.fields[group.name] = forms.BooleanField(label=group.name)
+
+class SearchForm(forms.Form):
+    search_val = forms.CharField(max_length=50, required=True)
