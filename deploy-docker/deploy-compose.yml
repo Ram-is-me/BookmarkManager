@@ -8,7 +8,7 @@
         dest: /home/app
     - name: Installing pre requisites
       ansible.builtin.shell: 
-        cmd: pip install docker-compose && ansible-galaxy collection install community.docker && ls -l
+        cmd: pip install docker-compose && ansible-galaxy collection install community.docker && ansible-galaxy collection install ansible.posix
     - name: Running the given docker compose file
       community.docker.docker_compose: 
         project_src: /home/app
