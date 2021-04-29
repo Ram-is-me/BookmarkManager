@@ -15,11 +15,7 @@ import datetime
 
 def helper(arr, name):
     output = []
-<<<<<<< HEAD
-    print(models.User.objects.get(name=name))
-=======
     logger.info("Retrieving user with name={}".format(name))
->>>>>>> 48392412a6d72c774c4cbd973f7ccc42e07e746a
     curr_user = models.User.objects.get(name=name)
     output.append(curr_user)
     if "g" in arr:

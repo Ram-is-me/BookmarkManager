@@ -172,7 +172,6 @@
                         <td>
                           <form
                             action="{% url 'view_bookmark' user.username bookmark.id %}"
-                            method="post"
                             class="post-form"
                           >
                             {% csrf_token %} {% buttons %}
