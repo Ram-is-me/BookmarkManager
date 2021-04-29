@@ -50,12 +50,8 @@ def bookmarks_tag(request, name):
                 break
         if present:
             bookmark_list.append(bookmark)
-<<<<<<< HEAD
     reminder_list = models.Reminder.objects.filter(creator=curr_user)
     context = {'bookmark_list' : bookmark_list, 'reminder_list' : reminder_list, 'form' : form, 'search_form': search_form}
-=======
-    context = {'bookmark_list' : bookmark_list, 'reminder_list' : reminder_list, 'form' : form}
->>>>>>> f49e6baf2eb3412165a3dd4433e540bf7499d864
     return render(request, 'bookmarks_tag.html', context)
 
 @login_required
