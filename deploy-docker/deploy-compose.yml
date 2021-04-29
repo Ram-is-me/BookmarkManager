@@ -31,4 +31,4 @@
         times: yes
     - name: Running the given docker compose file
       community.docker.docker_compose: 
-        project_src: /
+        project_src: /usr/app/
