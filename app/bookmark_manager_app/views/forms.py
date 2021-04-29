@@ -18,7 +18,7 @@ class BookmarkForm(forms.Form):
             current_bookmark.update(custom_name=request.POST['custom_name'])
             current_bookmark.update(custom_note=request.POST['custom_note'])
             return True
-        elif (models.Bookmark.objects.filter(name=request.POST['custom_name'])):
+        elif (models.Bookmark.objects.filter(custom_name=request.POST['custom_name'])):
             current_bookmark = models.Bookmark.objects.filter(url=request.POST['url'])
             current_bookmark.update(custom_name=request.POST['custom_name'])
             current_bookmark.update(custom_note=request.POST['custom_note'])
