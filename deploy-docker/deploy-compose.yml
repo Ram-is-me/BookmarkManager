@@ -3,5 +3,5 @@
   hosts: all
   tasks:
     - name: Running the given docker compose file
-      docker-compose: 
+      community.docker.docker_compose: 
         project_src: /
