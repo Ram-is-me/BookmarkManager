@@ -3,10 +3,9 @@
   hosts: all
   tasks:
     - name: Copy compose source templates
-      - synchronize:
-        src: /
+      ansible.posix.synchronize:
+        src: .
         dest: /home/app
-        delegate_to: "{{ inventory_hostname }}"
     - name: Installing pre requisites
       ansible.builtin.shell: 
         cmd: pip install docker-compose && ansible-galaxy collection install community.docker && ansible-galaxy collection install ansible.posix
