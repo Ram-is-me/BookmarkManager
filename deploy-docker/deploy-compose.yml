@@ -4,11 +4,11 @@
   tasks:
     - name: Pull bookmark manager db image
       docker_image:
-        name: postgres:12.0-alpine
+        name: ramisme/bookmarkmanagerapp:db
         source: pull
     - name: Pull bookmark manager web image
       docker_image:
-        name: ramisme/bookmarkmanagerapp:latest
+        name: ramisme/bookmarkmanagerapp:app
         source: pull
     - name: Pull bookmark manager nginx image
       docker_image:
