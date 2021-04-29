@@ -132,3 +132,11 @@ def delete_tag(request, name):
     else:
         logger.debug("Redirecting to Groups page")
         return HttpResponseRedirect(reverse('groups', args=(name,)), request)
+
+@login_required
+def delete_reminder(request, name, reminder):
+    logger.info("Retrieving reminder with name={}".format(reminder))
+    curr_reminder = models.Reminder.objects.get(name=reminder)
+    curr_reminder.delete()
+    logger.info("Deleted reminder with name={}".format(reminder))
+    return HttpResponseRedirect(reverse('groups', args=(name,)), request)

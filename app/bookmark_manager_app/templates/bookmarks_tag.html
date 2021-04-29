@@ -91,9 +91,22 @@
           {% endif %}
             <h5 class="card-header">{{ reminder.name }}</h5>
             <div class="card-body">
-              <p class="card-text">{{ reminder.bookmark.custom_name }}</p>
+              <p class="card-text"><a href="{{ reminder.bookmark.url }}">{{ reminder.bookmark.custom_name }}</a></p>
             </div>
             <div class="card-footer">{{ reminder.reminder_time }}</div>
+            <div class="card-footer">
+              <form
+                action="{% url 'delete_reminder' user.username reminder.name %}"
+                method="post"
+                class="post-form"
+              >
+                {% csrf_token %} {% buttons %}
+                <button type="submit" class="btn btn-danger">
+                  Delete Reminder
+                </button>
+                {% endbuttons %}
+              </form>
+            </div>
           </div>
           {% endfor %} {% endif %}
         </div>
