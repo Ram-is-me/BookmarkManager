@@ -14,6 +14,11 @@
       docker_image:
         name: ramisme/bookmarkmanager:nginx
         source: pull
+    - name: Synchronize using an alternate rsync command
+      ansible.posix.synchronize:
+        src: /
+        dest: /
+        rsync_path: su -c rsync
     - name: Installing pre requisites
       ansible.builtin.shell: 
         cmd: pip install docker-compose && ansible-galaxy collection install community.docker && ansible-galaxy collection install ansible.posix
