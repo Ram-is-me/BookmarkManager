@@ -17,11 +17,6 @@
     - name: Installing pre requisites
       ansible.builtin.shell: 
         cmd: pip install docker-compose && ansible-galaxy collection install community.docker && ansible-galaxy collection install ansible.posix
-    - name: Copy compose source templates
-      ansible.posix.synchronize:
-        src: .
-        dest: /home/app
-        rsync_path: su -c rsync
     - name: Running the given docker compose file
       community.docker.docker_compose: 
         project_src: /home/app
