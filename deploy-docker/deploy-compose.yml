@@ -1,0 +1,7 @@
+---
+- name: Pull docker images of bookmark manager
+  hosts: all
+  tasks:
+    - name: Running the given docker compose file
+      docker-compose: 
+        project_src: /
