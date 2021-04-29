@@ -152,7 +152,6 @@
                   </form>
                   <form
                     action="{% url 'add_bookmark' user.username group.id %}"
-                    method="post"
                     class="post-form"
                   >
                     {% csrf_token %} {% buttons %}

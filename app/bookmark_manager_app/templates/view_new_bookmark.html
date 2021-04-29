@@ -96,7 +96,7 @@
     <div class="container-fluid ">
       <div class="row justify-content-center text-center ">
         <div class="col-md-6 ">
-          <form method="post" novalidate>
+          <form method="post" class="form-group">
             {% csrf_token %}
           
             {% for hidden_field in form.hidden_fields %}

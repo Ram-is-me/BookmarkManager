@@ -15,10 +15,10 @@ def add_bookmark(request, name, group_id):
 
     if(request.method=="POST"):
         if (request.POST['url']==''):
-            message = "Empty URL not allowed"
+            message += "Empty URL not allowed <br>"
             # return HttpResponseRedirect(reverse('view_bookmark'),request, context)
         elif (request.POST['custom_name']==''):
-            message = "Empty Name not allowed"
+            message += "Empty Name not allowed <br>"
         else:
             form.new_save(request, name, group_id)
             id = models.Bookmark.objects.filter(custom_name= request.POST['custom_name']).get().id

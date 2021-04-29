@@ -7,8 +7,12 @@ from django.db.utils import IntegrityError
 from .. import models
 from .forms import TagForm, SearchForm
 
+from django.utils import timezone
+import datetime
+
 def helper(arr, name):
     output = []
+    print(models.User.objects.get(name=name))
     curr_user = models.User.objects.get(name=name)
     output.append(curr_user)
     if "g" in arr:
@@ -33,6 +37,7 @@ def groups(request, name):
 
 @login_required
 def bookmarks_tag(request, name):
+
     curr_user, all_bookmarks, tag_list, reminder_list = helper(["b", "t", "r"], name)
     form = TagForm(tags=tag_list)
     search_form = SearchForm()

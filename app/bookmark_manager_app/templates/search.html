@@ -168,6 +168,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Bookmark</th>
                 <th scope="col">Date Of Creation</th>
+                <th scope="col">Group</th>
                 <th scope="col">Tags</th>
               </tr>
             </thead>
@@ -178,6 +179,7 @@
                 <th scope="row">{{ forloop.counter }}</th>
                 <td><a href="#">{{ bookmark.custom_name }}</a></td>
                 <td>{{ bookmark.date_of_creation }}</td>
+                <td>{{ bookmark.group.name }}</td>
                 <td>
                   <table class="table">
                     {% if bookmark.list_of_tags %}

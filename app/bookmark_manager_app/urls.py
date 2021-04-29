@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index.home, name='home'),
-    # path('dummydata', views.dummydata, name='dummydata'),
+    # path('dummydata', views.data, name='dummydata'),
     path('<str:name>/', views.display.groups, name='groups'),
     path('<str:name>/tagfilter', views.display.bookmarks_tag, name='bookmarks_tag'),
     path('<str:name>/<int:group_id>/bookmark/new/', views.bookmark.add_bookmark, name='add_bookmark'),
