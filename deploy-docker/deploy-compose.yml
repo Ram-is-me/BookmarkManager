@@ -7,4 +7,4 @@
         cmd: pip install docker-compose && ansible-galaxy collection install community.docker
     - name: Running the given docker compose file
       community.docker.docker_compose: 
-        project_src: /usr/app
+        project_src: /home/app
