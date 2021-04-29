@@ -2,9 +2,7 @@ version: '3.7'
 
 services:
   web:
-    build:
-      context: ./app
-      dockerfile: Dockerfile.prod
+    image: ramisme/bookmarkmanager:latest
     command: gunicorn bookmark_manager.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static_volume:/home/app/web/staticfiles
