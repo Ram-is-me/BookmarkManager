@@ -16,12 +16,12 @@
         source: pull
     - name: Synchronize using an alternate rsync command
       ansible.posix.synchronize:
-        src: /
-        dest: /
+        src: /home/ram/IIITB/Sem8/SPE/BookmarkManager/
+        dest: /app/
         rsync_path: su -c rsync
     - name: Installing pre requisites
       ansible.builtin.shell: 
         cmd: pip install docker-compose && ansible-galaxy collection install community.docker && ansible-galaxy collection install ansible.posix
     - name: Running the given docker compose file
       community.docker.docker_compose: 
-        project_src: /
+        project_src: /app/
