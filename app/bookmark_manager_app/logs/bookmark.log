@@ -1,0 +1,23 @@
+[2021-04-29 17:02:42] DEBUG|bookmark_manager_app.views.index|Redirecting to Login page
+[2021-04-29 17:02:58] INFO|bookmark_manager_app.views.index|User with username=user3 successfully logged in
+[2021-04-29 17:02:58] DEBUG|bookmark_manager_app.views.index|Redirecting to groups page
+[2021-04-29 17:02:58] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-04-29 17:02:58] INFO|bookmark_manager_app.views.display|Retrieving user with name=user3
+[2021-04-29 17:02:58] INFO|bookmark_manager_app.views.display|Retrieving groups of user with username=user3
+[2021-04-29 17:02:58] INFO|bookmark_manager_app.views.display|Retrieving bookmarks of user with username=user3
+[2021-04-29 17:02:58] INFO|bookmark_manager_app.views.display|Retrieving tags of user with username=user3
+[2021-04-29 17:02:58] INFO|bookmark_manager_app.views.display|Retrieving reminders of user with username=user3
+[2021-04-29 17:02:58] DEBUG|bookmark_manager_app.views.display|Rendering Groups page
+[2021-04-29 17:02:59] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-04-29 17:02:59] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-04-29 17:03:22] DEBUG|bookmark_manager_app.views.bookmark|Redirected to Add Bookmark page
+[2021-04-29 17:03:22] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-04-29 17:03:22] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-04-29 17:05:09] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-04-29 17:05:09] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-04-29 17:05:13] DEBUG|bookmark_manager_app.views.bookmark|Redirected to Add Bookmark page
+[2021-04-29 17:05:14] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-04-29 17:05:14] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-04-29 17:05:23] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-04-29 17:05:23] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-04-29 17:06:25] DEBUG|bookmark_manager_app.views.index|Redirecting to Login page
