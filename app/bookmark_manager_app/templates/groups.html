@@ -34,7 +34,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+        <a class="navbar-brand" href="{% url 'groups' user.username %}">Home</a>
         <form class="form-inline" action="{% url 'search' user.username %}" method="POST">
           <div class="input-group">
             {% csrf_token %}
@@ -140,17 +140,6 @@
                 <div class="card-body">
                   <p>Created On: {{ group.date_of_creation }}</p>
                   <form
-                    action="{% url 'delete_group' user.username group.name %}"
-                    method="post"
-                    class="post-form"
-                  >
-                    {% csrf_token %} {% buttons %}
-                    <button type="submit" class="btn btn-danger">
-                      Delete Group
-                    </button>
-                    {% endbuttons %}
-                  </form>
-                  <form
                     action="{% url 'add_bookmark' user.username group.id %}"
                     class="post-form"
                   >
@@ -166,6 +155,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Bookmark</th>
                         <th scope="col">Date Of Creation</th>
+                        <th scope="col">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -174,11 +164,24 @@
                         <th scope="row">{{ forloop.counter }}</th>
                         <td>
                           <a
-                            href="{% url 'view_bookmark' user.username bookmark.id %}"
+                            href="{{ bookmark.url }}"
                             >{{ bookmark.custom_name }}</a
                           >
                         </td>
                         <td>{{ bookmark.date_of_creation }}</td>
+                        <td>
+                          <form
+                            action="{% url 'view_bookmark' user.username bookmark.id %}"
+                            method="post"
+                            class="post-form"
+                          >
+                            {% csrf_token %} {% buttons %}
+                            <button type="submit" class="btn btn-primary">
+                              Edit Bookmark
+                            </button>
+                            {% endbuttons %}
+                          </form>
+                        </td>
                       </tr>
                       {% endfor %}
                     </tbody>
@@ -188,6 +191,22 @@
             </div>
             {% endfor %} {% endif %}
           </div>
+          <form
+            action="{% url 'delete_group' user.username %}"
+            class="form-inline"
+            method="post"
+          >
+            {% csrf_token %}
+            <input
+              id="csrf_token"
+              name="deletegroupname"
+              class="form-control mr-sm-2"
+              type="text"
+            />
+            <button class="btn btn-danger my-2 my-sm-0" type="submit">
+              Delete Group
+            </button>
+          </form>
         </div>
         <div class="col-md-2">
           <h3>Tags</h3>
@@ -207,17 +226,6 @@
               Create Tag
             </button>
           </form>
-          <!-- {% if tag_list %}
-          <ul>
-            {% for tag in tag_list %}
-            <li class="list-item">
-              <a href="{% url 'bookmarks_tag' user.username tag.name %}"
-                >{{ tag.name }}</a
-              >
-            </li>
-            {% endfor %}
-          </ul>
-          {% endif %} -->
           <form action="{% url 'bookmarks_tag' user.username %}"method="post" novalidate>
             {% csrf_token %}
           
