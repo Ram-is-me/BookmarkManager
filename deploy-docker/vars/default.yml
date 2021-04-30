@@ -2,3 +2,32 @@
 create_user: sammy
 copy_local_key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
 sys_packages: ["curl", "vim", "git", "ufw"]
+
+- name: Create a new regular user with sudo privileges
+      user:
+        name: "{{ create_user }}"
+        state: present
+        groups: sudo
+        append: true
+        create_home: true
+        shell: /bin/bash
+
+    - name: Execute rsync command so new user has the same authorized keys as root
+      ansible.posix.synchronize:
+        src: /root/.ssh
+        dest: /home/{{ create_user }}
+      delegate_to: "{{ inventory_hostname }}"
+
+    - name: Change .ssh file permission
+      ansible.builtin.file:
+        path: /home/{{ create_user }}/.ssh
+        state: directory
+        recurse: yes
+        owner: "{{ create_user }}"
+        group: "{{ create_user }}"
+
+    - name: Set authorized key for remote user
+      authorized_key:
+        user: "{{ create_user }}"
+        state: present
+        key: "{{ copy_local_key }}"
