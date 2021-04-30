@@ -6,14 +6,49 @@
       docker_image:
         name: ramisme/bookmarkmanager:db
         source: pull
+
     - name: Pull bookmark manager web image
       docker_image:
         name: ramisme/bookmarkmanager:app
         source: pull
+
     - name: Pull bookmark manager nginx image
       docker_image:
         name: ramisme/bookmarkmanager:nginx
         source: pull
+
+    - name: Installing pre requisites
+      ansible.builtin.shell: 
+        cmd: pip install docker-compose && ansible-galaxy collection install community.docker && ansible-galaxy collection install ansible.posix
+    - name: Create a new regular user with sudo privileges
+      user:
+        name: "{{ create_user }}"
+        state: present
+        groups: wheel
+        append: true
+        create_home: true
+        shell: /bin/bash
+
+    - name: Execute rsync command so new user has the same authorized keys as root
+      ansible.posix.synchronize:
+        src: /root/.ssh
+        dest: /home/{{ create_user }}
+      delegate_to: "{{ inventory_hostname }}"
+
+    - name: Change .ssh file permission
+      ansible.builtin.file:
+        path: /home/{{ create_user }}/.ssh
+        state: directory
+        recurse: yes
+        owner: "{{ create_user }}"
+        group: "{{ create_user }}"
+
+    - name: Set authorized key for remote user
+      authorized_key:
+        user: "{{ create_user }}"
+        state: present
+        key: "{{ copy_local_key }}"
+        
     - name: Synchronize using an alternate rsync command
       ansible.posix.synchronize:
         mode: pull
@@ -22,9 +57,6 @@
         recursive: yes
         delete: no
         times: yes
-    - name: Installing pre requisites
-      ansible.builtin.shell: 
-        cmd: pip install docker-compose && ansible-galaxy collection install community.docker && ansible-galaxy collection install ansible.posix
     - name: Running the given docker compose file
       community.docker.docker_compose: 
         project_src: /
