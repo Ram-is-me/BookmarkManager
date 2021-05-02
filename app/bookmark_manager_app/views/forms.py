@@ -3,6 +3,7 @@ from datetime import date
 from .. import models
 
 class BookmarkForm(forms.Form):
+    bookmark_id = forms.IntegerField(widget=forms.HiddenInput())
     url = forms.CharField(max_length=500, required=True)
     custom_name = forms.CharField(max_length=50, required=True)
     # list_of_tags_to_add = forms.MultipleChoiceField(
@@ -12,23 +13,16 @@ class BookmarkForm(forms.Form):
     #     )
     custom_note = forms.CharField(max_length=200, widget=forms.Textarea, required=False )
 
-    def save(self, request, username, group_id):
-        if(models.Bookmark.objects.filter(url=request.POST['url'])):
-            current_bookmark = models.Bookmark.objects.filter(url=request.POST['url'])
-            current_bookmark.update(custom_name=request.POST['custom_name'])
-            current_bookmark.update(custom_note=request.POST['custom_note'])
-            return True
-        elif (models.Bookmark.objects.filter(custom_name=request.POST['custom_name'])):
-            current_bookmark = models.Bookmark.objects.filter(url=request.POST['url'])
-            current_bookmark.update(custom_name=request.POST['custom_name'])
-            current_bookmark.update(custom_note=request.POST['custom_note'])
-            return True
-        else:
-            return False
-
+    def save(self, url, name, note, bookmark_id):
+        current_bookmark = models.Bookmark.objects.filter(id=bookmark_id)
+        current_bookmark.update(url=url)
+        current_bookmark.update(custom_name=name)
+        current_bookmark.update(custom_note=note)    
+        current_bookmark.get().save()
+        return True
 
     def new_save(self, request, username, group_id):
-        print(request.POST['custom_name'])
+        # print(request.POST['custom_name'])
         new_bookmark = models.Bookmark(
             url=request.POST['url'], 
             custom_name=request.POST['custom_name'], 
@@ -58,7 +52,7 @@ class TagForm(forms.Form):
             self.fields[tag.name] = forms.BooleanField(label=tag.name)
 
 class GroupForm(forms.Form):
-    search_val = forms.CharField(max_length=50, required=True,widget=forms.HiddenInput())
+    search_val = forms.CharField(max_length=50, required=True, widget=forms.HiddenInput())
     def __init__(self, *args, **kwargs):
         groups = kwargs.pop('groups')
         super(GroupForm, self).__init__(*args, **kwargs)

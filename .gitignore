@@ -1,3 +1,4 @@
 db/
-.env.prod
-.env.prod.db
+*/__pycache__/* 
+/__pycache__/*
+*/__pycache__/
