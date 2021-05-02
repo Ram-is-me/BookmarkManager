@@ -12,7 +12,7 @@ class SignUpTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, template_name='signup.html')
 
-    def test_signup_view_name(self):
+    def test_signup_view(self):
         response = self.client.get(reverse('signup'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, template_name='signup.html')

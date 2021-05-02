@@ -35,15 +35,53 @@ def helper(arr, name):
             r.compute_status()
         output.append(lst)
     return output
+
+def render_groups(request, name, msg):
+    new_grp_msg = ""
+    new_tag_msg = ""
+    rem_grp_msg = ""
+    rem_tag_msg = ""
+    dup_grp_msg = ""
+    dup_tag_msg = ""
+    inv_grp_msg = ""
+    inv_tag_msg = ""
+
+    if msg == 'ng':
+        new_grp_msg = "Group added successfully."
+    if msg == 'nt':
+        new_tag_msg = "Tag added successfully."
+    if msg == 'rg':
+        rem_grp_msg = "Group removed successfully."
+    if msg == 'rt':
+        rem_tag_msg = "Tag removed successfully."
+    if msg == 'dg':
+        dup_grp_msg = "Duplicate group name. Please enter a unique name."
+    if msg == 'dt':
+        dup_tag_msg = "Duplicate tag name. Please enter a unique name."
+    if msg == 'ig':
+        inv_grp_msg = "Group does not exist. Please enter a valid name."
+    if msg == 'it':
+        inv_tag_msg = "Tag does not exist. Please enter a valid name."
+
+    curr_user, group_list, all_bookmarks, tag_list, reminder_list = helper(["g", "b", "t", "r"], name)
+    form = TagForm(tags=tag_list)
+    context = {'group_list' : group_list, 'reminder_list' : reminder_list, 'all_bookmarks' : all_bookmarks, 'form' : form,
+        'new_grp_msg' : new_grp_msg,
+        'new_tag_msg' : new_tag_msg,
+        'rem_grp_msg' : rem_grp_msg,
+        'rem_tag_msg' : rem_tag_msg,
+        'dup_grp_msg' : dup_grp_msg,
+        'dup_tag_msg' : dup_tag_msg,
+        'inv_grp_msg' : inv_grp_msg,
+        'inv_tag_msg' : inv_tag_msg,
+    }
+    logger.debug("Rendering Groups page")
+    return render(request, 'groups.html', context)
     
 @login_required
 def groups(request, name):
     logger.debug("Redirected to groups page")
-    curr_user, group_list, all_bookmarks, tag_list, reminder_list = helper(["g", "b", "t", "r"], name)
-    form = TagForm(tags=tag_list)
-    context = {'group_list' : group_list, 'reminder_list' : reminder_list, 'all_bookmarks' : all_bookmarks, 'form' : form}
-    logger.debug("Rendering Groups page")
-    return render(request, 'groups.html', context)
+    return render_groups(request, name, '')
 
 @login_required
 def bookmarks_tag(request, name):
@@ -82,10 +120,9 @@ def create_group(request, name):
         logger.info("Created new group with name={}".format(groupname))
     except IntegrityError:
         logger.error("Duplicate group name {}".format(groupname))
-        return HttpResponseForbidden("<h1> Duplicate group name. Please enter a unique name. </h1>")
+        return render_groups(request, name, 'dg')
     else:
-        logger.debug("Redirecting to Groups page")
-        return HttpResponseRedirect(reverse('groups', args=(name,)), request)
+        return render_groups(request, name, 'ng')
 
 @login_required
 def create_tag(request, name):
@@ -98,10 +135,9 @@ def create_tag(request, name):
         logger.info("Created new tag with name={}".format(tagname))
     except IntegrityError:
         logger.error("Duplicate tag name {}".format(tagname))
-        return HttpResponseForbidden("<h1> Duplicate tag name. Please enter a unique name. </h1>")
+        return render_groups(request, name, 'dt')
     else:
-        logger.debug("Redirecting to Groups page")
-        return HttpResponseRedirect(reverse('groups', args=(name,)), request)
+        return render_groups(request, name, 'nt')
 
 @login_required
 def delete_group(request, name):
@@ -113,10 +149,9 @@ def delete_group(request, name):
         logger.info("Deleted group with name={}".format(deletegroupname))
     except models.Group.DoesNotExist:
         logger.error("Invalid group name {}".format(deletegroupname))
-        return HttpResponseForbidden("<h1> Group does not exist. Please enter a valid name. </h1>")
+        return render_groups(request, name, 'ig')
     else:
-        logger.debug("Redirecting to Groups page")
-        return HttpResponseRedirect(reverse('groups', args=(name,)), request)
+        return render_groups(request, name, 'rg')
     
 @login_required
 def delete_tag(request, name):
@@ -128,10 +163,9 @@ def delete_tag(request, name):
         logger.info("Deleted tag with name={}".format(deletetagname))
     except models.Tag.DoesNotExist:
         logger.error("Invalid tag name {}".format(deletetagname))
-        return HttpResponseForbidden("<h1> Tag does not exist. Please enter a valid name. </h1>")
+        return render_groups(request, name, 'it')
     else:
-        logger.debug("Redirecting to Groups page")
-        return HttpResponseRedirect(reverse('groups', args=(name,)), request)
+        return render_groups(request, name, 'rt')
 
 @login_required
 def delete_reminder(request, name, reminder):

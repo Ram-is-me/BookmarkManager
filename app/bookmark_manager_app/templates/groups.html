@@ -136,6 +136,16 @@
               Create Group
             </button>
           </form>
+          {% if new_grp_msg %}
+          <div class="alert alert-success" role="alert">
+            {{ new_grp_msg }}
+          </div>
+          {% endif %}
+          {% if dup_grp_msg %}
+          <div class="alert alert-danger" role="alert">
+            {{ dup_grp_msg }}
+          </div>
+          {% endif %}
           <h3>Groups</h3>
           <div id="card-451647">
             {% if group_list %} {% for group in group_list %}
@@ -219,6 +229,16 @@
               Delete Group
             </button>
           </form>
+          {% if rem_grp_msg %}
+          <div class="alert alert-success" role="alert">
+            {{ rem_grp_msg }}
+          </div>
+          {% endif %}
+          {% if inv_grp_msg %}
+          <div class="alert alert-danger" role="alert">
+            {{ inv_grp_msg }}
+          </div>
+          {% endif %}
         </div>
         <div class="col-md-2">
           <h3>Tags</h3>
@@ -238,6 +258,16 @@
               Create Tag
             </button>
           </form>
+          {% if new_tag_msg %}
+          <div class="alert alert-success" role="alert">
+            {{ new_tag_msg }}
+          </div>
+          {% endif %}
+          {% if dup_tag_msg %}
+          <div class="alert alert-danger" role="alert">
+            {{ dup_tag_msg }}
+          </div>
+          {% endif %}
           <form action="{% url 'bookmarks_tag' user.username %}"method="post" novalidate>
             {% csrf_token %}
           
@@ -273,6 +303,16 @@
               Delete Tag
             </button>
           </form>
+          {% if rem_tag_msg %}
+          <div class="alert alert-success" role="alert">
+            {{ rem_tag_msg }}
+          </div>
+          {% endif %}
+          {% if inv_tag_msg %}
+          <div class="alert alert-danger" role="alert">
+            {{ inv_tag_msg }}
+          </div>
+          {% endif %}
         </div>
       </div>
     </div>
