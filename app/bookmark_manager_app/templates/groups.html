@@ -1,4 +1,4 @@
-{% load static %} {% load bootstrap4 %} {% include 'base.html' %}
+{% load static %} {% load bootstrap4 %} {% include 'base.html' %} {% include 'navbar.html' %}
 {% load group_filter %}
 {% load widget_tweaks %}
 
@@ -35,6 +35,8 @@
 
   </head>
   <body>
+<<<<<<< HEAD
+=======
     <nav class="navbar navbar-expand-lg navbarcolor">
       <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'groups' user.username %}">Home</a>
@@ -86,6 +88,7 @@
         </div>
       </div>
     </nav>
+>>>>>>> a926d3d7dd1e7110884d4e1a941454cd8b367aa1
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-2">
