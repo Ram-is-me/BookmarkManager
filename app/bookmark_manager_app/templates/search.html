@@ -67,14 +67,18 @@
                 {{ hidden_field }}
               {% endfor %}
               {% for field in filter_form.visible_fields %}
-                {% if field.label_tag|starts_with_t %}
+                {% if field.name|starts_with_t %}
                   <div  class="btn btn-warning btn-sm">{{ field.label_tag }}</div>
-                {% elif field.label_tag|starts_with_g == 1 %}
+                {% elif field.name|starts_with_g  == 2%}
+                  <br>
                   <div  class="btn btn-primary btn-sm">{{ field.label_tag }}</div>
-                {% elif field.label_tag|starts_with_g == 2 %}
+                {% elif field.name|starts_with_g  == 1 %}
+                  <div  class="btn btn-primary btn-sm">{{ field.label_tag }}</div>
+                {% else %}
                   <!-- Empty Button Just for Space -->
-                  <div class="btn btn-block"></div>
+                  {% comment %} <div class="btn btn-block"></div> {% endcomment %}
                   <div  class="btn btn-primary btn-sm">{{ field.label_tag }}</div>                
+                  {% comment %} <br> {% endcomment %}
                 {% endif %}
                 {% render_field field %}
                 {% if field.help_text %}

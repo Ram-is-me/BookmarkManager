@@ -39,7 +39,8 @@ def custom_group_filter(all_objs, group):
 def starts_with_t(s):
     # print(s.find("tag"))
     # print(s)
-    if(s.find("tag")>0):
+    # if(s.find("tag")>0):
+    if(models.Tag.objects.filter(name = s)):
         return True
     else:
         return False
@@ -49,7 +50,13 @@ first = False
 @register.filter
 def starts_with_g(s):
     # print(s)
-    if(s.find("group")):
-        return True
+    # if(s.find("group")):
+    if (models.Group.objects.filter(name = s)):
+        if first == False:
+            first = True
+            return 2
+        else:
+            return 1
     else:
-        return False
+        # print("LOL")
+        return 0

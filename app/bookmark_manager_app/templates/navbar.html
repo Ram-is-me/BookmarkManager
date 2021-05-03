@@ -3,7 +3,7 @@
       <a class="navbar-brand" href="{% url 'groups' user.username %}" style="color: #f8f9fa;">Home</a>
       <form class="form-inline post-form" method="POST" action="{% url 'search' user.username %}">
         {% csrf_token %}
-        <input class=" mr-sm-2" type="text" name="search_val" />
+        <input class=" mr-sm-2" type="text" name="search_val"/>
         {% comment %} {% %} {% endcomment %}
         <button class="btn btn-primary my-2 my-sm-0" type="submit">
           Search
