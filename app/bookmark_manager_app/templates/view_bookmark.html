@@ -2,231 +2,275 @@
 {% load bootstrap4 %}
 {% load widget_tweaks %}
 {% load filter_tags%}
+{% bootstrap_javascript jquery='full' %}
 {% include 'base.html' %}
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Bootstrap 4, from LayoutIt!</title>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta
-      name="description"
-      content="Source code generated using layoutit.com"
-    />
-    <meta name="author" content="LayoutIt!" />
+  <title>Bootstrap 4, from LayoutIt!</title>
 
-    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
-    <!-- <link href="css/style.css" rel="stylesheet"> -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}">Home</a>
-        <form class="form-inline" >
-          <div class="input-group">
-            <input class="form-control mr-sm-2 " type="text" placeholder="Search Bookmarks"/> 
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">
-              Search
-            </button>
-          </div>
-        </form>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-          <ul class="nav-item ml-md-auto" style="list-style-type: none">
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                {{ user.username }}
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-              </ul>
-            </li>
-          </ul>
+  <meta name="description" content="Source code generated using layoutit.com" />
+  <meta name="author" content="LayoutIt!" />
+
+  <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+  <!-- <link href="css/style.css" rel="stylesheet"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+  </script>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css"> 
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+  <script>
+  $(document).ready(function() {
+      $('.datepicker').datepicker();
+  });
+  </script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+      <form class="form-inline">
+        <div class="input-group">
+          <input class="form-control mr-sm-2 " type="text" placeholder="Search Bookmarks" />
+          <button class="btn btn-primary my-2 my-sm-0" type="submit">
+            Search
+          </button>
         </div>
+      </form>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+        <ul class="nav-item ml-md-auto" style="list-style-type: none">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              {{ user.username }}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
       </div>
-    </nav>
-
-    <div class="page-header text-center">
-      <h3>Bookmark Details: </h3>
     </div>
-    
-    {% if new_bm_message %}
-    <div class="alert alert-success" role="alert">
-      {{ new_bm_message }}
-    </div>
-    {% endif %}
+  </nav>
 
-    {% if message %}
-    <div class="alert alert-danger" role="alert">
-      {{ message }}
-    </div>
-    {% endif %}
+  <div class="page-header text-center">
+    <h3>Bookmark Details: </h3>
+  </div>
 
-    <div class="container-fluid ">
-      <div class="row justify-content-center text-center ">
-        <div class="col-md-6 ">
-          <form method="post" novalidate>
-            {% csrf_token %}
-          
-            {% for hidden_field in form.hidden_fields %}
-              {{ hidden_field }}
-            {% endfor %}
-          
-            {% if form.non_field_errors %}
-              <div class="alert alert-danger" role="alert">
-                {% for error in form.non_field_errors %}
-                  {{ error }}
-                {% endfor %}
-              </div>
-            {% endif %}
-            
-            {% for field in form.visible_fields %}
-              <div class="form-group">
-                
-                {% if field.name == 'list_of_tags_to_add' %}
-                  Currently Associated Group : 
-                  <button class="btn btn-warning disabled " style="margin: 10px;">{{ bookmark_obj.group.name }}</button>
-                  <br>
-                  Currently Associated Tags: 
-                  {% for tag in bookmark_obj.list_of_tags.all %}
-                      <button class="btn btn-primary " style="margin: 10px;" >{{ tag.name }}</button>
-                  {% endfor %}
-                  <!-- <label style="font-weight: lighter; font-size: smaller;"> Click on Tag to Remove Association </label> -->
-                {% endif %}
-                <br>
-                  {{ field.label_tag }}
-                
-                  {% if form.is_bound %}
-                    {% if field.errors %}
-                      {% render_field field class="form-control is-invalid" %}
-                      {% for error in field.errors %}
-                        <div class="invalid-feedback">
-                          {{ error }}
-                        </div>
-                      {% endfor %}
-                    {% else %}
-                      {% render_field field class="form-control is-valid" %}
-                    {% endif %}
-                  {% else %}
-                    {% render_field field class="form-control" %}
-                  {% endif %}
-                      
-                  {% if field.help_text %}
-                    <small class="form-text text-muted">{{ field.help_text }}</small>
-                  {% endif %}
-                  {% if field.name == 'url' %}
-                  <div class="alert alert-primary">
-                    Saved URL Data: {{ bookmark_obj.url }}
-                  </div>
-                {% endif%}
-                {% if field.name == 'custom_name' %}
-                  <div class="alert alert-primary">
-                    Saved Name Data: {{ bookmark_obj.custom_name }}
-                  </div>
-                {% endif%}
-                {% if field.name == 'custom_note' %}
-                  <div class="alert alert-primary">
-                    Saved Note Data: <br>
-                    {{ bookmark_obj.custom_note }}
-                  </div>
-                {% endif%}
-              </div>
-            {% endfor %}
-            <button type="submit" class="btn btn-block btn-lg btn-success " style="margin-top: 10px;">Update Bookmark Details</button>
-          </form>
-        </div>
-      </div>
-      <div class="row justify-content-center text-center ">
-        <h5>Click on the Tags below to Remove them from current Bookmark</h5>
-          {% for tag in bookmark_obj.list_of_tags.all %}
-            <div class="col-sm-1 ">
-              <form action="{% url 'remove_tag' request.user.username bookmark_obj.id tag.id %}" method="post" class="post-form">
-                  {% csrf_token %}
-                  {% buttons %}
-                    <button type="submit" class="btn btn-danger">{{ tag.name }}</button>
-                  {% endbuttons %}
-              </form>
-            </div>
+  {% if new_bm_message %}
+  <div class="alert alert-success" role="alert">
+    {{ new_bm_message }}
+  </div>
+  {% endif %}
+
+  {% if message %}
+  <div class="alert alert-danger" role="alert">
+    {{ message }}
+  </div>
+  {% endif %}
+
+  <div class="container-fluid ">
+    <div class="row justify-content-center text-center ">
+      <div class="col-md-6 ">
+        <form method="post" novalidate>
+          {% csrf_token %}
+
+          {% for hidden_field in form.hidden_fields %}
+          {{ hidden_field }}
           {% endfor %}
-        <div class="row justify-content-center text-center ">
+
+          {% if form.non_field_errors %}
+          <div class="alert alert-danger" role="alert">
+            {% for error in form.non_field_errors %}
+            {{ error }}
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          {% for field in form.visible_fields %}
+          <div class="form-group">
+
+            {% if field.name == 'list_of_tags_to_add' %}
+            Currently Associated Group :
+            <button class="btn btn-warning disabled " style="margin: 10px;">{{ bookmark_obj.group.name }}</button>
+            <br>
+            Currently Associated Tags:
+            {% for tag in bookmark_obj.list_of_tags.all %}
+            <button class="btn btn-primary " style="margin: 10px;">{{ tag.name }}</button>
+            {% endfor %}
+            <!-- <label style="font-weight: lighter; font-size: smaller;"> Click on Tag to Remove Association </label> -->
+            {% endif %}
+            <br>
+            {{ field.label_tag }}
+
+            {% if form.is_bound %}
+            {% if field.errors %}
+            {% render_field field class="form-control is-invalid" %}
+            {% for error in field.errors %}
+            <div class="invalid-feedback">
+              {{ error }}
+            </div>
+            {% endfor %}
+            {% else %}
+            {% render_field field class="form-control is-valid" %}
+            {% endif %}
+            {% else %}
+            {% render_field field class="form-control" %}
+            {% endif %}
+
+            {% if field.help_text %}
+            <small class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+            {% if field.name == 'url' %}
+            <div class="alert alert-primary">
+              Saved URL Data: {{ bookmark_obj.url }}
+            </div>
+            {% endif%}
+            {% if field.name == 'custom_name' %}
+            <div class="alert alert-primary">
+              Saved Name Data: {{ bookmark_obj.custom_name }}
+            </div>
+            {% endif%}
+            {% if field.name == 'custom_note' %}
+            <div class="alert alert-primary">
+              Saved Note Data: <br>
+              {{ bookmark_obj.custom_note }}
+            </div>
+            {% endif%}
+          </div>
+          {% endfor %}
+          <button type="submit" class="btn btn-block btn-lg btn-success " style="margin-top: 10px;">Update Bookmark
+            Details</button>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <!-- <div class="row justify-content-center text-center"> -->
+          <h5>Click on the Tags below to Remove them from current Bookmark</h5>
+          {% for tag in bookmark_obj.list_of_tags.all %}
+          <!-- <div class="col-sm-1 "> -->
+            <form action="{% url 'remove_tag' request.user.username bookmark_obj.id tag.id %}"
+              class="form-inline" style="display: inline-block;">
+              {% csrf_token %}
+              {% buttons %}
+              <button type="submit" class="btn btn-danger">{{ tag.name }}</button>
+              {% endbuttons %}
+            </form>
+          <!-- </div> -->
+        <!-- </div> -->
+        {% endfor %}
+        <!-- <div class="row justify-content-center text-center "> -->
           <h5>Click on the Tags below to Add them to current Bookmark</h5>
           {% for tag in all_tags|custom_role_filter:bookmark_obj.list_of_tags.all %}
-            <div class="col-sm-1">
-              <form action="{% url 'add_tag' request.user.username bookmark_obj.id tag.id %}" method="post" class="post-form">
-                  {% csrf_token %}
-                  {% buttons %}
-                    <button type="submit" class="btn btn-success">{{ tag.name }}</button>
-                  {% endbuttons %}
-              </form>
-            </div>
-          {% endfor %}
-        </div>
-        <div class="row justify-content-center text-center ">
-          <h5>Current Group: {{ bookmark_obj.group.name }}</h5>
-          <h5>Click on the Groups below to change Group for current Bookmark</h5>
-            {% for group in all_groups|custom_group_filter:bookmark_obj.group %}
-              <div class="col-sm-1">
-                <form action="{% url 'change_group' request.user.username bookmark_obj.id group.id %}" method="post" class="form-inline post-form">
-                    {% csrf_token %}
-                    {% buttons %}
-                      <button type="submit" class="btn btn-primary ">{{ group.name }}</button>
-                    {% endbuttons %}
-                </form>
-              </div>
-            {% endfor %}
-        </div>
-        <div class="row justify-content-center text-center ">
-          <div class="col-md-6">
-            <h5>Delete Bookmark (Irreversible):</h5>
-            <form action="{% url 'delete_bookmark' request.user.username bookmark_obj.id %}" method="post" class="post-form">
-                {% csrf_token %}
-                {% buttons %}
-                  <button type="submit" class="btn btn-danger btn-lg btn-block">Delete Bookmark</button>
-                {% endbuttons %}
+          <!-- <div class="col-sm-1"> -->
+            <form action="{% url 'add_tag' request.user.username bookmark_obj.id tag.id %}"
+              class="form-inline" style="display: inline-block;">
+              {% csrf_token %}
+              {% buttons %}
+              <button type="submit" class="btn btn-success">{{ tag.name }}</button>
+              {% endbuttons %}
             </form>
+          <!-- </div> -->
+          {% endfor %}
+        <!-- </div> -->
+        <!-- <div class="row justify-content-center text-center "> -->
+          <h5>Current Group: 
+            <button class="btn btn-primary">{{ bookmark_obj.group.name }} </button>
+          </h5>
+          <h5>Click on the Groups below to change Group for current Bookmark</h5>
+          {% for group in all_groups|custom_group_filter:bookmark_obj.group %}
+          <!-- <div class="col-sm-1"> -->
+            <form action="{% url 'change_group' request.user.username bookmark_obj.id group.id %}"
+              class="form-inline" style="display: inline-block;">
+              {% csrf_token %}
+              {% buttons %}
+              <button type="submit" class="btn btn-primary ">{{ group.name }}</button>
+              {% endbuttons %}
+            </form>
+          <!-- </div> -->
+          {% endfor %}
+        <!-- </div> -->
+        <!-- <div class="row justify-content-center text-center "> -->
+          <!-- <div class="col-md-6"> -->
+            <h5>Delete Bookmark (Irreversible):</h5>
+            <form action="{% url 'delete_bookmark' request.user.username bookmark_obj.id %}" method="post"
+              class="post-form">
+              {% csrf_token %}
+              {% buttons %}
+              <button type="submit" class="btn btn-danger btn-lg btn-block">Delete Bookmark</button>
+              {% endbuttons %}
+            </form>
+          <!-- </div> -->
+        <!-- </div> -->
+        <h5>Add Reminder</h5>
+        <form action="{% url 'addreminder' request.user.username bookmark_obj.id %}" 
+        method="post" class="post-form" >
+          {% csrf_token %}
+
+          {% for hidden_field in reminder_form.hidden_fields %}
+          {{ hidden_field }}
+          {% endfor %}
+
+          {% if reminder_form.non_field_errors %}
+          <div class="alert alert-danger" role="alert">
+            {% for error in reminder_form.non_field_errors %}
+            {{ error }}
+            {% endfor %}
           </div>
-        </div>
+          {% endif %}
+
+          {% for field in reminder_form.visible_fields %}
+          <div class="form-group">
+
+            {{ field.label_tag }}
+
+            {% if form.is_bound %}
+            {% if field.errors %}
+            {% render_field field class="form-control is-invalid" %}
+            {% for error in field.errors %}
+            <div class="invalid-feedback">
+              {{ error }}
+            </div>
+            {% endfor %}
+            {% else %}
+            {% render_field field class="form-control is-valid" %}
+            {% endif %}
+            {% else %}
+            {% render_field field class="form-control" %}
+            {% endif %}
+
+            {% if field.help_text %}
+            <small class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+          </div>
+          {% endfor %}
+          <button type="submit" class="btn btn-block btn-lg btn-success " style="margin-top: 10px;">Add Reminder</button>
+        </form>
       </div>
     </div>
 
     <div class="container-fluid">
       <div class="row justify-content-center text-center">
-        <div class="col-md-12">
+        <div class="col-md-8">
           <h3>Related Bookmarks by Group</h3>
           <table class="table text-center">
             <thread>
@@ -251,13 +295,13 @@
                 <td>
                   <table class="table">
                     {% if bookmark.list_of_tags %}
-                      <tbody>
-                        {% for tag in bookmark.list_of_tags.all %}
-                        <tr class="text-center">
-                          <td><a href="{% url 'bookmarks_tag' user.username %}">{{tag.name}}</a></td>
-                        </tr>
-                        {% endfor %}
-                      </tbody>
+                    <tbody>
+                      {% for tag in bookmark.list_of_tags.all %}
+                      <tr class="text-center">
+                        <td><a href="{% url 'bookmarks_tag' user.username %}">{{tag.name}}</a></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
                     {% endif %}
                   </table>
                 </td>
@@ -267,7 +311,39 @@
             {% endif %}
           </table>
         </div>
+        <div class="col-md-4">
+          <h3>Reminders</h3>
+          {% if all_reminders %} {% for reminder in all_reminders %}
+          {% if reminder.status == "red" %}
+          <div class="card bg-danger">
+          {% elif reminder.status == "yellow" %}
+          <div class="card bg-warning">
+          {% else %}
+          <div class="card bg-success">
+          {% endif %}
+            <h5 class="card-header">{{ reminder.name }}</h5>
+            <div class="card-body">
+              <p class="card-text"><a href="{{ reminder.bookmark.url }}">{{ reminder.bookmark.custom_name }}</a></p>
+            </div>
+            <div class="card-footer">{{ reminder.reminder_time }}</div>
+            <div class="card-footer">
+              <form
+                action="{% url 'delete_reminder' user.username reminder.name %}"
+                method="post"
+                class="post-form"
+              >
+                {% csrf_token %} {% buttons %}
+                <button type="submit" class="btn btn-danger">
+                  Delete Reminder
+                </button>
+                {% endbuttons %}
+              </form>
+            </div>
+          </div>
+          {% endfor %} {% endif %}
+        </div>
       </div>
     </div>
-  </body>
+</body>
+
 </html>

@@ -2,12 +2,13 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from datetime import date
+from datetime import date,datetime
 from .. import models
-from .forms import BookmarkForm
+from .forms import BookmarkForm, ReminderForm
 import logging
 
 logger = logging.getLogger(__name__)
+reminder_message = ""
 
 def add_bookmark(request, name, group_id):
     logger.debug("Redirected to Add Bookmark page")
@@ -35,7 +36,7 @@ def add_bookmark(request, name, group_id):
                 'related_bm' : models.Bookmark.objects.filter(group__id=models.Bookmark.objects.get(id=bookmark_id).group.id)
             }
             logger.debug("Redirecting to View Bookmark page")
-            return HttpResponseRedirect(reverse('view_bookmark', args=(name,id, )))
+            return HttpResponseRedirect(reverse('view_bookmark', args=(name,bookmark_id, )))
 
         if(bookmark_id == -1):
             message = "Insertion Failed"
@@ -67,6 +68,7 @@ def view_bookmark(request, name, bookmark_id):
     form.fields['url'].initial = models.Bookmark.objects.get(id=bookmark_id).url
     form.fields['custom_name'].initial = models.Bookmark.objects.get(id=bookmark_id).custom_name
     form.fields['custom_note'].initial = models.Bookmark.objects.get(id=bookmark_id).custom_note
+    reminder_form = ReminderForm()
     message = ""
     # form.list_of_tags_to_remove.choices
     # list_of_tags_to_remove.choices = [(r.name,r.name) for r in models.Tag.objects.filter(bookmark__id=id).all()]
@@ -92,6 +94,11 @@ def view_bookmark(request, name, bookmark_id):
                 form.fields['custom_name'].initial = models.Bookmark.objects.get(id=bookmark_id).custom_name
                 form.fields['custom_note'].initial = models.Bookmark.objects.get(id=bookmark_id).custom_note
 
+    logger.info("Updating status of all reminders")
+    all_reminders = models.Reminder.objects.filter(bookmark__id=bookmark_id)
+    for r in all_reminders:
+        r.compute_status()
+    
     logger.info("Retrieving bookmark with id={}".format(bookmark_id))
     logger.info("Retrieving user with name={}".format(name))
     logger.info("Retrieving tags of user with username={}".format(name))
@@ -99,10 +106,12 @@ def view_bookmark(request, name, bookmark_id):
     logger.info("Retrieving bookmarks with group id={}".format(models.Bookmark.objects.get(id=bookmark_id).group.id))
     context = {
         'form': form,
+        'reminder_form': reminder_form,
         'message': message,
         'bookmark_obj': models.Bookmark.objects.get(id=bookmark_id),
         'all_tags' : models.Tag.objects.filter(creator= models.User.objects.filter(name=name).get()),
         'all_groups' : models.Group.objects.filter(creator= models.User.objects.filter(name=name).get()),
+        'all_reminders' : all_reminders,
         'related_bm' : models.Bookmark.objects.filter(group__id=models.Bookmark.objects.get(id=bookmark_id).group.id)
     }
     logger.debug("Rendering View Bookmark page")
@@ -132,8 +141,32 @@ def change_group_of_bookmark(requst, name, bookmark_id, groupid):
     logger.info("Retrieving bookmark with id={}".format(bookmark_id))
     current_bookmark = models.Bookmark.objects.filter(id=bookmark_id)
     logger.info("Retrieving group with id={}".format(groupid))
-    current_group = models.Group.objects.filter(id=groupid)
+    current_group = models.Group.objects.filter(id=groupid).get()
+    print("LOL"+current_group.name)
     logger.info("Updating group of bookmark with id={} to group with id={}".format(bookmark_id, groupid))
     current_bookmark.update(group=current_group)
     logger.debug("Redirecting to View Bookmark page")
     return HttpResponseRedirect(reverse('view_bookmark', args=(name,bookmark_id, )))    
+
+def add_reminder(request, name, bookmark_id):
+    
+    form = ReminderForm()
+    reminder_name = request.POST['name']
+    reminder_description = request.POST['description']
+    reminder_time = request.POST['reminder_time']
+    if(models.Reminder.objects.filter(name = reminder_name)):
+        reminder_message = "Give Unique Reminder Name"
+        return HttpResponseRedirect(reverse('view_bookmark',args=(name,bookmark_id, )))
+    else:
+        new_reminder = models.Reminder(
+            name = reminder_name, 
+            description = reminder_description, 
+            reminder_time = reminder_time, 
+            time_of_creation = datetime.now(),
+            creator= models.User.objects.get(name=name),
+            bookmark = models.Bookmark.objects.get(id=bookmark_id)   
+            )
+        new_reminder.save()
+    # return HttpResponse("Reminder Added")
+    print("Reminder Added")
+    return HttpResponseRedirect(reverse('view_bookmark',args=(name,bookmark_id, )))

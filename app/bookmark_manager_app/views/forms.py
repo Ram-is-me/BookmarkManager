@@ -61,3 +61,8 @@ class GroupForm(forms.Form):
 
 class SearchForm(forms.Form):
     search_val = forms.CharField(max_length=50, required=True)
+
+class ReminderForm(forms.Form):
+    name = forms.CharField(max_length=50, required=True, label="Name:")
+    description = forms.CharField(max_length=200, label="Description")
+    reminder_time = forms.DateTimeField(widget=forms.DateTimeInput(), required=True, help_text="YYYY-MM-DD HH:MM")

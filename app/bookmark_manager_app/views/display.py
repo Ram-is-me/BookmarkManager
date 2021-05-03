@@ -30,8 +30,8 @@ def helper(arr, name):
     if "r" in arr:
         logger.info("Retrieving reminders of user with username={}".format(name))
         lst = models.Reminder.objects.filter(creator=curr_user).order_by('-reminder_time')
+        logger.info("Updating status of all reminders")
         for r in lst:
-            logger.info("Updating status of all reminders")
             r.compute_status()
         output.append(lst)
     return output
