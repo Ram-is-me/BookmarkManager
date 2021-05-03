@@ -1,55 +1,47 @@
-{% load bootstrap4 %}
-{% load static %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'admin/css/nav_sidebar.css' %}">
-<nav class="navbar navbar-expand-lg navbarcolor">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'groups' user.username %}">Home</a>
-    <form class="form-inline" action="{% url 'search' user.username %}" method="POST">
-      <div class="input-group">
+  <nav class="navbar navbar-expand-md" style="background-color: #343a40;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'groups' user.username %}" style="color: #f8f9fa;">Home</a>
+      <form class="form-inline post-form" method="POST" action="{% url 'search' user.username %}">
         {% csrf_token %}
-        <input class="form-control mr-sm-2 " type="text" name="search_val" />
-        {% buttons %}
-        <button class="btn btn-primary my-2 my-sm-0 mx-2" type="submit">
+        <input class=" mr-sm-2" type="text" />
+        {% comment %} {% %} {% endcomment %}
+        <button class="btn btn-primary my-2 my-sm-0" type="submit">
           Search
         </button>
-        {% endbuttons %}
+      </form>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+        <ul class="nav-item ml-md-auto" style="list-style-type: none">
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style="color: #f8f9fa;"
+            >
+              {{ user.username }}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#" >Profile</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
       </div>
-    </form>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-      <ul class="nav-item ml-md-auto" style="list-style-type: none">
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            {{ user.username }}
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
     </div>
-  </div>
-</nav>
+  </nav>

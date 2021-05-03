@@ -1,0 +1,70 @@
+.loginbutton {
+    padding-left: 45%;
+}
+.loginbox {
+    padding-left: 40%;
+}
+.loginlabel {
+    padding-left: 40%;
+}
+.noaccount{
+    padding: 10vh:
+}
+.dropdown-toggle{
+  color: #f8f9fa;
+}
+
+.navbar-link {
+  background-color: #343a40;
+  text-decoration: none;
+  color: #f8f9fa;
+  padding-left: 1.5vh;
+}
+
+
+.navbarcolor {
+  background-color: #343a40;
+  color: #f8f9fa;
+}
+
+.attr-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+.task-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-left: 3vw;
+    padding-right: 3vw;
+}
+.process-container {
+    display: flex;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    justify-content: space-between;
+}
+
+.text-container {
+    align: left;
+}
+
+.process {
+    padding-left: 3vw;
+}
+.taskedit{
+    display: flex;
+}
+
+.task-attr {
+    padding-left: 4vw;
+}
+
+.tasktable {
+    width: 100%;
+    padding-top: 9vh;
+    padding-left: 4vw;
+    padding-right 4vw;
+}
