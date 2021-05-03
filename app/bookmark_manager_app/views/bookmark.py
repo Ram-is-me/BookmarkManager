@@ -59,7 +59,7 @@ def delete_bookmark(request, name, bookmark_id):
     logger.debug("Redirecting to Groups page")
     return HttpResponseRedirect(reverse('groups', args=(name,)),request)
 
-
+# This function is used to view a bookmark
 def view_bookmark(request, name, bookmark_id):
     logger.debug("Redirected to Edit Bookmark page")
     logger.info("Retrieving bookmark with id={}".format(id))
