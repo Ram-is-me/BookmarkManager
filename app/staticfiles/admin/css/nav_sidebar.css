@@ -4,6 +4,11 @@
     max-height: 100vh;
 }
 
+.navbarcolor {
+    background-color: #343a40;
+    color: #f8f9fa;
+}
+
 .toggle-nav-sidebar {
     z-index: 20;
     left: 0;
