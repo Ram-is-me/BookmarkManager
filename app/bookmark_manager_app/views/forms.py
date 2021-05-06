@@ -1,6 +1,20 @@
 from django import forms
 from datetime import date
 from .. import models
+from django.forms import DateTimeInput
+
+class BootstrapDateTimePickerInput(DateTimeInput):
+    template_name = 'widgets/bootstrap_datetimepicker.html'
+
+    def get_context(self, name, value, attrs):
+        datetimepicker_id = 'datetimepicker_{name}'.format(name=name)
+        if attrs is None:
+            attrs = dict()
+        attrs['data-target'] = '#{id}'.format(id=datetimepicker_id)
+        attrs['class'] = 'form-control datetimepicker-input'
+        context = super().get_context(name, value, attrs)
+        context['widget']['datetimepicker_id'] = datetimepicker_id
+        return context
 
 class BookmarkForm(forms.Form):
     bookmark_id = forms.IntegerField(widget=forms.HiddenInput())
@@ -33,7 +47,7 @@ class BookmarkForm(forms.Form):
         new_bookmark.save()
 
 class FilterForm(forms.Form):
-    search_val = forms.CharField(max_length=50, required=True, widget=forms.HiddenInput())
+    search_val = forms.CharField(max_length=50, widget=forms.HiddenInput())
     def __init__(self, *args, **kwargs):
         tags = kwargs.pop('tags')
         groups = kwargs.pop('groups')
@@ -65,4 +79,5 @@ class SearchForm(forms.Form):
 class ReminderForm(forms.Form):
     name = forms.CharField(max_length=50, required=True, label="Name:")
     description = forms.CharField(max_length=200, label="Description")
-    reminder_time = forms.DateTimeField(widget=forms.DateTimeInput(), required=True, help_text="YYYY-MM-DD HH:MM")
+    # reminder_time = forms.DateTimeField(widget=forms.DateTimeInput(), required=True, help_text="YYYY-MM-DD HH:MM")
+    reminder_time = forms.DateTimeField( input_formats=['%d/%m/%Y %H:%M'], widget=BootstrapDateTimePickerInput() )

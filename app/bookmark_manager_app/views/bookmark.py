@@ -24,7 +24,7 @@ def add_bookmark(request, name, group_id):
         elif (request.POST['custom_name']==''):
             message += "Empty Name not allowed <br>"
         else:
-            form.new_save(request, name, group_id)
+            form.new_save(request, name, group_id, datetime.now())
             logger.info("Retrieving bookmark with custom name={}".format(request.POST['custom_name']))
             bookmark_id = models.Bookmark.objects.filter(custom_name= request.POST['custom_name']).get().id
             context = {
@@ -80,7 +80,10 @@ def view_bookmark(request, name, bookmark_id):
             message = "Empty Name not allowed"
         else:
             # print(request.POST['custom_name'])
-            result = form.save( request.POST['url'], 
+            url_given = request.POST['url']
+            if url_given.find('https://')==-1 and url_given.find('http://')==-1 :
+                url_given = "https://" + url_given
+            result = form.save( url_given, 
             request.POST['custom_name'],
             request.POST['custom_note'],
             bookmark_id

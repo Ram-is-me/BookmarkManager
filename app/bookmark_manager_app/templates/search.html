@@ -84,6 +84,7 @@
               {% buttons %}
               <button type="submit" class="btn btn-success mt-3">Filter</button>
               {% endbuttons %}      
+              <small></small>
             </div>
           </form>
           <br>
@@ -111,7 +112,7 @@
               <tr>
                 <th scope="row">{{ forloop.counter }}</th>
                 <td><a href="{% url 'view_bookmark' user.username bookmark.id %}">{{ bookmark.custom_name }}</a></td>
-                <td><a href="{{ bookmark.url }}">{{ bookmark.url }}</a></td>
+                <td><a href="https://{{ bookmark.url }}">{{ bookmark.url }}</a></td>
                 <td>{{ bookmark.custom_note }}</td>
                 <td>{{ bookmark.group.name }}</td>
                 <td>
