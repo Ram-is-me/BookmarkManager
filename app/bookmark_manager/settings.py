@@ -137,47 +137,47 @@ AUTH_PASSWORD_VALIDATORS = [
 # Logging
 # https://docs.djangoproject.com/en/dev/topics/logging/
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'formatters': {
-#         'simple': {
-#             'format': '[%(asctime)s] %(levelname)s|%(name)s|%(message)s',
-#             'datefmt': '%Y-%m-%d %H:%M:%S',
-#         },
-#     },
-#     'handlers': {
-#         'applogfile': {
-#             'level': 'DEBUG',
-#             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': os.path.join(BASE_DIR,'bookmark_manager_app/logs/bookmark.log'),
-#             'maxBytes': 1024*1024*15,  # 15MB
-#             'backupCount': 10,
-#             'formatter': 'simple',
-#         },
-#         'djangologfile': {
-#             'level': 'DEBUG',
-#             'class': 'logging.FileHandler',
-#             'filename': os.path.join(BASE_DIR,'bookmark_manager_app/logs/django.log'),
-#             'formatter': 'simple',
-#         },
-#         'console': {
-#             'level': 'DEBUG',
-#             'class': 'logging.StreamHandler',
-#             'formatter': 'simple'
-#         }
-#     },
-#     'loggers': {
-#         'django': {
-#             'handlers': ['djangologfile'],
-#             'level': 'DEBUG',
-#         },
-#         'bookmark_manager_app.views': {
-#             'handlers': ['applogfile'],
-#             'level': 'DEBUG',
-#         },
-#     }
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '[%(asctime)s] %(levelname)s|%(name)s|%(message)s',
+            'datefmt': '%Y-%m-%d %H:%M:%S',
+        },
+    },
+    'handlers': {
+        'applogfile': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(BASE_DIR,'bookmark_manager_app/logs/bookmark.log'),
+            'maxBytes': 1024*1024*15,  # 15MB
+            'backupCount': 10,
+            'formatter': 'simple',
+        },
+        'djangologfile': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR,'bookmark_manager_app/logs/django.log'),
+            'formatter': 'simple',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['djangologfile'],
+            'level': 'DEBUG',
+        },
+        'bookmark_manager_app.views': {
+            'handlers': ['applogfile', 'console'],
+            'level': 'DEBUG',
+        },
+    }
+}
 
 
 # Internationalization
