@@ -37,8 +37,11 @@ class BookmarkForm(forms.Form):
 
     def new_save(self, request, username, group_id):
         # print(request.POST['custom_name'])
+        url_given = request.POST['url']
+        if url_given.find('https://')==-1 and url_given.find('http://')==-1 :
+            url_given = "https://" + url_given
         new_bookmark = models.Bookmark(
-            url=request.POST['url'], 
+            url=url_given, 
             custom_name=request.POST['custom_name'], 
             custom_note=request.POST['custom_note'], 
             group=models.Group.objects.get(id=group_id), 

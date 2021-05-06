@@ -1920,3 +1920,148 @@
 [2021-05-06 17:27:24] INFO|bookmark_manager_app.views.bookmark|Retrieving groups of user with username=user1
 [2021-05-06 17:27:24] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmarks with group id=2
 [2021-05-06 17:27:24] DEBUG|bookmark_manager_app.views.bookmark|Rendering View Bookmark page
+[2021-05-06 18:20:38] INFO|bookmark_manager_app.views.index|User with username=user1 successfully logged in
+[2021-05-06 18:20:38] DEBUG|bookmark_manager_app.views.index|Redirecting to groups page
+[2021-05-06 18:20:39] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-06 18:20:39] INFO|bookmark_manager_app.views.display|Retrieving user with name=user1
+[2021-05-06 18:20:39] INFO|bookmark_manager_app.views.display|Retrieving groups of user with username=user1
+[2021-05-06 18:20:39] INFO|bookmark_manager_app.views.display|Retrieving bookmarks of user with username=user1
+[2021-05-06 18:20:39] INFO|bookmark_manager_app.views.display|Retrieving tags of user with username=user1
+[2021-05-06 18:20:39] INFO|bookmark_manager_app.views.display|Retrieving reminders of user with username=user1
+[2021-05-06 18:20:39] INFO|bookmark_manager_app.views.display|Updating status of all reminders
+[2021-05-06 18:20:39] DEBUG|bookmark_manager_app.views.display|Rendering Groups page
+[2021-05-06 18:21:10] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-06 18:21:10] INFO|bookmark_manager_app.views.display|Retrieving user with name=user1
+[2021-05-06 18:21:10] INFO|bookmark_manager_app.views.display|Retrieving groups of user with username=user1
+[2021-05-06 18:21:10] INFO|bookmark_manager_app.views.display|Retrieving bookmarks of user with username=user1
+[2021-05-06 18:21:10] INFO|bookmark_manager_app.views.display|Retrieving tags of user with username=user1
+[2021-05-06 18:21:10] INFO|bookmark_manager_app.views.display|Retrieving reminders of user with username=user1
+[2021-05-06 18:21:10] INFO|bookmark_manager_app.views.display|Updating status of all reminders
+[2021-05-06 18:21:10] DEBUG|bookmark_manager_app.views.display|Rendering Groups page
+[2021-05-06 18:21:21] DEBUG|bookmark_manager_app.views.bookmark|Redirected to Add Bookmark page
+[2021-05-06 18:21:21] DEBUG|bookmark_manager_app.views.bookmark|Rendering View New Bookmark page
+[2021-05-06 18:21:32] DEBUG|bookmark_manager_app.views.bookmark|Redirected to Add Bookmark page
+[2021-05-06 18:21:52] DEBUG|bookmark_manager_app.views.bookmark|Redirected to Add Bookmark page
+[2021-05-06 18:21:52] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with custom name=Lol
+[2021-05-06 18:21:52] DEBUG|bookmark_manager_app.views.bookmark|Redirecting to View Bookmark page
+[2021-05-06 18:21:52] DEBUG|bookmark_manager_app.views.bookmark|Redirected to Edit Bookmark page
+[2021-05-06 18:21:52] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with id=<built-in function id>
+[2021-05-06 18:21:52] INFO|bookmark_manager_app.views.bookmark|Updating status of all reminders
+[2021-05-06 18:21:52] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with id=14
+[2021-05-06 18:21:52] INFO|bookmark_manager_app.views.bookmark|Retrieving user with name=user1
+[2021-05-06 18:21:52] INFO|bookmark_manager_app.views.bookmark|Retrieving tags of user with username=user1
+[2021-05-06 18:21:52] INFO|bookmark_manager_app.views.bookmark|Retrieving groups of user with username=user1
+[2021-05-06 18:21:52] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmarks with group id=6
+[2021-05-06 18:21:52] DEBUG|bookmark_manager_app.views.bookmark|Rendering View Bookmark page
+[2021-05-06 18:21:58] DEBUG|bookmark_manager_app.views.bookmark|Redirected to Edit Bookmark page
+[2021-05-06 18:21:58] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with id=<built-in function id>
+[2021-05-06 18:21:58] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with id=14
+[2021-05-06 18:21:58] INFO|bookmark_manager_app.views.bookmark|Updating status of all reminders
+[2021-05-06 18:21:58] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with id=14
+[2021-05-06 18:21:58] INFO|bookmark_manager_app.views.bookmark|Retrieving user with name=user1
+[2021-05-06 18:21:58] INFO|bookmark_manager_app.views.bookmark|Retrieving tags of user with username=user1
+[2021-05-06 18:21:58] INFO|bookmark_manager_app.views.bookmark|Retrieving groups of user with username=user1
+[2021-05-06 18:21:58] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmarks with group id=6
+[2021-05-06 18:21:58] DEBUG|bookmark_manager_app.views.bookmark|Rendering View Bookmark page
+[2021-05-06 18:22:07] DEBUG|bookmark_manager_app.views.bookmark|Redirected to Edit Bookmark page
+[2021-05-06 18:22:07] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with id=<built-in function id>
+[2021-05-06 18:22:07] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with id=14
+[2021-05-06 18:22:07] INFO|bookmark_manager_app.views.bookmark|Updating status of all reminders
+[2021-05-06 18:22:07] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with id=14
+[2021-05-06 18:22:07] INFO|bookmark_manager_app.views.bookmark|Retrieving user with name=user1
+[2021-05-06 18:22:07] INFO|bookmark_manager_app.views.bookmark|Retrieving tags of user with username=user1
+[2021-05-06 18:22:07] INFO|bookmark_manager_app.views.bookmark|Retrieving groups of user with username=user1
+[2021-05-06 18:22:07] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmarks with group id=6
+[2021-05-06 18:22:07] DEBUG|bookmark_manager_app.views.bookmark|Rendering View Bookmark page
+[2021-05-06 18:22:09] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-06 18:22:09] INFO|bookmark_manager_app.views.display|Retrieving user with name=user1
+[2021-05-06 18:22:09] INFO|bookmark_manager_app.views.display|Retrieving groups of user with username=user1
+[2021-05-06 18:22:09] INFO|bookmark_manager_app.views.display|Retrieving bookmarks of user with username=user1
+[2021-05-06 18:22:09] INFO|bookmark_manager_app.views.display|Retrieving tags of user with username=user1
+[2021-05-06 18:22:10] INFO|bookmark_manager_app.views.display|Retrieving reminders of user with username=user1
+[2021-05-06 18:22:10] INFO|bookmark_manager_app.views.display|Updating status of all reminders
+[2021-05-06 18:22:10] DEBUG|bookmark_manager_app.views.display|Rendering Groups page
+[2021-05-06 18:22:12] DEBUG|bookmark_manager_app.views.bookmark|Redirected to Add Bookmark page
+[2021-05-06 18:22:12] DEBUG|bookmark_manager_app.views.bookmark|Rendering View New Bookmark page
+[2021-05-06 18:22:20] DEBUG|bookmark_manager_app.views.bookmark|Redirected to Add Bookmark page
+[2021-05-06 18:22:20] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with custom name=Youtube
+[2021-05-06 18:22:20] DEBUG|bookmark_manager_app.views.bookmark|Redirecting to View Bookmark page
+[2021-05-06 18:22:20] DEBUG|bookmark_manager_app.views.bookmark|Redirected to Edit Bookmark page
+[2021-05-06 18:22:20] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with id=<built-in function id>
+[2021-05-06 18:22:20] INFO|bookmark_manager_app.views.bookmark|Updating status of all reminders
+[2021-05-06 18:22:20] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with id=15
+[2021-05-06 18:22:20] INFO|bookmark_manager_app.views.bookmark|Retrieving user with name=user1
+[2021-05-06 18:22:20] INFO|bookmark_manager_app.views.bookmark|Retrieving tags of user with username=user1
+[2021-05-06 18:22:20] INFO|bookmark_manager_app.views.bookmark|Retrieving groups of user with username=user1
+[2021-05-06 18:22:20] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmarks with group id=6
+[2021-05-06 18:22:20] DEBUG|bookmark_manager_app.views.bookmark|Rendering View Bookmark page
+[2021-05-06 18:24:45] DEBUG|bookmark_manager_app.views.bookmark|Redirected to Edit Bookmark page
+[2021-05-06 18:24:45] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with id=<built-in function id>
+[2021-05-06 18:24:45] INFO|bookmark_manager_app.views.bookmark|Updating status of all reminders
+[2021-05-06 18:24:45] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with id=15
+[2021-05-06 18:24:45] INFO|bookmark_manager_app.views.bookmark|Retrieving user with name=user1
+[2021-05-06 18:24:45] INFO|bookmark_manager_app.views.bookmark|Retrieving tags of user with username=user1
+[2021-05-06 18:24:45] INFO|bookmark_manager_app.views.bookmark|Retrieving groups of user with username=user1
+[2021-05-06 18:24:45] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmarks with group id=6
+[2021-05-06 18:24:45] DEBUG|bookmark_manager_app.views.bookmark|Rendering View Bookmark page
+[2021-05-06 18:24:46] DEBUG|bookmark_manager_app.views.bookmark|Redirected to Add Bookmark page
+[2021-05-06 18:24:46] DEBUG|bookmark_manager_app.views.bookmark|Rendering View New Bookmark page
+[2021-05-06 18:24:49] DEBUG|bookmark_manager_app.views.bookmark|Redirected to Add Bookmark page
+[2021-05-06 18:24:49] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with custom name=Youtube
+[2021-05-06 18:24:55] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-06 18:24:55] INFO|bookmark_manager_app.views.display|Retrieving user with name=user1
+[2021-05-06 18:24:55] INFO|bookmark_manager_app.views.display|Retrieving groups of user with username=user1
+[2021-05-06 18:24:55] INFO|bookmark_manager_app.views.display|Retrieving bookmarks of user with username=user1
+[2021-05-06 18:24:55] INFO|bookmark_manager_app.views.display|Retrieving tags of user with username=user1
+[2021-05-06 18:24:55] INFO|bookmark_manager_app.views.display|Retrieving reminders of user with username=user1
+[2021-05-06 18:24:55] INFO|bookmark_manager_app.views.display|Updating status of all reminders
+[2021-05-06 18:24:55] DEBUG|bookmark_manager_app.views.display|Rendering Groups page
+[2021-05-06 18:24:59] DEBUG|bookmark_manager_app.views.bookmark|Redirected to Edit Bookmark page
+[2021-05-06 18:24:59] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with id=<built-in function id>
+[2021-05-06 18:24:59] INFO|bookmark_manager_app.views.bookmark|Updating status of all reminders
+[2021-05-06 18:24:59] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with id=16
+[2021-05-06 18:24:59] INFO|bookmark_manager_app.views.bookmark|Retrieving user with name=user1
+[2021-05-06 18:24:59] INFO|bookmark_manager_app.views.bookmark|Retrieving tags of user with username=user1
+[2021-05-06 18:24:59] INFO|bookmark_manager_app.views.bookmark|Retrieving groups of user with username=user1
+[2021-05-06 18:24:59] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmarks with group id=6
+[2021-05-06 18:24:59] DEBUG|bookmark_manager_app.views.bookmark|Rendering View Bookmark page
+[2021-05-06 18:25:00] INFO|bookmark_manager_app.views.bookmark|Deleted bookmark with id=16
+[2021-05-06 18:25:00] DEBUG|bookmark_manager_app.views.bookmark|Redirecting to Groups page
+[2021-05-06 18:25:00] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-06 18:25:00] INFO|bookmark_manager_app.views.display|Retrieving user with name=user1
+[2021-05-06 18:25:00] INFO|bookmark_manager_app.views.display|Retrieving groups of user with username=user1
+[2021-05-06 18:25:00] INFO|bookmark_manager_app.views.display|Retrieving bookmarks of user with username=user1
+[2021-05-06 18:25:00] INFO|bookmark_manager_app.views.display|Retrieving tags of user with username=user1
+[2021-05-06 18:25:00] INFO|bookmark_manager_app.views.display|Retrieving reminders of user with username=user1
+[2021-05-06 18:25:00] INFO|bookmark_manager_app.views.display|Updating status of all reminders
+[2021-05-06 18:25:00] DEBUG|bookmark_manager_app.views.display|Rendering Groups page
+[2021-05-06 18:25:03] DEBUG|bookmark_manager_app.views.bookmark|Redirected to Add Bookmark page
+[2021-05-06 18:25:03] DEBUG|bookmark_manager_app.views.bookmark|Rendering View New Bookmark page
+[2021-05-06 18:25:13] DEBUG|bookmark_manager_app.views.bookmark|Redirected to Add Bookmark page
+[2021-05-06 18:25:13] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with custom name=LOLGOOGLe
+[2021-05-06 18:25:13] DEBUG|bookmark_manager_app.views.bookmark|Redirecting to View Bookmark page
+[2021-05-06 18:25:13] DEBUG|bookmark_manager_app.views.bookmark|Redirected to Edit Bookmark page
+[2021-05-06 18:25:13] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with id=<built-in function id>
+[2021-05-06 18:25:13] INFO|bookmark_manager_app.views.bookmark|Updating status of all reminders
+[2021-05-06 18:25:13] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with id=17
+[2021-05-06 18:25:13] INFO|bookmark_manager_app.views.bookmark|Retrieving user with name=user1
+[2021-05-06 18:25:13] INFO|bookmark_manager_app.views.bookmark|Retrieving tags of user with username=user1
+[2021-05-06 18:25:13] INFO|bookmark_manager_app.views.bookmark|Retrieving groups of user with username=user1
+[2021-05-06 18:25:13] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmarks with group id=6
+[2021-05-06 18:25:13] DEBUG|bookmark_manager_app.views.bookmark|Rendering View Bookmark page
+[2021-05-06 18:25:25] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-06 18:25:25] INFO|bookmark_manager_app.views.display|Retrieving user with name=user1
+[2021-05-06 18:25:25] INFO|bookmark_manager_app.views.display|Retrieving groups of user with username=user1
+[2021-05-06 18:25:25] INFO|bookmark_manager_app.views.display|Retrieving bookmarks of user with username=user1
+[2021-05-06 18:25:25] INFO|bookmark_manager_app.views.display|Retrieving tags of user with username=user1
+[2021-05-06 18:25:25] INFO|bookmark_manager_app.views.display|Retrieving reminders of user with username=user1
+[2021-05-06 18:25:25] INFO|bookmark_manager_app.views.display|Updating status of all reminders
+[2021-05-06 18:25:25] DEBUG|bookmark_manager_app.views.display|Rendering Groups page
+[2021-05-06 18:27:30] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-06 18:27:30] INFO|bookmark_manager_app.views.display|Retrieving user with name=user1
+[2021-05-06 18:27:30] INFO|bookmark_manager_app.views.display|Retrieving groups of user with username=user1
+[2021-05-06 18:27:30] INFO|bookmark_manager_app.views.display|Retrieving bookmarks of user with username=user1
+[2021-05-06 18:27:30] INFO|bookmark_manager_app.views.display|Retrieving tags of user with username=user1
+[2021-05-06 18:27:30] INFO|bookmark_manager_app.views.display|Retrieving reminders of user with username=user1
+[2021-05-06 18:27:30] INFO|bookmark_manager_app.views.display|Updating status of all reminders
+[2021-05-06 18:27:30] DEBUG|bookmark_manager_app.views.display|Rendering Groups page

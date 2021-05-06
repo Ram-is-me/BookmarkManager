@@ -24,7 +24,7 @@ def add_bookmark(request, name, group_id):
         elif (request.POST['custom_name']==''):
             message += "Empty Name not allowed <br>"
         else:
-            form.new_save(request, name, group_id, datetime.now())
+            form.new_save(request, name, group_id)
             logger.info("Retrieving bookmark with custom name={}".format(request.POST['custom_name']))
             bookmark_id = models.Bookmark.objects.filter(custom_name= request.POST['custom_name']).get().id
             context = {

@@ -46,7 +46,7 @@
                 class="card-link"
                 data-toggle="collapse"
                 data-parent="#card-579191"
-                href="#{{ reminder.id }}"
+                href="#{{ reminder.name }}"
                 style="color: black"
                 >
               {% if reminder.status == "red" %}
@@ -59,7 +59,7 @@
                 <h6>{{ reminder.name }}</h6>
               </div>
               </a>
-              <div id="{{ reminder.id }}" class="collapse">
+              <div id="{{ reminder.name }}" class="collapse">
                 <div class="card-body">
                   <p class="card-text">Bookmark: <br> <a href="{{ reminder.bookmark.url }}">{{ reminder.bookmark.custom_name }}</a></p>
                   <p> Description: <br> {{ reminder.description }}</p>
@@ -118,14 +118,14 @@
                 class="card-link"
                 data-toggle="collapse"
                 data-parent="#card-451647"
-                href="#{{ group.id }}"
+                href="#{{ group.name }}"
                 style="color: black"
                 >
               <div class="card-header" style="background-color: lightskyblue">
                 <h6>{{ group.name }}</h6>
               </div>
               </a>
-              <div id="{{ group.id }}" class="collapse">
+              <div id="{{ group.name }}" class="collapse">
                 <div class="card-body">
                   <p>Created On: {{ group.date_of_creation }}</p>
                   <form
