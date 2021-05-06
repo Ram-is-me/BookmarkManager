@@ -20,7 +20,7 @@ def helper(arr, name):
     output.append(curr_user)
     if "g" in arr:
         logger.info("Retrieving groups of user with username={}".format(name))
-        output.append(models.Group.objects.filter(creator=curr_user))
+        output.append(models.Group.objects.filter(creator=curr_user).order_by('name'))
     if "b" in arr:
         logger.info("Retrieving bookmarks of user with username={}".format(name))
         output.append(models.Bookmark.objects.filter(creator=curr_user))
@@ -29,7 +29,7 @@ def helper(arr, name):
         output.append(models.Tag.objects.filter(creator=curr_user))
     if "r" in arr:
         logger.info("Retrieving reminders of user with username={}".format(name))
-        lst = models.Reminder.objects.filter(creator=curr_user).order_by('-reminder_time')
+        lst = models.Reminder.objects.filter(creator=curr_user).order_by('reminder_time')
         logger.info("Updating status of all reminders")
         for r in lst:
             r.compute_status()
@@ -97,6 +97,7 @@ def bookmarks_tag(request, name):
                 logger.info("Retrieving tag with name={}".format(key))
                 input_tags.append(models.Tag.objects.get(name=key))
     bookmark_list = []
+    all_bookmarks = all_bookmarks.order_by('-date_of_creation')
     for bookmark in all_bookmarks:
         present = 1
         for tag in input_tags:
@@ -105,7 +106,7 @@ def bookmarks_tag(request, name):
                 break
         if present:
             bookmark_list.append(bookmark)
-    context = {'bookmark_list' : bookmark_list, 'reminder_list' : reminder_list, 'form' : form, 'search_form': search_form}
+    context = {'bookmark_list' : bookmark_list, 'reminder_list' : reminder_list, 'form' : form, 'search_form': search_form, 'input_tags' : input_tags}
     logger.debug("Rendering Tag Filter page")
     return render(request, 'bookmarks_tag.html', context)
 

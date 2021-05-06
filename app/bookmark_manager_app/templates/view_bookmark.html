@@ -4,6 +4,7 @@
 {% load filter_tags%}
 {% bootstrap_javascript jquery='full' %}
 {% include 'base.html' %}
+{% include 'navbar.html' %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,42 +38,6 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'home' %}">Home</a>
-      <form class="form-inline">
-        <div class="input-group">
-          <input class="form-control mr-sm-2 " type="text" placeholder="Search Bookmarks" />
-          <button class="btn btn-primary my-2 my-sm-0" type="submit">
-            Search
-          </button>
-        </div>
-      </form>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-        <ul class="nav-item ml-md-auto" style="list-style-type: none">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              {{ user.username }}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Profile</a></li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-              <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
   <div class="page-header text-center">
     <h3>Bookmark Details: </h3>
   </div>
@@ -118,7 +83,6 @@
             {% for tag in bookmark_obj.list_of_tags.all %}
             <button class="btn btn-primary " style="margin: 10px;">{{ tag.name }}</button>
             {% endfor %}
-            <!-- <label style="font-weight: lighter; font-size: smaller;"> Click on Tag to Remove Association </label> -->
             {% endif %}
             <br>
             {{ field.label_tag }}
@@ -164,10 +128,9 @@
         </form>
       </div>
       <div class="col-md-6">
-        <!-- <div class="row justify-content-center text-center"> -->
           <h5>Click on the Tags below to Remove them from current Bookmark</h5>
+          {% if bookmark_obj.list_of_tags.all %}
           {% for tag in bookmark_obj.list_of_tags.all %}
-          <!-- <div class="col-sm-1 "> -->
             <form action="{% url 'remove_tag' request.user.username bookmark_obj.id tag.id %}"
               class="form-inline" style="display: inline-block;">
               {% csrf_token %}
@@ -175,13 +138,15 @@
               <button type="submit" class="btn btn-danger">{{ tag.name }}</button>
               {% endbuttons %}
             </form>
-          <!-- </div> -->
-        <!-- </div> -->
         {% endfor %}
-        <!-- <div class="row justify-content-center text-center "> -->
+        {% else %}
+        <button class="btn btn-warning" style="display: inline; margin: 20px">
+          None
+        </button>
+        {% endif %}
           <h5>Click on the Tags below to Add them to current Bookmark</h5>
+          {% if all_tags|custom_role_filter:bookmark_obj.list_of_tags.all %}
           {% for tag in all_tags|custom_role_filter:bookmark_obj.list_of_tags.all %}
-          <!-- <div class="col-sm-1"> -->
             <form action="{% url 'add_tag' request.user.username bookmark_obj.id tag.id %}"
               class="form-inline" style="display: inline-block;">
               {% csrf_token %}
@@ -189,16 +154,17 @@
               <button type="submit" class="btn btn-success">{{ tag.name }}</button>
               {% endbuttons %}
             </form>
-          <!-- </div> -->
           {% endfor %}
-        <!-- </div> -->
-        <!-- <div class="row justify-content-center text-center "> -->
+          {% else %}
+          <button class="btn btn-warning" style="display: inline; margin: 20px">
+            None
+          </button>
+          {% endif %}
           <h5>Current Group: 
             <button class="btn btn-primary">{{ bookmark_obj.group.name }} </button>
           </h5>
           <h5>Click on the Groups below to change Group for current Bookmark</h5>
           {% for group in all_groups|custom_group_filter:bookmark_obj.group %}
-          <!-- <div class="col-sm-1"> -->
             <form action="{% url 'change_group' request.user.username bookmark_obj.id group.id %}"
               class="form-inline" style="display: inline-block;">
               {% csrf_token %}
@@ -206,11 +172,7 @@
               <button type="submit" class="btn btn-primary ">{{ group.name }}</button>
               {% endbuttons %}
             </form>
-          <!-- </div> -->
           {% endfor %}
-        <!-- </div> -->
-        <!-- <div class="row justify-content-center text-center "> -->
-          <!-- <div class="col-md-6"> -->
             <h5>Delete Bookmark (Irreversible):</h5>
             <form action="{% url 'delete_bookmark' request.user.username bookmark_obj.id %}" method="post"
               class="post-form">
@@ -219,8 +181,6 @@
               <button type="submit" class="btn btn-danger btn-lg btn-block">Delete Bookmark</button>
               {% endbuttons %}
             </form>
-          <!-- </div> -->
-        <!-- </div> -->
         <h5>Add Reminder</h5>
         <form action="{% url 'addreminder' request.user.username bookmark_obj.id %}" 
         method="post" class="post-form" >
@@ -277,10 +237,10 @@
               <tr>
                 <th scope="col"> Bookmark ID</th>
                 <th scope="col"> Bookmark</th>
-                <th scope="col"> Bookmark URL</th>
                 <th scope="col"> Date of Creation</th>
                 <th scope="col"> Group</th>
                 <th scope="col"> Tags</th>
+                <th scope="col"> Actions</th>
               </tr>
             </thread>
             {% if related_bm %}
@@ -288,22 +248,33 @@
               {% for bookmark in related_bm %}
               <tr>
                 <th scope="row">{{ bookmark.id }}</th>
-                <td><a href="{% url 'view_bookmark' user.username bookmark.id %}">{{ bookmark.custom_name }}</a></td>
-                <td><a href="#">{{ bookmark.url }}</a></td>
-                <td><a href="#">{{ bookmark.dateOfCreation }}</a></td>
-                <td><a href="#">{{ bookmark.group.name }}</a></td>
+                <td><a href="{{ bookmark.url }}">{{ bookmark.custom_name }}</a></td>
+                <td>{{ bookmark.dateOfCreation }}</td>
+                <td>{{ bookmark.group.name }}</td>
                 <td>
                   <table class="table">
                     {% if bookmark.list_of_tags %}
                     <tbody>
                       {% for tag in bookmark.list_of_tags.all %}
                       <tr class="text-center">
-                        <td><a href="{% url 'bookmarks_tag' user.username %}">{{tag.name}}</a></td>
+                        <td>{{tag.name}}</td>
                       </tr>
                       {% endfor %}
                     </tbody>
                     {% endif %}
                   </table>
+                </td>
+                <td>
+                  <form
+                    action="{% url 'view_bookmark' user.username bookmark.id %}"
+                    class="post-form"
+                  >
+                    {% csrf_token %} {% buttons %}
+                    <button type="submit" class="btn btn-primary">
+                      Edit Bookmark
+                    </button>
+                    {% endbuttons %}
+                  </form>
                 </td>
               </tr>
               {% endfor %}
@@ -313,34 +284,47 @@
         </div>
         <div class="col-md-4">
           <h3>Reminders</h3>
-          {% if all_reminders %} {% for reminder in all_reminders %}
-          {% if reminder.status == "red" %}
-          <div class="card bg-danger">
-          {% elif reminder.status == "yellow" %}
-          <div class="card bg-warning">
-          {% else %}
-          <div class="card bg-success">
-          {% endif %}
-            <h5 class="card-header">{{ reminder.name }}</h5>
-            <div class="card-body">
-              <p class="card-text"><a href="{{ reminder.bookmark.url }}">{{ reminder.bookmark.custom_name }}</a></p>
+          <div id="card-579191">
+            {% if all_reminders %} {% for reminder in all_reminders %}
+            <div class="card" style="border: 3px groove">
+              <a
+                class="card-link"
+                data-toggle="collapse"
+                data-parent="#card-579191"
+                href="#{{ reminder.id }}"
+                style="color: black"
+                >
+              {% if reminder.status == "red" %}
+              <div class="card-header" style="background-color: coral">
+              {% elif reminder.status == "yellow" %}
+              <div class="card-header" style="background-color: khaki">
+              {% else %}
+              <div class="card-header" style="background-color: springgreen">
+              {% endif %}
+                <h6>{{ reminder.name }}</h6>
+              </div>
+              </a>
+              <div id="{{ reminder.id }}" class="collapse">
+                <div class="card-body">
+                  <p class="card-text">Bookmark: <br> <a href="{{ reminder.bookmark.url }}">{{ reminder.bookmark.custom_name }}</a></p>
+                  <p> Description: <br> {{ reminder.description }}</p>
+                  <p>Deadline: <br> {{ reminder.reminder_time }}</p>
+                  <form
+                    action="{% url 'delete_reminder' user.username reminder.name %}"
+                    method="post"
+                    class="post-form" 
+                  >
+                    {% csrf_token %} {% buttons %}
+                    <button type="submit" class="btn btn-danger">
+                      Delete Reminder
+                    </button>
+                    {% endbuttons %}
+                  </form>
+                </div>
+              </div>
             </div>
-            <div class="card-footer">{{ reminder.reminder_time }}</div>
-            <div class="card-footer">
-              <form
-                action="{% url 'delete_reminder' user.username reminder.name %}"
-                method="post"
-                class="post-form"
-              >
-                {% csrf_token %} {% buttons %}
-                <button type="submit" class="btn btn-danger">
-                  Delete Reminder
-                </button>
-                {% endbuttons %}
-              </form>
-            </div>
+            {% endfor %} {% endif %}
           </div>
-          {% endfor %} {% endif %}
         </div>
       </div>
     </div>

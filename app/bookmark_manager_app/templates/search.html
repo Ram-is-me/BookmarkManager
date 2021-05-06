@@ -46,16 +46,12 @@
                 {{ hidden_field }}
               {% endfor %}
               {% for field in search_form.visible_fields %}
-                <!-- <div  class="btn btn-warning btn-sm">{{ field.label_tag }}</div> -->
                 {% render_field field class="form-control" %}
                 {% if field.help_text %}
                   <small class="form-text text-muted">{{ field.help_text }}</small>
                 {% endif %}
                 {% endfor %}
               {% buttons %}
-              <!-- <button class="btn btn-primary my-2 my-sm-0 mx-2" type="submit">
-                Search
-              </button> -->
               {% endbuttons %}
             </div>
           </form>
@@ -92,25 +88,6 @@
           </form>
           <br>
           <p>If no group,tag is selected, all groups are enables by default</p>
-          <!-- <form class="form-inline" action="{% url 'search' user.username %}" method="post" novalidate>
-            <div class="form-group" >
-              {% csrf_token %}
-
-              {% for hidden_field in group_form.hidden_fields %}
-                {{ hidden_field }}
-              {% endfor %}
-              {% for field in group_form.visible_fields %}
-                <div  class="btn btn-primary btn-sm">{{ field.label_tag }}</div>
-                {% render_field field %}
-                {% if field.help_text %}
-                  <small class="form-text text-muted">{{ field.help_text }}</small>
-                {% endif %}
-                {% endfor %}
-              {% buttons %}
-              <button type="submit" class="btn btn-success mt-3">Filter by Group</button>
-              {% endbuttons %}      
-            </div>
-          </form> -->
         </div>
       </div>
     </div>

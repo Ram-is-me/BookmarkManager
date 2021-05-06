@@ -95,7 +95,7 @@ def view_bookmark(request, name, bookmark_id):
                 form.fields['custom_note'].initial = models.Bookmark.objects.get(id=bookmark_id).custom_note
 
     logger.info("Updating status of all reminders")
-    all_reminders = models.Reminder.objects.filter(bookmark__id=bookmark_id)
+    all_reminders = models.Reminder.objects.filter(bookmark__id=bookmark_id).order_by('reminder_time')
     for r in all_reminders:
         r.compute_status()
     

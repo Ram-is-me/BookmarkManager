@@ -35,10 +35,17 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-2">
-          <h3>Reminders</h3>
+          <h2>Reminders</h2>
           <div id="card-579191">
             {% if reminder_list %} {% for reminder in reminder_list %}
-            <div class="card">
+            <div class="card" style="border: 3px groove">
+              <a
+                class="card-link"
+                data-toggle="collapse"
+                data-parent="#card-579191"
+                href="#{{ reminder.id }}"
+                style="color: black"
+                >
               {% if reminder.status == "red" %}
               <div class="card-header" style="background-color: coral">
               {% elif reminder.status == "yellow" %}
@@ -46,25 +53,18 @@
               {% else %}
               <div class="card-header" style="background-color: springgreen">
               {% endif %}
-                <h6>
-                  <a
-                    class="card-link"
-                    data-toggle="collapse"
-                    data-parent="#card-579191"
-                    href="#{{ reminder.id }}"
-                    style="color: black"
-                    >{{ reminder.name }}</a
-                  >
-                </h6>
+                <h6>{{ reminder.name }}</h6>
               </div>
+              </a>
               <div id="{{ reminder.id }}" class="collapse">
                 <div class="card-body">
-                  <p class="card-text"><a href="{{ reminder.bookmark.url }}">{{ reminder.bookmark.custom_name }}</a></p>
-                  <p>{{ reminder.reminder_time }}</p>
+                  <p class="card-text">Bookmark: <br> <a href="{{ reminder.bookmark.url }}">{{ reminder.bookmark.custom_name }}</a></p>
+                  <p> Description: <br> {{ reminder.description }}</p>
+                  <p>Deadline: <br> {{ reminder.reminder_time }}</p>
                   <form
                     action="{% url 'delete_reminder' user.username reminder.name %}"
                     method="post"
-                    class="post-form"
+                    class="post-form" 
                   >
                     {% csrf_token %} {% buttons %}
                     <button type="submit" class="btn btn-danger">
@@ -79,12 +79,25 @@
           </div>
         </div>
         <div class="col-md-8">
-          <h3>Bookmarks</h3>
+          <h2>Bookmarks</h2>
+          <h4 style="display: inline">Filtered By:</h4>
+          {% if input_tags %}
+          {% for tag in input_tags %}
+          <button class="btn btn-primary" style="display: inline; margin: 20px">
+            {{ tag.name }}
+          </button>
+          {% endfor %}
+          {% else %}
+          <button class="btn btn-warning" style="display: inline; margin: 20px">
+            None
+          </button>
+          {% endif %}
           <table class="table">
             <thead>
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Bookmark</th>
+                <th scope="col">Group</th>
                 <th scope="col">Date Of Creation</th>
                 <th scope="col">Tags</th>
                 <th scope="col">Actions</th>
@@ -96,6 +109,7 @@
               <tr>
                 <th scope="row">{{ forloop.counter }}</th>
                 <td><a href="{{ bookmark.url }}">{{ bookmark.custom_name }}</a></td>
+                <td>{{ bookmark.group.name }}</td>
                 <td>{{ bookmark.date_of_creation }}</td>
                 <td>
                   <table class="table">
@@ -131,45 +145,53 @@
           </table>
         </div>
         <div class="col-md-2">
-          <h3>Tags</h3>
+          <h2>Tags</h2>
           <form
             action="{% url 'create_tag' user.username %}"
             class="form-inline"
             method="post"
           >
-            <input name="tagname" class="form-control mr-sm-2" type="text" />
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">
+            {% csrf_token %}
+            <input
+              id="csrf_token"
+              name="tagname"
+              class="mr-sm-2 form-inline"
+              style="width: 70%; margin-bottom: 3%"
+              type="text"
+              required
+            />
+            <button class="btn btn-success my-2 my-sm-0" type="submit">
               Create Tag
             </button>
           </form>
-          <!-- {% if tag_list %}
-          <ul>
-            {% for tag in tag_list %}
-            <li class="list-item">
-              <a href="{% url 'bookmarks_tag' user.username tag.name %}"
-                >{{ tag.name }}</a
-              >
-            </li>
-            {% endfor %}
-          </ul>
-          {% endif %} -->
-          <form action="{% url 'bookmarks_tag' user.username %}" method="post" novalidate>
+          <h5>Filter By:</h5>
+          {% if new_tag_msg %}
+          <div class="alert alert-success" role="alert">
+            {{ new_tag_msg }}
+          </div>
+          {% endif %}
+          {% if dup_tag_msg %}
+          <div class="alert alert-danger" role="alert">
+            {{ dup_tag_msg }}
+          </div>
+          {% endif %}
+          <form action="{% url 'bookmarks_tag' user.username %}" method="post" novalidate required>
             {% csrf_token %}
-            
+          
             {% for hidden_field in form.hidden_fields %}
               {{ hidden_field }}
             {% endfor %}
-            
+          
             {% for field in form.visible_fields %}
-            <div class="form-group">
-              {{ field.label_tag }}
-              {% render_field field %}
-              {% if field.help_text %}
-              <small class="form-text text-muted">{{ field.help_text }}</small>
-              {% endif %}
-            </div>
+              <div class="form-group" style="margin-bottom: 5px">
+                {{ field.label_tag }}
+                {% render_field field %}
+                {% if field.help_text %}
+                  <small class="form-text text-muted">{{ field.help_text }}</small>
+                {% endif %}
+              </div>
             {% endfor %}
-
+          
             <button type="submit" class="btn btn-primary">Filter</button>
           </form>
           <form
@@ -181,13 +203,25 @@
             <input
               id="csrf_token"
               name="deletetagname"
-              class="form-control mr-sm-2"
+              class="mr-sm-2 form-inline"
+              style="width: 70%; margin-bottom: 3%"
               type="text"
+              required
             />
             <button class="btn btn-danger my-2 my-sm-0" type="submit">
               Delete Tag
             </button>
           </form>
+          {% if rem_tag_msg %}
+          <div class="alert alert-success" role="alert">
+            {{ rem_tag_msg }}
+          </div>
+          {% endif %}
+          {% if inv_tag_msg %}
+          <div class="alert alert-danger" role="alert">
+            {{ inv_tag_msg }}
+          </div>
+          {% endif %}
         </div>
       </div>
     </div>
