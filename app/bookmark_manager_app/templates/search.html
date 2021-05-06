@@ -84,8 +84,17 @@
               {% buttons %}
               <button type="submit" class="btn btn-success mt-3">Filter</button>
               {% endbuttons %}      
-              <small></small>
             </div>
+          </form>
+          <form class="form-inline post-form" method="POST" action="{% url 'search' user.username %}">
+            {% csrf_token %}
+            {% comment %} <input class=" mr-sm-2" type="text" name="search_val"/> {% endcomment %}
+            {% comment %} {% %} {% endcomment %}
+            {% buttons %}
+            <button class="btn btn-danger my-2 my-sm-0" type="submit">
+              Clear Search Results
+            </button>
+            {% endbuttons %}
           </form>
           <br>
           <p>If no group,tag is selected, all groups are enables by default</p>

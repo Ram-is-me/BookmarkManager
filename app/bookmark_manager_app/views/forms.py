@@ -51,6 +51,7 @@ class BookmarkForm(forms.Form):
 
 class FilterForm(forms.Form):
     search_val = forms.CharField(max_length=50, widget=forms.HiddenInput())
+    tags_or_check = forms.BooleanField()
     def __init__(self, *args, **kwargs):
         tags = kwargs.pop('tags')
         groups = kwargs.pop('groups')
@@ -61,7 +62,7 @@ class FilterForm(forms.Form):
             self.fields[group.name] = forms.BooleanField(label=group.name)
 
 class TagForm(forms.Form):
-    search_val = forms.CharField(max_length=50, required=True, widget=forms.HiddenInput())
+    search_val = forms.CharField(max_length=50, widget=forms.HiddenInput())
     def __init__(self, *args, **kwargs):
         tags = kwargs.pop('tags')
         super(TagForm, self).__init__(*args, **kwargs)
@@ -69,7 +70,7 @@ class TagForm(forms.Form):
             self.fields[tag.name] = forms.BooleanField(label=tag.name)
 
 class GroupForm(forms.Form):
-    search_val = forms.CharField(max_length=50, required=True, widget=forms.HiddenInput())
+    search_val = forms.CharField(max_length=50, widget=forms.HiddenInput())
     def __init__(self, *args, **kwargs):
         groups = kwargs.pop('groups')
         super(GroupForm, self).__init__(*args, **kwargs)
@@ -77,7 +78,7 @@ class GroupForm(forms.Form):
             self.fields[group.name] = forms.BooleanField(label=group.name)
 
 class SearchForm(forms.Form):
-    search_val = forms.CharField(max_length=50, required=True)
+    search_val = forms.CharField(max_length=50)
 
 class ReminderForm(forms.Form):
     name = forms.CharField(max_length=50, required=True, label="Name:")

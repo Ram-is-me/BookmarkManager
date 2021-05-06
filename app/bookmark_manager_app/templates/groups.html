@@ -37,11 +37,12 @@
   <body>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
           <h2>Reminders</h2>
           <div id="card-579191">
             {% if reminder_list %} {% for reminder in reminder_list %}
-            <div class="card" style="border: 3px groove">
+            {% comment %} <div class="card" style="border: 3px groove"> {% endcomment %}
+            <div class="card">
               <a
                 class="card-link"
                 data-toggle="collapse"
@@ -50,18 +51,22 @@
                 style="color: black"
                 >
               {% if reminder.status == "red" %}
-              <div class="card-header" style="background-color: coral">
+              {% comment %} <div class="card-header" style="background-color: coral"> {% endcomment %}
+              <div class="card-header bg-danger" >
               {% elif reminder.status == "yellow" %}
-              <div class="card-header" style="background-color: khaki">
+              {% comment %} <div class="card-header" style="background-color: khaki"> {% endcomment %}
+              <div class="card-header bg-warning">
               {% else %}
-              <div class="card-header" style="background-color: springgreen">
+              {% comment %} <div class="card-header" style="background-color: springgreen"> {% endcomment %}
+              <div class="card-header bg-success" >
               {% endif %}
                 <h6>{{ reminder.name }}</h6>
               </div>
               </a>
               <div id="{{ reminder.name }}" class="collapse">
                 <div class="card-body">
-                  <p class="card-text">Bookmark: <br> <a href="{{ reminder.bookmark.url }}">{{ reminder.bookmark.custom_name }}</a></p>
+                  <p class="card-text">Bookmark URL: <br> <a href="{{ reminder.bookmark.url }}">{{ reminder.bookmark.custom_name }}</a></p>
+                  <p class="card-text">Bookmark: <br> <a href="{% url 'view_bookmark' user.username reminder.bookmark.id %}">{{ reminder.bookmark.custom_name }}</a></p>
                   <p> Description: <br> {{ reminder.description }}</p>
                   <p>Deadline: <br> {{ reminder.reminder_time }}</p>
                   <form
@@ -81,7 +86,7 @@
             {% endfor %} {% endif %}
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7">
           <h2>Groups</h2>
           <form
             action="{% url 'create_group' user.username %}"
@@ -113,7 +118,8 @@
           {% endif %}
           <div id="card-451647">
             {% if group_list %} {% for group in group_list %}
-            <div class="card" style="border: 3px groove">
+            {% comment %} <div class="card" style="border: 3px groove"> {% endcomment %}
+            <div class="card" >
               <a
                 class="card-link"
                 data-toggle="collapse"
@@ -121,7 +127,8 @@
                 href="#{{ group.name }}"
                 style="color: black"
                 >
-              <div class="card-header" style="background-color: lightskyblue">
+              {% comment %} <div class="card-header" style="background-color: lightskyblue"> {% endcomment %}
+              <div class="card-header bg-light">
                 <h6>{{ group.name }}</h6>
               </div>
               </a>
