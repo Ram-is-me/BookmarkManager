@@ -37,12 +37,17 @@ def search_bookmarks(request, name):
     # Searching based on keyword
     logger.info("Retrieving bookmarks of user with username={}".format(name))
     all_bookmarks = models.Bookmark.objects.filter(creator=curr_user)
+    bookmark_list_by_keyword = []
     if search_val:
         logger.info("Filtering bookmarks by search value={}".format(search_val))
-        bookmark_list_by_keyword = all_bookmarks.filter(custom_name__contains=search_val)
+        bookmark_list_by_keyword_name = all_bookmarks.filter(custom_name__icontains = search_val)
+        bookmark_list_by_keyword_note = all_bookmarks.filter(custom_note__icontains = search_val)
+        logger.info("Merging Bookmarks list based on name and description={}".format(search_val))
+        bookmark_list_by_keyword = list(set(bookmark_list_by_keyword_name)| set(bookmark_list_by_keyword_note))
     else:
-        logger.debug("Redirecting to Groups page")
-        return HttpResponseRedirect(reverse('groups', args=(name, )))
+        # logger.debug("Redirecting to Groups page")
+        # return HttpResponseRedirect(reverse('groups', args=(name, )))
+        bookmark_list_by_keyword = all_bookmarks
 
     # Getting Tags and Groups from the form
     input_tags = []

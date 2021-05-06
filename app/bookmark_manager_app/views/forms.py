@@ -15,9 +15,9 @@ class BookmarkForm(forms.Form):
 
     def save(self, url, name, note, bookmark_id):
         current_bookmark = models.Bookmark.objects.filter(id=bookmark_id)
-        current_bookmark.update(url=url)
-        current_bookmark.update(custom_name=name)
-        current_bookmark.update(custom_note=note)    
+        current_bookmark.update(url = url)
+        current_bookmark.update(custom_name = name)
+        current_bookmark.update(custom_note = note)    
         current_bookmark.get().save()
         return True
 

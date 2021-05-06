@@ -67,7 +67,7 @@
                   <form
                     action="{% url 'delete_reminder' user.username reminder.name %}"
                     method="post"
-                    class="post-form"
+                    class="post-form" 
                   >
                     {% csrf_token %} {% buttons %}
                     <button type="submit" class="btn btn-danger">
@@ -94,7 +94,8 @@
             <input
               id="csrf_token"
               name="groupname"
-              class="form-control mr-sm-2"
+              style="width: 50%"
+              class="mr-sm-2 form-inline"
               type="text"
               required
             />
@@ -191,7 +192,8 @@
             <input
               id="csrf_token"
               name="deletegroupname"
-              class="form-control mr-sm-2"
+              class="mr-sm-2 form-inline"
+              style="width: 50%"
               type="text"
               required
             />
@@ -221,7 +223,8 @@
             <input
               id="csrf_token"
               name="tagname"
-              class="form-control mr-sm-2"
+              class="mr-sm-2 form-inline"
+              style="width: 70%; margin-bottom: 3%"
               type="text"
               required
             />
@@ -267,7 +270,8 @@
             <input
               id="csrf_token"
               name="deletetagname"
-              class="form-control mr-sm-2"
+              class="mr-sm-2 form-inline"
+              style="width: 70%; margin-bottom: 3%"
               type="text"
               required
             />
