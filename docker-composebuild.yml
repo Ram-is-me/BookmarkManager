@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   web:
-    image: ramisme/bookmarkmanager:app
+    build: ./app
     command: gunicorn bookmark_manager.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static_volume:/home/app/web/staticfiles
@@ -19,7 +19,7 @@ services:
     env_file:
       - ./.env.prod.db
   nginx:
-    images: ramisme/bookmarkmanager:nginx
+    build: ./nginx
     volumes:
       - static_volume:/home/app/web/staticfiles
     ports:
