@@ -41,11 +41,19 @@
     #     recursive: yes
     #     delete: no
     #     times: yes
-    - name: Synchronize using an alternate rsync command
+    - name: Copying Docker-compose file
       copy:
         src: /home/ram/IIITB/Sem8/SPE/BookmarkManager/docker-compose.yml
         dest: ~/bookmark_manager/
+    - name: Copying Environment file for App
+      copy:
+        src: /home/ram/IIITB/Sem8/SPE/BookmarkManager/.env.prod
+        dest: ~/bookmark_manager/
+    - name: Copying Environment file for Database
+      copy:
+        src: /home/ram/IIITB/Sem8/SPE/BookmarkManager/.env.prod.db
+        dest: ~/bookmark_manager/
 
-    - name: Running the given docker compose file
+    - name: Running the given docker compose file on given environment files
       community.docker.docker_compose: 
         project_src: ~/bookmark_manager/
