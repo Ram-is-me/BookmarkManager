@@ -2,11 +2,7 @@ version: '3.7'
 
 services:
   web:
-<<<<<<< HEAD
     image: ramisme/bookmarkmanager:app
-=======
-    image: ramisme/bookmarkmanager:latest
->>>>>>> d4616f08e718c656bc55fcef23be864fd73089f4
     command: gunicorn bookmark_manager.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static_volume:/home/app/web/staticfiles
