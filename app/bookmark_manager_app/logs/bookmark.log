@@ -2887,3 +2887,42 @@
 [2021-05-06 20:18:40] DEBUG|bookmark_manager_app.views.bookmark|Rendering View Bookmark page
 [2021-05-06 20:18:41] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
 [2021-05-06 20:18:41] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-05-07 04:19:51] DEBUG|bookmark_manager_app.views.bookmark|Redirected to Edit Bookmark page
+[2021-05-07 04:19:51] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with id=<built-in function id>
+[2021-05-07 04:19:51] INFO|bookmark_manager_app.views.bookmark|Updating status of all reminders
+[2021-05-07 04:19:51] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmark with id=12
+[2021-05-07 04:19:51] INFO|bookmark_manager_app.views.bookmark|Retrieving user with name=user1
+[2021-05-07 04:19:51] INFO|bookmark_manager_app.views.bookmark|Retrieving tags of user with username=user1
+[2021-05-07 04:19:51] INFO|bookmark_manager_app.views.bookmark|Retrieving groups of user with username=user1
+[2021-05-07 04:19:51] INFO|bookmark_manager_app.views.bookmark|Retrieving bookmarks with group id=8
+[2021-05-07 04:19:51] DEBUG|bookmark_manager_app.views.bookmark|Rendering View Bookmark page
+[2021-05-07 04:19:52] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-07 04:19:52] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-05-07 04:19:55] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-07 04:19:55] INFO|bookmark_manager_app.views.display|Retrieving user with name=user1
+[2021-05-07 04:19:55] INFO|bookmark_manager_app.views.display|Retrieving groups of user with username=user1
+[2021-05-07 04:19:55] INFO|bookmark_manager_app.views.display|Retrieving bookmarks of user with username=user1
+[2021-05-07 04:19:55] INFO|bookmark_manager_app.views.display|Retrieving tags of user with username=user1
+[2021-05-07 04:19:55] INFO|bookmark_manager_app.views.display|Retrieving reminders of user with username=user1
+[2021-05-07 04:19:55] INFO|bookmark_manager_app.views.display|Updating status of all reminders
+[2021-05-07 04:19:55] DEBUG|bookmark_manager_app.views.display|Rendering Groups page
+[2021-05-07 04:19:56] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-07 04:19:56] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-05-07 04:20:36] DEBUG|bookmark_manager_app.views.index|Redirecting to Login page
+[2021-05-07 04:28:14] INFO|bookmark_manager_app.views.index|User with username=user1 successfully logged in
+[2021-05-07 04:28:14] DEBUG|bookmark_manager_app.views.index|Redirecting to groups page
+[2021-05-07 04:28:14] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-07 04:28:14] INFO|bookmark_manager_app.views.display|Retrieving user with name=user1
+[2021-05-07 04:28:14] INFO|bookmark_manager_app.views.display|Retrieving groups of user with username=user1
+[2021-05-07 04:28:14] INFO|bookmark_manager_app.views.display|Retrieving bookmarks of user with username=user1
+[2021-05-07 04:28:14] INFO|bookmark_manager_app.views.display|Retrieving tags of user with username=user1
+[2021-05-07 04:28:14] INFO|bookmark_manager_app.views.display|Retrieving reminders of user with username=user1
+[2021-05-07 04:28:14] INFO|bookmark_manager_app.views.display|Updating status of all reminders
+[2021-05-07 04:28:14] DEBUG|bookmark_manager_app.views.display|Rendering Groups page
+[2021-05-07 04:28:14] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-07 04:28:14] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-05-07 04:28:15] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-07 04:28:15] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-05-07 04:28:17] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-07 04:28:17] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-05-07 04:28:19] DEBUG|bookmark_manager_app.views.index|Redirecting to Login page

@@ -5,7 +5,6 @@
   <title>{% block title %}Django Auth Tutorial{% endblock %}</title>
 </head>
 <body>
-{% include "./base.html" %}
 <nav class="navbar navbar-expand-md navbarcolor">
     <div class="container-fluid">
         <div>Recollection</div>
@@ -28,6 +27,7 @@
       </div>
     </div>
   </nav>
+{% include "./base.html" %}
   <main>
     {% block content %}
     {% endblock %}
