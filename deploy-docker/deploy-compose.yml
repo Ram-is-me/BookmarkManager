@@ -29,7 +29,7 @@
     #     recursive: yes
     #     delete: no
     #     times: yes
-    - name: Synchronize using an alternate rsync command
+    - name: Copying Docker-compose file
       copy:
         src: /home/ram/IIITB/Sem8/SPE/BookmarkManager/
         dest: rsync://localhost/
