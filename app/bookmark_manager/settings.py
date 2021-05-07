@@ -116,10 +116,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'bookmark_manager',
-        'USER': 'djangouser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
     }
 }
 
