@@ -94,4 +94,8 @@
 
     - name: Running the given docker compose file on given environment files
       community.docker.docker_compose: 
+<<<<<<< HEAD
         project_src: ~/bookmark_manager/
+=======
+        project_src: /bookmark_manager/
+>>>>>>> Ansible Attempt4
