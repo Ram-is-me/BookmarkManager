@@ -32,8 +32,8 @@
     - name: Synchronize using an alternate rsync command
       copy:
         src: /home/ram/IIITB/Sem8/SPE/BookmarkManager/
-        dest: /bookmark_manager/
+        dest: ~/bookmark_manager/
 
     - name: Running the given docker compose file
       community.docker.docker_compose: 
-        project_src: /bookmark_manager/
+        project_src: ~/bookmark_manager/
