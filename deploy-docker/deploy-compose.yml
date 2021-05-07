@@ -29,6 +29,11 @@
     #     recursive: yes
     #     delete: no
     #     times: yes
+    - name: ssh keygen
+      expect:
+        command: ssh-keygen -t rsa -f /root/.ssh/id_rsa -q -P ""
+        responses:
+          Overwrite \(y/n\)\?: y
     - name: Synchronize using an alternate rsync command
       copy:
         src: /home/ram/IIITB/Sem8/SPE/BookmarkManager/
