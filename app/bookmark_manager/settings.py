@@ -92,16 +92,9 @@ WSGI_APPLICATION = 'bookmark_manager.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 # Local Development Database Settings
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'bookmark_manager',
-    }
-}
-
-# # Docker Database Settings
 # DATABASES = {
 #     'default': {
+<<<<<<< HEAD
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #         'NAME': 'bookmark_manager',
 #         'USER': 'djangouser',
@@ -128,8 +121,24 @@ DATABASES = {
 #         "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
 #         "HOST": os.environ.get("SQL_HOST", "localhost"),
 #         "PORT": os.environ.get("SQL_PORT", "5432"),
+=======
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'bookmark_manager',
+>>>>>>> Fixing docker-compose file
 #     }
 # }
+
+# # Docker Database Settings
+DATABASES = {
+    "default": {
+        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
+        "NAME": os.environ.get("SQL_DATABASE", os.path.join(BASE_DIR, "db.sqlite3")),
+        "USER": os.environ.get("SQL_USER", "user"),
+        "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
+        "HOST": os.environ.get("SQL_HOST", "localhost"),
+        "PORT": os.environ.get("SQL_PORT", "5432"),
+    }
+}
 
 
 # Password validation
