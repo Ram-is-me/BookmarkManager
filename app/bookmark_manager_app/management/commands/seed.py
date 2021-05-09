@@ -83,28 +83,28 @@ def init(self):
         list_of_user_groups.append(group3)
         list_of_user_groups.append(group4)
         
-        bkmark1 = models.Bookmark(custom_name="bkmark1", url="www.google.com", creator=user, group=group1, date_of_creation= timezone.now())
+        bkmark1 = models.Bookmark(custom_name="bkmark1", url="https://google.com", creator=user, group=group1, date_of_creation= timezone.now())
         bkmark1.save()
         
-        bkmark2 = models.Bookmark(custom_name="bkmark2", url="www.google.com", creator=user, group=group1, date_of_creation= timezone.now())
+        bkmark2 = models.Bookmark(custom_name="bkmark2", url="https://google.com", creator=user, group=group1, date_of_creation= timezone.now())
         bkmark2.save()
         
-        bkmark3 = models.Bookmark(custom_name="bkmark3", url="www.google.com", creator=user, group=group2, date_of_creation= timezone.now())
+        bkmark3 = models.Bookmark(custom_name="bkmark3", url="https://google.com", creator=user, group=group2, date_of_creation= timezone.now())
         bkmark3.save()
         
-        bkmark4 = models.Bookmark(custom_name="bkmark4", url="www.google.com", creator=user, group=group2, date_of_creation= timezone.now())
+        bkmark4 = models.Bookmark(custom_name="bkmark4", url="https://google.com", creator=user, group=group2, date_of_creation= timezone.now())
         bkmark4.save()
 
-        bkmark5 = models.Bookmark(custom_name="bkmark5", url="www.google.com", creator=user, group=group3, date_of_creation= timezone.now())
+        bkmark5 = models.Bookmark(custom_name="bkmark5", url="https://google.com", creator=user, group=group3, date_of_creation= timezone.now())
         bkmark5.save()
 
-        bkmark6 = models.Bookmark(custom_name="bkmark6", url="www.google.com", creator=user, group=group3, date_of_creation= timezone.now())
+        bkmark6 = models.Bookmark(custom_name="bkmark6", url="https://google.com", creator=user, group=group3, date_of_creation= timezone.now())
         bkmark6.save()
 
-        bkmark7 = models.Bookmark(custom_name="bkmark7", url="www.google.com", creator=user, group=group4, date_of_creation= timezone.now())
+        bkmark7 = models.Bookmark(custom_name="bkmark7", url="https://google.com", creator=user, group=group4, date_of_creation= timezone.now())
         bkmark7.save()
 
-        bkmark8 = models.Bookmark(custom_name="bkmark8", url="www.google.com", creator=user, group=group4, date_of_creation= timezone.now())
+        bkmark8 = models.Bookmark(custom_name="bkmark8", url="https://google.com", creator=user, group=group4, date_of_creation= timezone.now())
         bkmark8.save()
 
         
@@ -148,10 +148,13 @@ def init(self):
         bkmark8.list_of_tags.add(tag4)
         bkmark8.save()
         
-        reminder1 = models.Reminder(name="reminder1", creator=user, bookmark=bkmark1, reminder_time=timezone.now()+datetime.timedelta(days=1), time_of_creation=timezone.now())
+        reminder1 = models.Reminder(name="reminder1", creator=user, bookmark=bkmark1, reminder_time=timezone.now()+datetime.timedelta(days=-1), time_of_creation=timezone.now())
         reminder1.save()
         reminder2 = models.Reminder(name="reminder2", creator=user, bookmark=bkmark8, reminder_time=timezone.now()+datetime.timedelta(days=20), time_of_creation=timezone.now())
         reminder2.save()
+        reminder3 = models.Reminder(name="reminder3", creator=user, bookmark=bkmark6, reminder_time=timezone.now()+datetime.timedelta(hours=15), time_of_creation=timezone.now())
+        reminder3.save()
+         
         
         
     # bkmark11 = models.Bookmark(custom_name="bkmark11", url="http://bkmark11.com", creator=user1, group=group11, date_of_creation=timezone.now())
