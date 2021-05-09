@@ -39,7 +39,7 @@
       <div class="row justify-content-center text-center">
         <div class="col-md-8">
           <h3>Search Results</h3>
-          <form class="form-inline" action="{% url 'search' request.user.username %}" method="POST">
+          {% comment %} <form class="form-block" action="{% url 'search' request.user.username %}" method="POST">
             <div class="input-group text-center">
               {% csrf_token %}
               {% for hidden_field in search_form.hidden_fields %}
@@ -54,29 +54,46 @@
               {% buttons %}
               {% endbuttons %}
             </div>
-          </form>
-          <form class="form-post" action="{% url 'search' user.username  %}" method="post" novalidate>
-            {% comment %} <div class="form-group" > {% endcomment %}
+          </form> {% endcomment %}
+          <form class="form-post" action="{% url 'search' user.username  %}" method="post">
+            <div class="form-group" >
               {% csrf_token %}
-
               {% for hidden_field in filter_form.hidden_fields %}
                 {{ hidden_field }}
               {% endfor %}
               {% for field in filter_form.visible_fields %}
-                {% if field.name|starts_with_t %}
-                  <div  class="btn btn-warning btn-sm">{{ field.label_tag }}</div>
-                {% elif field.name|starts_with_g  == 2%}
-                  <br>
-                  <div  class="btn btn-primary btn-sm">{{ field.label_tag }}</div>
-                {% elif field.name|starts_with_g  == 1 %}
-                  <div  class="btn btn-primary btn-sm">{{ field.label_tag }}</div>
+                {% if field.name == 'tags_or_check' %}
+                  <div  class="btn btn-secondary btn-sm mr-sm-2">{{ field.label_tag }}</div>
+                  {% comment %} <br> {% endcomment %}
+                {% elif field.name|starts_with_t:user.username %}
+                  <div  class="btn btn-warning btn-sm mr-sm-2">{{ field.label_tag }}</div>
+                {% elif field.name|starts_with_g:user.username  == 2%}
+                  {% comment %} <br> {% endcomment %}
+                  <div  class="btn btn-primary btn-sm mr-sm-2">{{ field.label_tag }}</div>
+                {% elif field.name|starts_with_g:user.username  == 1 %}
+                  <div  class="btn btn-primary btn-sm mr-sm-2">{{ field.label_tag }}</div>
+                {% elif field.name == 'search_val' %}
+                  <div class="input-block">
+                  {% comment %} <br> {% endcomment %}
                 {% else %}
                   <!-- Empty Button Just for Space -->
                   {% comment %} <div class="btn btn-block"></div> {% endcomment %}
-                  <div  class="btn btn-primary btn-sm">{{ field.label_tag }}</div>                
+                  <div  class="btn btn-secondary btn-sm">{{ field.label_tag }}</div>                
                   {% comment %} <br> {% endcomment %}
                 {% endif %}
+                {% if field.name == 'search_val'%}
+                {% render_field field class="form-control" %}
+                  <br>
+                  </div>
+                {% elif field.name == 'tags_or_check' %}
+                  {% render_field field %}
+                  <br>
+                  <br>
+                {% else %}
+                {% comment %} {% buttons %} {% endcomment %}
                 {% render_field field %}
+                {% comment %} {% endbuttons %} {% endcomment %}
+                {% endif %}
                 {% if field.help_text %}
                   <small class="form-text text-muted">{{ field.help_text }}</small>
                 {% endif %}
@@ -84,7 +101,7 @@
               {% buttons %}
               <button type="submit" class="btn btn-success mt-3">Filter</button>
               {% endbuttons %}      
-            {% comment %} </div> {% endcomment %}
+            </div>
           </form>
           <form class="form-inline post-form justify-content-center" method="POST" action="{% url 'search' user.username %}">
             {% csrf_token %}
@@ -97,7 +114,7 @@
             {% endbuttons %}
           </form>
           <br>
-          <p>If no group,tag is selected, all groups are enables by default</p>
+          <p>If no group,tag is selected, all groups and tags are enables by default</p>
         </div>
       </div>
     </div>

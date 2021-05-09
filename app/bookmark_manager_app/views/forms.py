@@ -50,16 +50,16 @@ class BookmarkForm(forms.Form):
         new_bookmark.save()
 
 class FilterForm(forms.Form):
-    search_val = forms.CharField(max_length=50, widget=forms.HiddenInput())
-    tags_or_check = forms.BooleanField()
+    search_val = forms.CharField(max_length=200)
+    tags_or_check = forms.BooleanField(label = 'tags_or_check', required=False)
     def __init__(self, *args, **kwargs):
         tags = kwargs.pop('tags')
         groups = kwargs.pop('groups')
         super(FilterForm, self).__init__(*args, **kwargs)
         for tag in tags:
-            self.fields[tag.name] = forms.BooleanField(label=tag.name)
+            self.fields[tag.name] = forms.BooleanField(label=tag.name, required=False)
         for group in groups:
-            self.fields[group.name] = forms.BooleanField(label=group.name)
+            self.fields[group.name] = forms.BooleanField(label=group.name, required=False)
 
 class TagForm(forms.Form):
     search_val = forms.CharField(max_length=50, widget=forms.HiddenInput())

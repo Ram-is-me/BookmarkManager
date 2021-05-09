@@ -36,27 +36,38 @@ def custom_group_filter(all_objs, group):
     return l
 
 @register.filter
-def starts_with_t(s):
+def starts_with_t(s,u):
     # print(s.find("tag"))
     # print(s)
     # if(s.find("tag")>0):
-    if(models.Tag.objects.filter(name = s)):
+    if(models.Tag.objects.filter(name = s, creator__name = u)):
         return True
     else:
         return False
 
-first = False
-
 @register.filter
-def starts_with_g(s):
+def starts_with_g(s,u):
     # print(s)
     # if(s.find("group")):
-    if (models.Group.objects.filter(name = s)):
-        if first == False:
-            first = True
-            return 2
-        else:
-            return 1
+    # print(s)
+    # print(models.Group.objects.filter(name = s, creator__name = u))
+    if (models.Group.objects.filter(name = s, creator__name = u)):
+        # groups = models.Group.objects.filter(creator__name = u)
+        # o = models.Group.objects.filter(name = s, creator__name = u)
+        # temp = o
+        # for g in groups:
+        #     if g.id < temp.id:
+        #         temp = g
+        # print("LOL")
+        # if first == False:
+            # print("LOL2")
+            # first = True
+            # i+=1
+            # return 2
+        # else:
+            # return 1
+        # print("LOL")
+        return 1
     else:
         # print("LOL")
         return 0

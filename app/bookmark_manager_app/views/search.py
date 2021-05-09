@@ -54,16 +54,23 @@ def search_bookmarks(request, name):
     # Getting Tags and Groups from the form
     input_tags = []
     input_groups = []
+    tags_check = False
     for key in request.POST:
         if key in all_tag_names:
             if request.POST[key]:
                 logger.info("Retrieving tag with id={}".format(key))
-                input_tags.append(models.Tag.objects.get(name=key))
+                input_tags.append(models.Tag.objects.get(name=key, creator=curr_user))
                 filter_form.fields[key].initial = True
         if key in all_group_names:
             if request.POST[key]:
                 logger.info("Retrieving group with id={}".format(key))
-                input_groups.append(models.Group.objects.get(name=key))
+                input_groups.append(models.Group.objects.get(name=key, creator=curr_user))
+                filter_form.fields[key].initial = True
+        if key == 'tags_or_check':
+            if request.POST[key]:
+                logger.info("Checking Tags search option={}".format(key))
+                tags_check = True
+                # print(filter_form.fields[key])
                 filter_form.fields[key].initial = True
     
     # Searching based on group
@@ -84,14 +91,24 @@ def search_bookmarks(request, name):
 
     # Filtering Bookmarks by Tag
     bookmark_list_by_tag = []
-    for bookmark in bookmark_list_by_group:
-        present = 1
-        for tag in input_tags:
-            if tag not in bookmark.list_of_tags.all():
-                present = 0
-                break
-        if present:
-            bookmark_list_by_tag.append(bookmark)
+    if tags_check == False:
+        for bookmark in bookmark_list_by_group:
+            present = 1
+            for tag in input_tags:
+                if tag not in bookmark.list_of_tags.all():
+                    present = 0
+                    break
+            if present:
+                bookmark_list_by_tag.append(bookmark)
+    else:
+        for bookmark in bookmark_list_by_group:
+            present = 0
+            for tag in input_tags:
+                if tag in bookmark.list_of_tags.all():
+                    present = 1
+                    break
+            if present:
+                bookmark_list_by_tag.append(bookmark)
 
     
     context= {
