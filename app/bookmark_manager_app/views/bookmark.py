@@ -25,7 +25,7 @@ def add_bookmark(request, name, group_id):
         else:
             form.new_save(request, name, group_id)
             logger.info("Retrieving bookmark with custom name={}".format(request.POST['custom_name']))
-            bookmark_id = models.Bookmark.objects.filter(custom_name= request.POST['custom_name']).get().id
+            bookmark_id = models.Bookmark.objects.filter(custom_name= request.POST['custom_name'], creator__name = name).get().id
             context = {
                 'form': form,
                 'message': message,
@@ -102,6 +102,7 @@ def view_bookmark(request, name, bookmark_id):
         'form': form,
         'reminder_form': reminder_form,
         'message': message,
+        'reminder_message': reminder_message,
         'bookmark_obj': models.Bookmark.objects.get(id=bookmark_id),
         'all_tags' : models.Tag.objects.filter(creator= models.User.objects.filter(name=name).get()),
         'all_groups' : models.Group.objects.filter(creator= models.User.objects.filter(name=name).get()),
@@ -142,22 +143,22 @@ def change_group_of_bookmark(requst, name, bookmark_id, groupid):
     return HttpResponseRedirect(reverse('view_bookmark', args=(name,bookmark_id, )))    
 
 def add_reminder(request, name, bookmark_id):
-    
+    reminder_message = ""
     form = ReminderForm()
     reminder_name = request.POST['name']
     reminder_description = request.POST['description']
     reminder_time = request.POST['reminder_time']
-    if(models.Reminder.objects.filter(name = reminder_name)):
-        reminder_message = "Give Unique Reminder Name"
-        return HttpResponseRedirect(reverse('view_bookmark',args=(name,bookmark_id, )))
-    else:
-        new_reminder = models.Reminder(
-            name = reminder_name, 
-            description = reminder_description, 
-            reminder_time = reminder_time, 
-            time_of_creation = datetime.now(),
-            creator= models.User.objects.get(name=name),
-            bookmark = models.Bookmark.objects.get(id=bookmark_id)   
-            )
-        new_reminder.save()
+    # if(models.Reminder.objects.filter(name = reminder_name, creator__name = name)):
+    #     reminder_message = "Give Unique Reminder Name"
+    #     return HttpResponseRedirect(reverse('view_bookmark',args=(name,bookmark_id, )))
+    # else:
+    new_reminder = models.Reminder(
+        name = reminder_name, 
+        description = reminder_description, 
+        reminder_time = reminder_time, 
+        time_of_creation = datetime.now(),
+        creator= models.User.objects.get(name=name),
+        bookmark = models.Bookmark.objects.get(id=bookmark_id)   
+        )
+    new_reminder.save()
     return HttpResponseRedirect(reverse('view_bookmark',args=(name,bookmark_id, )))

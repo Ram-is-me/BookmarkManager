@@ -296,6 +296,12 @@
         </div>
         <div class="col-md-4">
           <h3 style="margin: 20px">Reminders</h3>
+          {% if reminder_message %}
+            <div class="alert alert-danger" role="alert">
+              {{ reminder_message }}
+            </div>
+          {% endif %}
+
           <div id="card-579191">
             {% if all_reminders %} {% for reminder in all_reminders %}
             <div class="card" style="border: 3px groove">
