@@ -5,7 +5,7 @@
       <img src="{% static 'images/bkmark.jpg' %}" style="width: 60px; height: 45px; margin-right: 20px" alt="Img Not Found">
       <form class="form-inline post-form" method="POST" action="{% url 'search' user.username %}">
         {% csrf_token %}
-        <input class=" mr-sm-2" type="text" name="search_val"/>
+        <input class=" mr-sm-2" type="text" name="search_val" placeholder="Search by name, note or URL"/>
         {% comment %} {% %} {% endcomment %}
         <button class="btn btn-primary my-2 my-sm-0" type="submit" style="margin-right: 20px">
           Search

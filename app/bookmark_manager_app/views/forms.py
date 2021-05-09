@@ -18,9 +18,9 @@ class BootstrapDateTimePickerInput(DateTimeInput):
 
 class BookmarkForm(forms.Form):
     bookmark_id = forms.IntegerField(widget=forms.HiddenInput())
-    url = forms.CharField(max_length=500, required=True)
-    custom_name = forms.CharField(max_length=50, required=True)
-    custom_note = forms.CharField(max_length=200, widget=forms.Textarea, required=False )
+    url = forms.CharField(max_length=500, required=True, widget=forms.TextInput(attrs={'placeholder': 'Enter bookmark URL'}))
+    custom_name = forms.CharField(max_length=50, required=True, widget=forms.TextInput(attrs={'placeholder': 'Enter custom bookmark name'}))
+    custom_note = forms.CharField(max_length=200, widget=forms.Textarea, required=False)
 
     def save(self, url, name, note, bookmark_id):
         current_bookmark = models.Bookmark.objects.filter(id=bookmark_id)
@@ -75,7 +75,7 @@ class SearchForm(forms.Form):
     search_val = forms.CharField(max_length=50)
 
 class ReminderForm(forms.Form):
-    name = forms.CharField(max_length=50, required=True, label="Name:")
-    description = forms.CharField(max_length=200, label="Description")
+    name = forms.CharField(max_length=50, required=True, label="Name:", widget=forms.TextInput(attrs={'placeholder': 'Enter reminder name'}))
+    description = forms.CharField(max_length=200, label="Description", widget=forms.TextInput(attrs={'placeholder': 'Enter reminder description'}))
     # reminder_time = forms.DateTimeField(widget=forms.DateTimeInput(), required=True, help_text="YYYY-MM-DD HH:MM")
     reminder_time = forms.DateTimeField( input_formats=['%d/%m/%Y %H:%M'], widget=BootstrapDateTimePickerInput() )
