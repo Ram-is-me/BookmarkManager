@@ -1,14 +1,17 @@
+  {% load static %}
+  
   <nav class="navbar navbar-expand-md" style="background-color: #343a40; margin-bottom: 10px;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'groups' user.username %}" style="color: #f8f9fa;">Home</a>
+      <img src="{% static 'images/bkmark.jpg' %}" style="width: 60px; height: 45px; margin-right: 20px" alt="Img Not Found">
       <form class="form-inline post-form" method="POST" action="{% url 'search' user.username %}">
         {% csrf_token %}
         <input class=" mr-sm-2" type="text" name="search_val"/>
         {% comment %} {% %} {% endcomment %}
-        <button class="btn btn-primary my-2 my-sm-0" type="submit">
+        <button class="btn btn-primary my-2 my-sm-0" type="submit" style="margin-right: 20px">
           Search
         </button>
       </form>
+      <a class="navbar-brand" href="{% url 'groups' user.username %}" style="color: #f8f9fa;"><h5>Home</h5></a>
       <button
         class="navbar-toggler"
         type="button"
@@ -33,7 +36,7 @@
               aria-expanded="false"
               style="color: #f8f9fa;"
             >
-              {{ user.username }}
+              <b> {{ user.username }} </b>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="#" >Profile</a></li>

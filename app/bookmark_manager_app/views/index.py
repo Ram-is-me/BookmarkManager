@@ -21,7 +21,7 @@ def home(request):
             temp.save()
             logger.info("Created new bookmark user with username={}".format(temp.name))
         logger.debug("Redirecting to groups page")
-        return HttpResponseRedirect(reverse('groups', args=(request.user.username,)))
+        return HttpResponseRedirect(reverse('groups', args=(request.user.username, )))
     else:
         logger.debug("Redirecting to Login page")
         return HttpResponseRedirect(reverse('login'))
