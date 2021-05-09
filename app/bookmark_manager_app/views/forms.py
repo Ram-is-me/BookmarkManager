@@ -20,11 +20,6 @@ class BookmarkForm(forms.Form):
     bookmark_id = forms.IntegerField(widget=forms.HiddenInput())
     url = forms.CharField(max_length=500, required=True)
     custom_name = forms.CharField(max_length=50, required=True)
-    # list_of_tags_to_add = forms.MultipleChoiceField(
-    #     choices=[(r.name,r.name) for r in models.Tag.objects.all()], 
-    #     help_text="Control+Click on tags to select multiple. Selected Tags will be added to Associated Tags",
-    #     required=False
-    #     )
     custom_note = forms.CharField(max_length=200, widget=forms.Textarea, required=False )
 
     def save(self, url, name, note, bookmark_id):
@@ -36,7 +31,6 @@ class BookmarkForm(forms.Form):
         return True
 
     def new_save(self, request, username, group_id):
-        # print(request.POST['custom_name'])
         url_given = request.POST['url']
         if url_given.find('https://')==-1 and url_given.find('http://')==-1 :
             url_given = "https://" + url_given

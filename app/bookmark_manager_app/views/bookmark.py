@@ -20,7 +20,6 @@ def add_bookmark(request, name, group_id):
     if(request.method=="POST"):
         if (request.POST['url']==''):
             message += "Empty URL not allowed <br>"
-            # return HttpResponseRedirect(reverse('view_bookmark'),request, context)
         elif (request.POST['custom_name']==''):
             message += "Empty Name not allowed <br>"
         else:
@@ -45,10 +44,6 @@ def add_bookmark(request, name, group_id):
         'form': form,
         'new_bm_message': new_bm_message,
         'message': message,
-        # 'bookmark_obj': models.Bookmark.objects.get(id=new_bookmark_id),
-        # 'all_tags' : models.Tag.objects.filter(creator= models.User.objects.filter(name=name).get()),
-        # 'all_groups' : models.Group.objects.filter(creator= models.User.objects.filter(name=name).get()),
-        # 'related_bm' : models.Bookmark.objects.filter(group__id=models.Bookmark.objects.get(id=id).group.id)
     }
     logger.debug("Rendering View New Bookmark page")
     return render(request, 'view_new_bookmark.html', context)
@@ -70,16 +65,12 @@ def view_bookmark(request, name, bookmark_id):
     form.fields['custom_note'].initial = models.Bookmark.objects.get(id=bookmark_id).custom_note
     reminder_form = ReminderForm()
     message = ""
-    # form.list_of_tags_to_remove.choices
-    # list_of_tags_to_remove.choices = [(r.name,r.name) for r in models.Tag.objects.filter(bookmark__id=id).all()]
     if(request.method=="POST"):
         if (request.POST['url']==''):
             message = "Empty URL not allowed"
-            # return HttpResponseRedirect(reverse('view_bookmark'),request, context)
         elif (request.POST['custom_name']==''):
             message = "Empty Name not allowed"
         else:
-            # print(request.POST['custom_name'])
             url_given = request.POST['url']
             if url_given.find('https://')==-1 and url_given.find('http://')==-1 :
                 url_given = "https://" + url_given
@@ -145,7 +136,6 @@ def change_group_of_bookmark(requst, name, bookmark_id, groupid):
     current_bookmark = models.Bookmark.objects.filter(id=bookmark_id)
     logger.info("Retrieving group with id={}".format(groupid))
     current_group = models.Group.objects.filter(id=groupid).get()
-    print("LOL"+current_group.name)
     logger.info("Updating group of bookmark with id={} to group with id={}".format(bookmark_id, groupid))
     current_bookmark.update(group=current_group)
     logger.debug("Redirecting to View Bookmark page")
@@ -170,6 +160,4 @@ def add_reminder(request, name, bookmark_id):
             bookmark = models.Bookmark.objects.get(id=bookmark_id)   
             )
         new_reminder.save()
-    # return HttpResponse("Reminder Added")
-    print("Reminder Added")
     return HttpResponseRedirect(reverse('view_bookmark',args=(name,bookmark_id, )))
