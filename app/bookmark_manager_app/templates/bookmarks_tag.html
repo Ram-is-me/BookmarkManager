@@ -66,7 +66,7 @@
                   <p class="card-text">Bookmark URL: <br> <a href="{{ reminder.bookmark.url }}" target="_blank">{{ reminder.bookmark.custom_name }}</a></p>
                   <p> Description: <br> {{ reminder.description }}</p>
                   <p>Deadline: <br> {{ reminder.reminder_time }}</p>
-                  <form
+                  < 
                     action="{% url 'delete_reminder' user.username reminder.name %}"
                     method="post"
                     class="post-form" 
