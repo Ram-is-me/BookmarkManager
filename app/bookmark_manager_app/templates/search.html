@@ -126,10 +126,10 @@
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Bookmark</th>
-                <th scope="col">Bookmark URL </th>
-                <th scope="col">Description</th>
                 <th scope="col">Group</th>
+                <th scope="col">Date Of Creation</th>
                 <th scope="col">Tags</th>
+                <th scope="col">Actions</th>
               </tr>
             </thead>
             {% if bookmark_list %}
@@ -137,10 +137,9 @@
               {% for bookmark in bookmark_list %}
               <tr>
                 <th scope="row">{{ forloop.counter }}</th>
-                <td><a href="{% url 'view_bookmark' user.username bookmark.id %}">{{ bookmark.custom_name }}</a></td>
-                <td><a href="https://{{ bookmark.url }}">{{ bookmark.url }}</a></td>
-                <td>{{ bookmark.custom_note }}</td>
+                <td><a href="{{ bookmark.url }}">{{ bookmark.custom_name }}</a></td>
                 <td>{{ bookmark.group.name }}</td>
+                <td>{{ bookmark.date_of_creation }}</td>
                 <td>
                   <table class="table">
                     {% if bookmark.list_of_tags %}
@@ -155,6 +154,18 @@
                     </tbody>
                     {% endif %}
                   </table>
+                </td>
+                <td>
+                  <form
+                    action="{% url 'view_bookmark' user.username bookmark.id %}"
+                    class="post-form"
+                  >
+                    {% csrf_token %} {% buttons %}
+                    <button type="submit" class="btn btn-primary">
+                      Edit Bookmark
+                    </button>
+                    {% endbuttons %}
+                  </form>
                 </td>
               </tr>
               {% endfor %}

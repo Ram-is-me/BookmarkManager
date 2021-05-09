@@ -26,10 +26,6 @@ def search_bookmarks(request, name):
     filter_form = FilterForm(tags=tag_list, groups=group_list)
     filter_form.fields['search_val'].initial = search_val
     
-    # tag_form = TagForm(tags=tag_list)
-    # tag_form.fields['search_val'].initial = search_val
-    # group_form = GroupForm(groups=group_list)
-    # group_form.fields['search_val'].initial = search_val
 
     all_tag_names = [tag.name for tag in tag_list]
     all_group_names = [group.name for group in group_list]
@@ -47,8 +43,6 @@ def search_bookmarks(request, name):
         bookmark_list_by_keyword = list(set(bookmark_list_by_keyword_name)| set(bookmark_list_by_keyword_note))
         bookmark_list_by_keyword = list(set(bookmark_list_by_keyword)| set(bookmark_list_by_keyword_url))
     else:
-        # logger.debug("Redirecting to Groups page")
-        # return HttpResponseRedirect(reverse('groups', args=(name, )))
         bookmark_list_by_keyword = all_bookmarks
 
     # Getting Tags and Groups from the form
@@ -70,7 +64,6 @@ def search_bookmarks(request, name):
             if request.POST[key]:
                 logger.info("Checking Tags search option={}".format(key))
                 tags_check = True
-                # print(filter_form.fields[key])
                 filter_form.fields[key].initial = True
     
     # Searching based on group
@@ -112,8 +105,6 @@ def search_bookmarks(request, name):
 
     
     context= {
-        # 'tag_form': tag_form,
-        # 'group_form': group_form,
         'filter_form': filter_form,
         'search_form': search_form,
         'bookmark_list': bookmark_list_by_tag,
