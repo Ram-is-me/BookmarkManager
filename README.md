@@ -74,11 +74,7 @@ source bmenv/bin/activate <Activating your env>
 pip install django gunicorn psycopg2-binary
 ```
 
-<<<<<<< HEAD
 #### Django Starting Setup
-=======
-### Django Starting Setup
->>>>>>> Jenkins ready trial 1
 
 The startup is something that I have already done on my side, as well as the project settings required for setup.
 Now to setup your local db. (Ensure venv is active)
@@ -218,11 +214,7 @@ sudo systemctl daemon-reload
 sudo systemctl restart gunicorn
 ```
 
-<<<<<<< HEAD
-### Configuring Nginx
-=======
 #### Configuring Nginx
->>>>>>> Jenkins ready trial 1
 
 Go to this file
 

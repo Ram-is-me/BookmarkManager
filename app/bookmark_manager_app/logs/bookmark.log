@@ -10958,3 +10958,7 @@
 [2021-05-09 14:57:09] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
 [2021-05-09 14:57:13] DEBUG|bookmark_manager_app.views.index|Redirecting to Login page
 >>>>>>> 8c98868a577a95836fb957e783921af567171bdb
+[2021-05-09 19:30:52] DEBUG|bookmark_manager_app.views.index|Redirecting to Login page
+[2021-05-09 19:31:14] INFO|bookmark_manager_app.views.index|User with username=user1 successfully logged in
+[2021-05-09 19:31:15] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-09 19:31:15] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
