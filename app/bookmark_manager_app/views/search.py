@@ -94,7 +94,6 @@ def search_bookmarks(request, name):
             bookmark_list_by_tag.append(bookmark)
 
     
-
     context= {
         # 'tag_form': tag_form,
         # 'group_form': group_form,

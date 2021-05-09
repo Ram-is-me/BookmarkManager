@@ -55,8 +55,8 @@
               {% endbuttons %}
             </div>
           </form>
-          <form class="form-inline" action="{% url 'search' user.username  %}" method="post" novalidate>
-            <div class="form-group" >
+          <form class="form-post" action="{% url 'search' user.username  %}" method="post" novalidate>
+            {% comment %} <div class="form-group" > {% endcomment %}
               {% csrf_token %}
 
               {% for hidden_field in filter_form.hidden_fields %}
@@ -84,9 +84,9 @@
               {% buttons %}
               <button type="submit" class="btn btn-success mt-3">Filter</button>
               {% endbuttons %}      
-            </div>
+            {% comment %} </div> {% endcomment %}
           </form>
-          <form class="form-inline post-form" method="POST" action="{% url 'search' user.username %}">
+          <form class="form-inline post-form justify-content-center" method="POST" action="{% url 'search' user.username %}">
             {% csrf_token %}
             {% comment %} <input class=" mr-sm-2" type="text" name="search_val"/> {% endcomment %}
             {% comment %} {% %} {% endcomment %}

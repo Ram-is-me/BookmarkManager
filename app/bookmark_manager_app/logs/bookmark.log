@@ -3242,3 +3242,93 @@
 [2021-05-09 10:22:08] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
 [2021-05-09 10:22:13] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
 [2021-05-09 10:22:13] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-05-09 12:46:53] INFO|bookmark_manager_app.views.search|Retrieving user with name=user1
+[2021-05-09 12:46:53] INFO|bookmark_manager_app.views.search|Retrieving tag of user with username=user1
+[2021-05-09 12:46:53] INFO|bookmark_manager_app.views.search|Retrieving groups of user with username=user1
+[2021-05-09 12:46:53] INFO|bookmark_manager_app.views.search|Retrieving bookmarks of user with username=user1
+[2021-05-09 12:46:53] INFO|bookmark_manager_app.views.search|Filtering bookmarks by search value=mark
+[2021-05-09 12:46:53] INFO|bookmark_manager_app.views.search|Merging Bookmarks list based on name and description=mark
+[2021-05-09 12:46:53] DEBUG|bookmark_manager_app.views.search|Rendering Search Results page
+[2021-05-09 12:46:54] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-09 12:46:54] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-05-09 12:47:11] INFO|bookmark_manager_app.views.search|Retrieving user with name=user1
+[2021-05-09 12:47:11] INFO|bookmark_manager_app.views.search|Retrieving tag of user with username=user1
+[2021-05-09 12:47:11] INFO|bookmark_manager_app.views.search|Retrieving groups of user with username=user1
+[2021-05-09 12:47:11] INFO|bookmark_manager_app.views.search|Retrieving bookmarks of user with username=user1
+[2021-05-09 12:47:11] INFO|bookmark_manager_app.views.search|Filtering bookmarks by search value=mark
+[2021-05-09 12:47:11] INFO|bookmark_manager_app.views.search|Merging Bookmarks list based on name and description=mark
+[2021-05-09 12:47:12] DEBUG|bookmark_manager_app.views.search|Rendering Search Results page
+[2021-05-09 12:47:12] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-09 12:47:12] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-05-09 12:47:34] INFO|bookmark_manager_app.views.search|Retrieving user with name=user1
+[2021-05-09 12:47:34] INFO|bookmark_manager_app.views.search|Retrieving tag of user with username=user1
+[2021-05-09 12:47:34] INFO|bookmark_manager_app.views.search|Retrieving groups of user with username=user1
+[2021-05-09 12:47:35] INFO|bookmark_manager_app.views.search|Retrieving bookmarks of user with username=user1
+[2021-05-09 12:47:35] INFO|bookmark_manager_app.views.search|Filtering bookmarks by search value=mark
+[2021-05-09 12:47:35] INFO|bookmark_manager_app.views.search|Merging Bookmarks list based on name and description=mark
+[2021-05-09 12:47:35] DEBUG|bookmark_manager_app.views.search|Rendering Search Results page
+[2021-05-09 12:47:35] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-09 12:47:35] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-05-09 12:47:36] INFO|bookmark_manager_app.views.search|Retrieving user with name=user1
+[2021-05-09 12:47:36] INFO|bookmark_manager_app.views.search|Retrieving tag of user with username=user1
+[2021-05-09 12:47:36] INFO|bookmark_manager_app.views.search|Retrieving groups of user with username=user1
+[2021-05-09 12:47:36] INFO|bookmark_manager_app.views.search|Retrieving bookmarks of user with username=user1
+[2021-05-09 12:47:36] INFO|bookmark_manager_app.views.search|Filtering bookmarks by search value=mark
+[2021-05-09 12:47:36] INFO|bookmark_manager_app.views.search|Merging Bookmarks list based on name and description=mark
+[2021-05-09 12:47:36] DEBUG|bookmark_manager_app.views.search|Rendering Search Results page
+[2021-05-09 12:47:36] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-09 12:47:36] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-05-09 12:47:57] INFO|bookmark_manager_app.views.search|Retrieving user with name=user1
+[2021-05-09 12:47:57] INFO|bookmark_manager_app.views.search|Retrieving tag of user with username=user1
+[2021-05-09 12:47:57] INFO|bookmark_manager_app.views.search|Retrieving groups of user with username=user1
+[2021-05-09 12:47:57] INFO|bookmark_manager_app.views.search|Retrieving bookmarks of user with username=user1
+[2021-05-09 12:47:57] INFO|bookmark_manager_app.views.search|Filtering bookmarks by search value=mark
+[2021-05-09 12:47:57] INFO|bookmark_manager_app.views.search|Merging Bookmarks list based on name and description=mark
+[2021-05-09 12:47:57] DEBUG|bookmark_manager_app.views.search|Rendering Search Results page
+[2021-05-09 12:47:58] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-09 12:47:58] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-05-09 12:47:58] INFO|bookmark_manager_app.views.search|Retrieving user with name=user1
+[2021-05-09 12:47:58] INFO|bookmark_manager_app.views.search|Retrieving tag of user with username=user1
+[2021-05-09 12:47:58] INFO|bookmark_manager_app.views.search|Retrieving groups of user with username=user1
+[2021-05-09 12:47:58] INFO|bookmark_manager_app.views.search|Retrieving bookmarks of user with username=user1
+[2021-05-09 12:47:58] INFO|bookmark_manager_app.views.search|Filtering bookmarks by search value=mark
+[2021-05-09 12:47:58] INFO|bookmark_manager_app.views.search|Merging Bookmarks list based on name and description=mark
+[2021-05-09 12:47:58] DEBUG|bookmark_manager_app.views.search|Rendering Search Results page
+[2021-05-09 12:47:59] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-09 12:47:59] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-05-09 12:48:21] INFO|bookmark_manager_app.views.search|Retrieving user with name=user1
+[2021-05-09 12:48:21] INFO|bookmark_manager_app.views.search|Retrieving tag of user with username=user1
+[2021-05-09 12:48:21] INFO|bookmark_manager_app.views.search|Retrieving groups of user with username=user1
+[2021-05-09 12:48:21] INFO|bookmark_manager_app.views.search|Retrieving bookmarks of user with username=user1
+[2021-05-09 12:48:21] INFO|bookmark_manager_app.views.search|Filtering bookmarks by search value=mark
+[2021-05-09 12:48:21] INFO|bookmark_manager_app.views.search|Merging Bookmarks list based on name and description=mark
+[2021-05-09 12:48:21] DEBUG|bookmark_manager_app.views.search|Rendering Search Results page
+[2021-05-09 12:48:22] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-09 12:48:22] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-05-09 12:48:50] INFO|bookmark_manager_app.views.search|Retrieving user with name=user1
+[2021-05-09 12:48:50] INFO|bookmark_manager_app.views.search|Retrieving tag of user with username=user1
+[2021-05-09 12:48:50] INFO|bookmark_manager_app.views.search|Retrieving groups of user with username=user1
+[2021-05-09 12:48:50] INFO|bookmark_manager_app.views.search|Retrieving bookmarks of user with username=user1
+[2021-05-09 12:48:50] INFO|bookmark_manager_app.views.search|Filtering bookmarks by search value=mark
+[2021-05-09 12:48:50] INFO|bookmark_manager_app.views.search|Merging Bookmarks list based on name and description=mark
+[2021-05-09 12:48:50] DEBUG|bookmark_manager_app.views.search|Rendering Search Results page
+[2021-05-09 12:48:51] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-09 12:48:51] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-05-09 12:48:51] INFO|bookmark_manager_app.views.search|Retrieving user with name=user1
+[2021-05-09 12:48:51] INFO|bookmark_manager_app.views.search|Retrieving tag of user with username=user1
+[2021-05-09 12:48:51] INFO|bookmark_manager_app.views.search|Retrieving groups of user with username=user1
+[2021-05-09 12:48:51] INFO|bookmark_manager_app.views.search|Retrieving bookmarks of user with username=user1
+[2021-05-09 12:48:51] INFO|bookmark_manager_app.views.search|Filtering bookmarks by search value=mark
+[2021-05-09 12:48:51] INFO|bookmark_manager_app.views.search|Merging Bookmarks list based on name and description=mark
+[2021-05-09 12:48:51] DEBUG|bookmark_manager_app.views.search|Rendering Search Results page
+[2021-05-09 12:48:52] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-09 12:48:52] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
+[2021-05-09 12:49:01] INFO|bookmark_manager_app.views.search|Retrieving user with name=user1
+[2021-05-09 12:49:01] INFO|bookmark_manager_app.views.search|Retrieving tag of user with username=user1
+[2021-05-09 12:49:01] INFO|bookmark_manager_app.views.search|Retrieving groups of user with username=user1
+[2021-05-09 12:49:01] INFO|bookmark_manager_app.views.search|Retrieving bookmarks of user with username=user1
+[2021-05-09 12:49:01] INFO|bookmark_manager_app.views.search|Filtering bookmarks by search value=mark
+[2021-05-09 12:49:01] INFO|bookmark_manager_app.views.search|Merging Bookmarks list based on name and description=mark
+[2021-05-09 12:49:01] DEBUG|bookmark_manager_app.views.search|Rendering Search Results page
+[2021-05-09 12:49:01] DEBUG|bookmark_manager_app.views.display|Redirected to groups page
+[2021-05-09 12:49:01] INFO|bookmark_manager_app.views.display|Retrieving user with name=favicon.ico
