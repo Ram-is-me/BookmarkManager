@@ -95,7 +95,7 @@ def bookmarks_tag(request, name):
     for key in request.POST:
         if key in all_tag_names and request.POST[key]:
                 logger.info("Retrieving tag with name={}".format(key))
-                input_tags.append(models.Tag.objects.get(name=key))
+                input_tags.append(models.Tag.objects.get(name=key, creator=curr_user))
     bookmark_list = []
     all_bookmarks = all_bookmarks.order_by('-date_of_creation')
     for bookmark in all_bookmarks:
@@ -146,9 +146,11 @@ def create_tag(request, name):
 def delete_group(request, name):
     logger.debug("Trying to delete existing group")
     deletegroupname = request.POST.get('deletegroupname')
+    logger.info("Retrieving user with name={}".format(name))
+    curr_user = models.User.objects.get(name=name)
     try:
         logger.info("Retrieving group with name={}".format(deletegroupname))
-        curr_group = models.Group.objects.get(name=deletegroupname)
+        curr_group = models.Group.objects.get(name=deletegroupname, creator=curr_user)
         curr_group.delete()
         logger.info("Deleted group with name={}".format(deletegroupname))
     except models.Group.DoesNotExist:
@@ -161,9 +163,11 @@ def delete_group(request, name):
 def delete_tag(request, name):
     logger.debug("Trying to delete existing tag")
     deletetagname = request.POST.get('deletetagname')
+    logger.info("Retrieving user with name={}".format(name))
+    curr_user = models.User.objects.get(name=name)
     try:
         logger.info("Retrieving tag with name={}".format(deletetagname))
-        curr_tag = models.Tag.objects.get(name=deletetagname)
+        curr_tag = models.Tag.objects.get(name=deletetagname, creator=curr_user)
         curr_tag.delete()
         logger.info("Deleted tag with name={}".format(deletetagname))
     except models.Tag.DoesNotExist:
@@ -175,8 +179,10 @@ def delete_tag(request, name):
 @login_required
 def delete_reminder(request, name, reminder):
     logger.debug("Trying to delete reminder")
+    logger.info("Retrieving user with name={}".format(name))
+    curr_user = models.User.objects.get(name=name)
     logger.info("Retrieving reminder with name={}".format(reminder))
-    curr_reminder = models.Reminder.objects.get(name=reminder)
+    curr_reminder = models.Reminder.objects.get(name=reminder, creator=curr_user)
     curr_reminder.delete()
     logger.info("Deleted reminder with name={}".format(reminder))
     return HttpResponseRedirect(reverse('groups', args=(name, )), request)
