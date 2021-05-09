@@ -38,27 +38,32 @@
           <h2>Reminders</h2>
           <div id="card-579191">
             {% if reminder_list %} {% for reminder in reminder_list %}
-            <div class="card" style="border: 3px groove">
+            {% comment %} <div class="card" style="border: 3px groove"> {% endcomment %}
+            <div class="card">
               <a
                 class="card-link"
                 data-toggle="collapse"
                 data-parent="#card-579191"
-                href="#{{ reminder.id }}"
+                href="#{{ reminder.name }}"
                 style="color: black"
                 >
               {% if reminder.status == "red" %}
-              <div class="card-header" style="background-color: coral">
+              {% comment %} <div class="card-header" style="background-color: coral"> {% endcomment %}
+              <div class="card-header bg-danger" >
               {% elif reminder.status == "yellow" %}
-              <div class="card-header" style="background-color: khaki">
+              {% comment %} <div class="card-header" style="background-color: khaki"> {% endcomment %}
+              <div class="card-header bg-warning">
               {% else %}
-              <div class="card-header" style="background-color: springgreen">
+              {% comment %} <div class="card-header" style="background-color: springgreen"> {% endcomment %}
+              <div class="card-header bg-success" >
               {% endif %}
                 <h6>{{ reminder.name }}</h6>
               </div>
               </a>
-              <div id="{{ reminder.id }}" class="collapse">
+              <div id="{{ reminder.name }}" class="collapse">
                 <div class="card-body">
-                  <p class="card-text">Bookmark: <br> <a href="{{ reminder.bookmark.url }}">{{ reminder.bookmark.custom_name }}</a></p>
+                  <p class="card-text">Bookmark: <br> <a href="{% url 'view_bookmark' user.username reminder.bookmark.id %}">{{ reminder.bookmark.custom_name }}</a></p>
+                  <p class="card-text">Bookmark URL: <br> <a href="{{ reminder.bookmark.url }}" target="_blank">{{ reminder.bookmark.custom_name }}</a></p>
                   <p> Description: <br> {{ reminder.description }}</p>
                   <p>Deadline: <br> {{ reminder.reminder_time }}</p>
                   <form
@@ -108,7 +113,7 @@
               {% for bookmark in bookmark_list %}
               <tr>
                 <th scope="row">{{ forloop.counter }}</th>
-                <td><a href="{{ bookmark.url }}">{{ bookmark.custom_name }}</a></td>
+                <td><a href="{{ bookmark.url }}" target="_blank">{{ bookmark.custom_name }}</a></td>
                 <td>{{ bookmark.group.name }}</td>
                 <td>{{ bookmark.date_of_creation }}</td>
                 <td>

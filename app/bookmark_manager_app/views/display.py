@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
@@ -112,6 +112,7 @@ def bookmarks_tag(request, name):
 
 @login_required
 def create_group(request, name):
+    logger.debug("Trying to create new group")
     groupname = request.POST.get('groupname')
     logger.info("Retrieving user with name={}".format(name))
     curr_user = models.User.objects.get(name=name)
@@ -127,6 +128,7 @@ def create_group(request, name):
 
 @login_required
 def create_tag(request, name):
+    logger.debug("Trying to create new tag")
     tagname = request.POST.get('tagname')
     logger.info("Retrieving user with name={}".format(name))
     curr_user = models.User.objects.get(name=name)
@@ -142,6 +144,7 @@ def create_tag(request, name):
 
 @login_required
 def delete_group(request, name):
+    logger.debug("Trying to delete existing group")
     deletegroupname = request.POST.get('deletegroupname')
     try:
         logger.info("Retrieving group with name={}".format(deletegroupname))
@@ -156,6 +159,7 @@ def delete_group(request, name):
     
 @login_required
 def delete_tag(request, name):
+    logger.debug("Trying to delete existing tag")
     deletetagname = request.POST.get('deletetagname')
     try:
         logger.info("Retrieving tag with name={}".format(deletetagname))
@@ -170,8 +174,9 @@ def delete_tag(request, name):
 
 @login_required
 def delete_reminder(request, name, reminder):
+    logger.debug("Trying to delete reminder")
     logger.info("Retrieving reminder with name={}".format(reminder))
     curr_reminder = models.Reminder.objects.get(name=reminder)
     curr_reminder.delete()
     logger.info("Deleted reminder with name={}".format(reminder))
-    return HttpResponseRedirect(reverse('groups', args=(name,)), request)
+    return HttpResponseRedirect(reverse('groups', args=(name, )), request)

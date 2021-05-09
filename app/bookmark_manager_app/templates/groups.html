@@ -34,11 +34,11 @@
     <link href="{% static 'css/custom.css' %}" rel="stylesheet"> 
 
   </head>
-  <body>
+  <body class="bg-light">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-3">
-          <h2>Reminders</h2>
+        <div class="col-md-2">
+          <h2 class="text-center">Reminders</h2>
           <div id="card-579191">
             {% if reminder_list %} {% for reminder in reminder_list %}
             {% comment %} <div class="card" style="border: 3px groove"> {% endcomment %}
@@ -51,22 +51,22 @@
                 style="color: black"
                 >
               {% if reminder.status == "red" %}
-              {% comment %} <div class="card-header" style="background-color: coral"> {% endcomment %}
-              <div class="card-header bg-danger" >
+              <div class="card-header" style="background-color: tomato">
+              {% comment %} <div class="card-header bg-danger" > {% endcomment %}
               {% elif reminder.status == "yellow" %}
-              {% comment %} <div class="card-header" style="background-color: khaki"> {% endcomment %}
-              <div class="card-header bg-warning">
+              <div class="card-header" style="background-color: gold">
+              {% comment %} <div class="card-header bg-warning" > {% endcomment %}
               {% else %}
-              {% comment %} <div class="card-header" style="background-color: springgreen"> {% endcomment %}
-              <div class="card-header bg-success" >
+              <div class="card-header" style="background-color: forestgreen">
+              {% comment %} <div class="card-header bg-success" > {% endcomment %}
               {% endif %}
                 <h6>{{ reminder.name }}</h6>
               </div>
               </a>
               <div id="{{ reminder.name }}" class="collapse">
                 <div class="card-body">
-                  <p class="card-text">Bookmark URL: <br> <a href="{{ reminder.bookmark.url }}">{{ reminder.bookmark.custom_name }}</a></p>
                   <p class="card-text">Bookmark: <br> <a href="{% url 'view_bookmark' user.username reminder.bookmark.id %}">{{ reminder.bookmark.custom_name }}</a></p>
+                  <p class="card-text">Bookmark URL: <br> <a href="{{ reminder.bookmark.url }}" target="_blank">{{ reminder.bookmark.custom_name }}</a></p>
                   <p> Description: <br> {{ reminder.description }}</p>
                   <p>Deadline: <br> {{ reminder.reminder_time }}</p>
                   <form
@@ -86,8 +86,8 @@
             {% endfor %} {% endif %}
           </div>
         </div>
-        <div class="col-md-7">
-          <h2>Groups</h2>
+        <div class="col-md-8">
+          <h2 class="text-center">Groups</h2>
           <form
             action="{% url 'create_group' user.username %}"
             class="form-inline"
@@ -98,7 +98,7 @@
               id="csrf_token"
               name="groupname"
               style="width: 50%"
-              class="mr-sm-2 form-inline"
+              class="mr-sm-2 form-inline form-control"
               type="text"
               required
             />
@@ -127,8 +127,8 @@
                 href="#{{ group.name }}"
                 style="color: black"
                 >
-              {% comment %} <div class="card-header" style="background-color: lightskyblue"> {% endcomment %}
-              <div class="card-header bg-light">
+              <div class="card-header" style="background-color: lightskyblue">
+              {% comment %} <div class="card-header bg-light"> {% endcomment %}
                 <h6>{{ group.name }}</h6>
               </div>
               </a>
@@ -160,7 +160,8 @@
                         <th scope="row">{{ forloop.counter }}</th>
                         <td>
                           <a
-                            href="https://{{ bookmark.url }}"
+                            href="{{ bookmark.url }}"
+                            target="_blank"
                             >{{ bookmark.custom_name }}</a
                           >
                         </td>
@@ -195,7 +196,7 @@
             <input
               id="csrf_token"
               name="deletegroupname"
-              class="mr-sm-2 form-inline"
+              class="mr-sm-2 form-inline form-control"
               style="width: 50%; margin-top: 20px"
               type="text"
               required
@@ -216,7 +217,7 @@
           {% endif %}
         </div>
         <div class="col-md-2">
-          <h2>Tags</h2>
+          <h2 class="text-center">Tags</h2>
           <form
             action="{% url 'create_tag' user.username %}"
             class="form-inline"
@@ -226,7 +227,7 @@
             <input
               id="csrf_token"
               name="tagname"
-              class="mr-sm-2 form-inline"
+              class="mr-sm-2 form-inline form-control"
               style="width: 70%; margin-bottom: 3%"
               type="text"
               required
@@ -274,7 +275,7 @@
             <input
               id="csrf_token"
               name="deletetagname"
-              class="mr-sm-2 form-inline"
+              class="mr-sm-2 form-inline form-control"
               style="width: 70%; margin-bottom: 3%"
               type="text"
               required
